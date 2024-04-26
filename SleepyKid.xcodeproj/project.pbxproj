@@ -15,6 +15,7 @@
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
+		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		907316BD2BDB951100BA92FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		907316C02BDB951100BA92FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
+				90EC49FB2BDBDA2C00DEBAFF /* User */,
 				9029A6522BDBB30F002864AC /* Sleep */,
 				9029A64E2BDBB161002864AC /* Kid */,
 				9029A64A2BDBABD6002864AC /* KidsList */,
@@ -127,6 +130,22 @@
 				907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */,
 			);
 			path = SleepyKid;
+			sourceTree = "<group>";
+		};
+		90EC49FB2BDBDA2C00DEBAFF /* User */ = {
+			isa = PBXGroup;
+			children = (
+				90EC49FC2BDBDA4400DEBAFF /* Model */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		90EC49FC2BDBDA4400DEBAFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				90EC49F92BDBD9C600DEBAFF /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +224,7 @@
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
 				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
+				90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@ struct Kid {
     let dateOfBirth: Date
     let sex: Sex = .unowned
     var sleeps: [Sleep]
+    let parent: User = User()
     
     enum Sex {
         case girl, boy, unowned
