@@ -9,10 +9,10 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     // MARK: - Variables
-    let kidsImage = UIImage(systemName: "figure.child") ?? .add
+    let kidsImage = UIImage(systemName: "face.smiling") ?? .add
     let sleepsImage = UIImage(systemName: "moon.zzz.fill") ?? .add
-    let kidsTitle = "Kids"
-    let sleepsTitle = "Sleeps"
+    let kidsTitle = "Kids".uppercased()
+    let sleepsTitle = "Sleeps".uppercased()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ final class TabBarController: UITabBarController {
         
         let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        view.tintColor = .black
+        view.tintColor = .darkPurple
         
         setupViewController()
     }
@@ -28,8 +28,12 @@ final class TabBarController: UITabBarController {
     // MARK: - Private Methods
     private func setupViewController() {
         viewControllers = [
-            setupNavigationController(rootViewController: KidsListViewController(), title: kidsTitle, image: kidsImage),
-            setupNavigationController(rootViewController: SleepsListViewController(), title: sleepsTitle, image: sleepsImage)
+            setupNavigationController(rootViewController: KidsListViewController(), 
+                                      title: kidsTitle,
+                                      image: kidsImage),
+            setupNavigationController(rootViewController: SleepsListViewController(), 
+                                      title: sleepsTitle,
+                                      image: sleepsImage)
         ]
     }
     

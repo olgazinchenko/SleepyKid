@@ -11,6 +11,7 @@ struct Kid {
     let name: String
     let dateOfBirth: Date
     let sex: Sex = .unowned
+    let photoUrl: URL?
     var sleeps: [Sleep]
     let parent: User = User()
     

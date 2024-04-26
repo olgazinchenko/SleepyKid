@@ -7,10 +7,9 @@
 
 import UIKit
 
-class SleepsListViewController: UIViewController {
+class SleepsListViewController: UITableViewController {
+    // MARK: - Live Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .mainBlue
     }
 }
