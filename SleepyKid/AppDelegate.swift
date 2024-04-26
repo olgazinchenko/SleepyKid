@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = window {
             let navigationController = UINavigationController()
-            navigationController.viewControllers = [ViewController()]
+            navigationController.viewControllers = [KidsListViewController()]
             
             window.rootViewController = navigationController
             window.makeKeyAndVisible()

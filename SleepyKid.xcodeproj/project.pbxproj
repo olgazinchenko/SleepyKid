@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6482BDBA26E002864AC /* UIColor+Ex.swift */; };
+		9029A64D2BDBB15B002864AC /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A64C2BDBB15B002864AC /* Kid.swift */; };
+		9029A6512BDBB30B002864AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6502BDBB30B002864AC /* Sleep.swift */; };
 		907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B12BDB950E00BA92FB /* AppDelegate.swift */; };
-		907316B62BDB950E00BA92FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B52BDB950E00BA92FB /* ViewController.swift */; };
+		907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B52BDB950E00BA92FB /* KidsListViewController.swift */; };
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
@@ -17,9 +19,11 @@
 
 /* Begin PBXFileReference section */
 		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
+		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
+		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 		907316AE2BDB950E00BA92FB /* SleepyKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepyKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		907316B12BDB950E00BA92FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		907316B52BDB950E00BA92FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		907316B52BDB950E00BA92FB /* KidsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsListViewController.swift; sourceTree = "<group>"; };
 		907316BB2BDB950E00BA92FB /* SleepyKid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepyKid.xcdatamodel; sourceTree = "<group>"; };
 		907316BD2BDB951100BA92FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		907316C02BDB951100BA92FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,6 +49,54 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		9029A64A2BDBABD6002864AC /* KidsList */ = {
+			isa = PBXGroup;
+			children = (
+				9029A64B2BDBABFF002864AC /* View */,
+			);
+			path = KidsList;
+			sourceTree = "<group>";
+		};
+		9029A64B2BDBABFF002864AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				907316B52BDB950E00BA92FB /* KidsListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9029A64E2BDBB161002864AC /* Kid */ = {
+			isa = PBXGroup;
+			children = (
+				9029A64F2BDBB16B002864AC /* Model */,
+			);
+			path = Kid;
+			sourceTree = "<group>";
+		};
+		9029A64F2BDBB16B002864AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9029A64C2BDBB15B002864AC /* Kid.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9029A6522BDBB30F002864AC /* Sleep */ = {
+			isa = PBXGroup;
+			children = (
+				9029A6532BDBB319002864AC /* Model */,
+			);
+			path = Sleep;
+			sourceTree = "<group>";
+		};
+		9029A6532BDBB319002864AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9029A6502BDBB30B002864AC /* Sleep.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		907316A52BDB950E00BA92FB = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
-				907316B52BDB950E00BA92FB /* ViewController.swift */,
+				9029A6522BDBB30F002864AC /* Sleep */,
+				9029A64E2BDBB161002864AC /* Kid */,
+				9029A64A2BDBABD6002864AC /* KidsList */,
 				9029A6472BDBA22F002864AC /* Extentions */,
 				907316BD2BDB951100BA92FB /* Assets.xcassets */,
 				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
@@ -146,9 +200,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */,
+				9029A64D2BDBB15B002864AC /* Kid.swift in Sources */,
 				907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */,
-				907316B62BDB950E00BA92FB /* ViewController.swift in Sources */,
+				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
+				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
