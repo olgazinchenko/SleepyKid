@@ -16,6 +16,7 @@ class KidsListViewController: UITableViewController {
         super.viewDidLoad()
         
         setupTableView()
+        setupToolBar()
     }
     
     // MARK: - Private Methods
@@ -24,6 +25,21 @@ class KidsListViewController: UITableViewController {
                            forCellReuseIdentifier: "KidTableViewCell")
         tableView.separatorStyle = .none
     }
+    
+    private func setupToolBar() {
+            let addButton = UIBarButtonItem(title: "+Add",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(addAction))
+            let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+            setToolbarItems([spacing, addButton], animated: true)
+            navigationController?.isToolbarHidden = false
+        }
+    
+    @objc
+     private func addAction() {
+         // TODO: addAction
+     }
 }
 
 // MARK: - UITableViewDataSource
