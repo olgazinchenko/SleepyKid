@@ -16,11 +16,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SleepyKid" translatesAutoresizingMaskIntoConstraints="NO" id="CzF-Ea-zNs">
-                                <rect key="frame" x="50" y="309" width="293" height="294"/>
+                                <rect key="frame" x="50" y="309" width="293" height="214"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SleepyKid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAs-tW-bu9">
-                                <rect key="frame" x="30" y="253" width="333" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <rect key="frame" x="30" y="531" width="333" height="38.333333333333371"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -29,8 +29,8 @@
                         <color key="backgroundColor" red="0.99215686274509807" green="1" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="CzF-Ea-zNs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="As0-sb-4Hy"/>
-                            <constraint firstItem="CzF-Ea-zNs" firstAttribute="top" secondItem="zAs-tW-bu9" secondAttribute="bottom" constant="20" id="Qkl-ZS-IFg"/>
-                            <constraint firstItem="CzF-Ea-zNs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="30" id="W4H-G0-eUh"/>
+                            <constraint firstItem="zAs-tW-bu9" firstAttribute="top" secondItem="CzF-Ea-zNs" secondAttribute="bottom" constant="8" id="Hog-RP-P06"/>
+                            <constraint firstItem="CzF-Ea-zNs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-10" id="W4H-G0-eUh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zAs-tW-bu9" secondAttribute="trailing" constant="30" id="jZR-ol-yp6"/>
                             <constraint firstItem="CzF-Ea-zNs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="t0d-bZ-4KH"/>
                             <constraint firstItem="zAs-tW-bu9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="wOY-ED-8hb"/>
