@@ -20,7 +20,7 @@ final class TabBarController: UITabBarController {
         
         let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        view.tintColor = .darkPurple
+        view.tintColor = .black
         
         setupViewController()
     }

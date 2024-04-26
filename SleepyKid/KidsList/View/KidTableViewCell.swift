@@ -12,14 +12,16 @@ final class KidTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = .lightYellow
         view.layer.cornerRadius = 10
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 1
         return view
     }()
     
     private let avatarView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "teddybear.fill")
+        view.image = UIImage(named: "SleepyKid")
         view.layer.masksToBounds = true
         view.contentMode = .scaleAspectFill
         return view
@@ -28,8 +30,8 @@ final class KidTableViewCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Alisa"
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textColor = .darkPurple
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .black
         return label
     }()
     
@@ -68,7 +70,7 @@ final class KidTableViewCell: UITableViewCell {
         avatarView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(40)
+            $0.height.width.equalTo(50)
         }
         
         nameLabel.snp.makeConstraints {
