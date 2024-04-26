@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6482BDBA26E002864AC /* UIColor+Ex.swift */; };
 		907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B12BDB950E00BA92FB /* AppDelegate.swift */; };
 		907316B62BDB950E00BA92FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B52BDB950E00BA92FB /* ViewController.swift */; };
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		907316AE2BDB950E00BA92FB /* SleepyKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepyKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		907316B12BDB950E00BA92FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		907316B52BDB950E00BA92FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9029A6472BDBA22F002864AC /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				9029A6482BDBA26E002864AC /* UIColor+Ex.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		907316A52BDB950E00BA92FB = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
 				907316B52BDB950E00BA92FB /* ViewController.swift */,
+				9029A6472BDBA22F002864AC /* Extentions */,
 				907316BD2BDB951100BA92FB /* Assets.xcassets */,
 				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
 				907316C22BDB951100BA92FB /* Info.plist */,
@@ -134,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */,
 				907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */,
 				907316B62BDB950E00BA92FB /* ViewController.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
