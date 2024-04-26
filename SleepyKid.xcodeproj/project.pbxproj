@@ -16,6 +16,8 @@
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
 		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
+		90EC49FE2BDBE55900DEBAFF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49FD2BDBE55900DEBAFF /* TabBarController.swift */; };
+		90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		907316C02BDB951100BA92FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		90EC49FD2BDBE55900DEBAFF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +123,12 @@
 			isa = PBXGroup;
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
+				90EC49FD2BDBE55900DEBAFF /* TabBarController.swift */,
 				90EC49FB2BDBDA2C00DEBAFF /* User */,
-				9029A6522BDBB30F002864AC /* Sleep */,
 				9029A64E2BDBB161002864AC /* Kid */,
+				9029A6522BDBB30F002864AC /* Sleep */,
 				9029A64A2BDBABD6002864AC /* KidsList */,
+				90EC4A012BDBE71000DEBAFF /* SleepsList */,
 				9029A6472BDBA22F002864AC /* Extentions */,
 				907316BD2BDB951100BA92FB /* Assets.xcassets */,
 				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
@@ -146,6 +152,22 @@
 				90EC49F92BDBD9C600DEBAFF /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		90EC4A012BDBE71000DEBAFF /* SleepsList */ = {
+			isa = PBXGroup;
+			children = (
+				90EC4A022BDBE71900DEBAFF /* View */,
+			);
+			path = SleepsList;
+			sourceTree = "<group>";
+		};
+		90EC4A022BDBE71900DEBAFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +241,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */,
+				90EC49FE2BDBE55900DEBAFF /* TabBarController.swift in Sources */,
 				9029A64D2BDBB15B002864AC /* Kid.swift in Sources */,
 				907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */,
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
+				90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
 				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
 				90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */,

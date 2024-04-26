@@ -1,5 +1,5 @@
 //
-//  KidsListViewController.swift
+//  SleepsListViewController.swift
 //  SleepyKid
 //
 //  Created by ozinchenko.dev on 26/04/2024.
@@ -7,11 +7,10 @@
 
 import UIKit
 
-class KidsListViewController: UIViewController {
+class SleepsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .mainMint
+        view.backgroundColor = .mainBlue
     }
 }
-
