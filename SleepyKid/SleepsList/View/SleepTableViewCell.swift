@@ -22,7 +22,6 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let avatarView: UIImageView = {
         let view = UIImageView()
-//        view.tintColor = .black
         view.contentMode = .scaleAspectFill
         return view
     }()
@@ -47,10 +46,13 @@ final class SleepTableViewCell: UITableViewCell {
     
     // MARK: - Methods
     func setSleep(startTime: Date, endTime: Date) {
-        nameLabel.text = "\(startTime)"
-        containerView.backgroundColor = startTime <= .now ? .mainPurple : .mainYellow
-        avatarView.image = startTime <= .now ? UIImage(systemName: "moon.zzz") : UIImage(systemName: "sun.max")
-        avatarView.tintColor = startTime <= .now ? .lightYellow : .darkPurple
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "h:mm a"
+        let stringStartDate = dateFormater.string(from: startTime)
+        nameLabel.text = "\(stringStartDate)"
+        containerView.backgroundColor = startTime >= .now ? .mainPurple : .mainYellow
+        avatarView.image = startTime >= .now ? UIImage(systemName: "moon.zzz") : UIImage(systemName: "sun.max")
+        avatarView.tintColor = startTime >= .now ? .lightYellow : .darkPurple
     }
     
     // MARK: - Private Methods

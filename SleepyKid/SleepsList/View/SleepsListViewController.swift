@@ -26,7 +26,7 @@ class SleepsListViewController: UITableViewController {
         tableView.separatorStyle = .none
         
         guard let name = viewModel?.kidName else { return }
-        title = "\(name)'s sleeps".uppercased()
+        title = "\(name) 😴 sleeps".uppercased()
     }
     
     private func setupToolBar() {
