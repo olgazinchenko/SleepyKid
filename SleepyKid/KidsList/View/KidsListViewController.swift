@@ -14,7 +14,7 @@ class KidsListViewController: UITableViewController {
     // MARK: - Live Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Kids".uppercased()
         setupTableView()
         setupToolBar()
     }
@@ -44,15 +44,30 @@ class KidsListViewController: UITableViewController {
 
 // MARK: - UITableViewDataSource
 extension KidsListViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, 
+                            numberOfRowsInSection section: Int) -> Int {
         let viewModel = KidsListViewModel()
         return viewModel.kids.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "KidTableViewCell", for: indexPath) as? KidTableViewCell
-        else { return UITableViewCell() }
+    override func tableView(_ tableView: UITableView, 
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "KidTableViewCell", 
+                                                       for: indexPath) as? KidTableViewCell,
+              let name = viewModel?.kids[indexPath.row].name else { return UITableViewCell() }
+        cell.setKid(name: name)
         return cell
     }
 }
 
+// MARK: - UITableViewDelegate
+extension KidsListViewController {
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        guard let kid = viewModel?.kids[indexPath.row] as? Kid else { return }
+        let sleepsListViewController = SleepsListViewController()
+        let viewModel = SleepsListViewModel(sleeps: kid.sleeps, kidName: kid.name)
+        sleepsListViewController.viewModel = viewModel
+        navigationController?.pushViewController(sleepsListViewController, animated: true)
+    }
+}

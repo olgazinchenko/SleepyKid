@@ -10,7 +10,6 @@ import Foundation
 struct Sleep {
     let startDate: Date
     let endDate: Date
-    let kid: Kid
     let sleepType: SleepType = .unowned
     
     enum SleepType {

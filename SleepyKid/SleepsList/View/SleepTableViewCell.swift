@@ -1,18 +1,18 @@
 //
-//  KidTableViewCell.swift
+//  SleepTableViewCell.swift
 //  SleepyKid
 //
-//  Created by ozinchenko.dev on 26/04/2024.
+//  Created by ozinchenko.dev on 27/04/2024.
 //
 
 import UIKit
 import SnapKit
 
-final class KidTableViewCell: UITableViewCell {
+final class SleepTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightYellow
+        view.backgroundColor = .lightBlue
         view.layer.cornerRadius = 10
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
@@ -21,7 +21,6 @@ final class KidTableViewCell: UITableViewCell {
     
     private let avatarView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "SleepyKid")
         view.layer.masksToBounds = true
         view.contentMode = .scaleAspectFill
         return view
@@ -29,7 +28,6 @@ final class KidTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Alisa"
         label.font = .systemFont(ofSize: 20)
         label.textColor = .black
         return label
@@ -47,8 +45,8 @@ final class KidTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setKid(name: String) {
-        nameLabel.text = name
+    func setSleep(startTime: String) {
+        nameLabel.text = startTime
     }
     
     // MARK: - Private Methods
@@ -78,3 +76,4 @@ final class KidTableViewCell: UITableViewCell {
         }
     }
 }
+
