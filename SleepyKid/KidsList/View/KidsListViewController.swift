@@ -28,7 +28,7 @@ class KidsListViewController: UITableViewController {
     
     private func setupToolBar() {
             let addButton = UIBarButtonItem(title: "+Add",
-                                            style: .plain,
+                                            style: .done,
                                             target: self,
                                             action: #selector(addAction))
             let spacing = UIBarButtonItem(systemItem: .flexibleSpace)

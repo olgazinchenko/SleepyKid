@@ -23,8 +23,5 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
         self.kidName = kidName
     }
     
-    // MARK: - Private Methods
-    private func setMocks() {
-
-    }
+    //MARK: - Methods
 }

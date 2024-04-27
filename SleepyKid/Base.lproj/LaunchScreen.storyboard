@@ -45,14 +45,11 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <color key="tintColor" systemColor="systemRedColor"/>
+    <color key="tintColor" red="0.62053322305484693" green="0.59407357048083553" blue="0.80377756940918366" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="SleepyKid" width="512" height="512"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

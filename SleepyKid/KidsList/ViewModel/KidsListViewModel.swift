@@ -22,12 +22,17 @@ final class KidsListViewModel: KidsListViewModelProtocol {
     // MARK: - Private Methods
     private func setMocks() {
         kids = [Kid(name: "Alisa",
-                        dateOfBirth: .now - 4000,
-                        photoUrl: nil,
+                    dateOfBirth: .now - 4000,
+                    photoUrl: nil,
                     sleeps: [Sleep(startDate: .now, endDate: .now + 60)]),
-                    Kid(name: "Alex",
-                        dateOfBirth: .now - 9000,
-                        photoUrl: nil,
-                        sleeps: [Sleep(startDate: .now + 100, endDate: .now + 260)])]
+                Kid(name: "Alex",
+                    dateOfBirth: .now - 9000,
+                    photoUrl: nil,
+                    sleeps: [Sleep(startDate: .now + 100, endDate: .now + 260),
+                             Sleep(startDate: .now + 100, endDate: .now + 260),
+                             Sleep(startDate: .now + 100, endDate: .now + 260),
+                             Sleep(startDate: .now, endDate: .now + 60)]
+                   )
+        ]
     }
 }

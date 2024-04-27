@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let viewController = KidsListViewController()
             viewController.viewModel = KidsListViewModel()
             navigationController.viewControllers = [viewController]
+            navigationController.navigationBar.tintColor = .black
+            navigationController.toolbar.tintColor = .black
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }

@@ -12,7 +12,8 @@ final class SleepTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightBlue
+//        view.backgroundColor = .mainPurple
+        view.backgroundColor = .mainYellow
         view.layer.cornerRadius = 10
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
@@ -21,14 +22,14 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let avatarView: UIImageView = {
         let view = UIImageView()
-        view.layer.masksToBounds = true
+//        view.tintColor = .black
         view.contentMode = .scaleAspectFill
         return view
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 16)
         label.textColor = .black
         return label
     }()
@@ -45,15 +46,17 @@ final class SleepTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setSleep(startTime: String) {
-        nameLabel.text = startTime
+    func setSleep(startTime: Date, endTime: Date) {
+        nameLabel.text = "\(startTime)"
+        containerView.backgroundColor = startTime <= .now ? .mainPurple : .mainYellow
+        avatarView.image = startTime <= .now ? UIImage(systemName: "moon.zzz") : UIImage(systemName: "sun.max")
+        avatarView.tintColor = startTime <= .now ? .lightYellow : .darkPurple
     }
     
     // MARK: - Private Methods
     private func setupUI() {
         addSubview(containerView)
         containerView.addSubviews([avatarView, nameLabel])
-        
         setupConstraints()
     }
     
@@ -61,7 +64,7 @@ final class SleepTableViewCell: UITableViewCell {
         containerView.snp.makeConstraints{
             $0.verticalEdges.equalToSuperview().inset(5)
             $0.horizontalEdges.equalToSuperview().inset(10)
-            $0.height.equalTo(80)
+            $0.height.equalTo(120)
         }
         
         avatarView.snp.makeConstraints {

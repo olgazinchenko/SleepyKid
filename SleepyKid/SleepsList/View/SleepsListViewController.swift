@@ -21,7 +21,7 @@ class SleepsListViewController: UITableViewController {
     
     // MARK: - Methods
     private func setupTableView() {
-        tableView.register(KidTableViewCell.self,
+        tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")
         tableView.separatorStyle = .none
         
@@ -31,7 +31,7 @@ class SleepsListViewController: UITableViewController {
     
     private func setupToolBar() {
             let addButton = UIBarButtonItem(title: "+Add",
-                                            style: .plain,
+                                            style: .done,
                                             target: self,
                                             action: #selector(addAction))
             let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
@@ -43,4 +43,22 @@ class SleepsListViewController: UITableViewController {
      private func addAction() {
          // TODO: addAction
      }
+}
+
+// MARK: - UITableViewDataSource
+extension SleepsListViewController {
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
+        guard let numberOfRowsInSection = viewModel?.sleeps.count else { return 0 }
+        return numberOfRowsInSection
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
+                                                       for: indexPath) as? SleepTableViewCell,
+              let sleep = viewModel?.sleeps[indexPath.row] else { return UITableViewCell() }
+        cell.setSleep(startTime: sleep.startDate, endTime: sleep.endDate)
+        return cell
+    }
 }
