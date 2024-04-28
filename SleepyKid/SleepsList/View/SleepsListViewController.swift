@@ -58,7 +58,7 @@ extension SleepsListViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
                                                        for: indexPath) as? SleepTableViewCell,
               let sleep = viewModel?.sleeps[indexPath.row] else { return UITableViewCell() }
-        cell.setSleep(startTime: sleep.startDate, endTime: sleep.endDate)
+        cell.setSleep(startTime: sleep.startDate, endTime: sleep.endDate, sleepType: sleep.sleepType)
         return cell
     }
 }

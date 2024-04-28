@@ -24,14 +24,14 @@ final class KidsListViewModel: KidsListViewModelProtocol {
         kids = [Kid(name: "Alisa",
                     dateOfBirth: .now - 4000,
                     photoUrl: nil,
-                    sleeps: [Sleep(startDate: .now, endDate: .now + 60)]),
+                    sleeps: [Sleep(startDate: .now, endDate: .now + 60, sleepType: .day)]),
                 Kid(name: "Alex",
                     dateOfBirth: .now - 9000,
                     photoUrl: nil,
-                    sleeps: [Sleep(startDate: .now + 100, endDate: .now + 260),
-                             Sleep(startDate: .now + 100, endDate: .now + 260),
-                             Sleep(startDate: .now + 100, endDate: .now + 260),
-                             Sleep(startDate: .now, endDate: .now + 60)]
+                    sleeps: [Sleep(startDate: .now + 100, endDate: .now + 2600, sleepType: .night),
+                             Sleep(startDate: .now + 3600, endDate: .now + 4260, sleepType: .day),
+                             Sleep(startDate: .now + 3100, endDate: .now + 3260, sleepType: .day),
+                             Sleep(startDate: .now, endDate: .now + 60, sleepType: .night)]
                    )
         ]
     }

@@ -10,9 +10,9 @@ import Foundation
 struct Sleep {
     let startDate: Date
     let endDate: Date
-    let sleepType: SleepType = .unowned
+    let sleepType: SleepType
     
     enum SleepType {
-        case day, night, unowned
+        case day, night
     }
 }
