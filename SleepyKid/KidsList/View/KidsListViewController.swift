@@ -54,8 +54,8 @@ extension KidsListViewController {
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "KidTableViewCell", 
                                                        for: indexPath) as? KidTableViewCell,
-              let name = viewModel?.kids[indexPath.row].name else { return UITableViewCell() }
-        cell.setKid(name: name)
+              let kid = viewModel?.kids[indexPath.row] else { return UITableViewCell() }
+        cell.setKid(name: kid.name, sex: kid.sex)
         return cell
     }
 }

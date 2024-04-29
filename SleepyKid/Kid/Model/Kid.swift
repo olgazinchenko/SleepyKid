@@ -10,12 +10,12 @@ import Foundation
 struct Kid {
     let name: String
     let dateOfBirth: Date
-    let sex: Sex = .unowned
+    let sex: Sex
     let photoUrl: URL?
     var sleeps: [Sleep]
     let parent: User = User()
     
     enum Sex {
-        case girl, boy, unowned
+        case girl, boy
     }
 }

@@ -46,8 +46,9 @@ final class KidTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setKid(name: String) {
+    func setKid(name: String, sex: Kid.Sex) {
         nameLabel.text = name
+        containerView.backgroundColor = (sex == .girl) ? .mainPink : .mainBlue
     }
     
     // MARK: - Private Methods
