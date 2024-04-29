@@ -29,7 +29,6 @@ final class KidTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Alisa"
         label.font = .systemFont(ofSize: 20)
         label.textColor = .black
         return label

@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 final class SleepTableViewCell: UITableViewCell {
+    // MARK: - Properties
+
+    
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
@@ -20,35 +23,33 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let iconView: UIImageView = {
         let view = UIImageView()
-        view.tintColor = .darkText
         return view
     }()
     
     private let timeImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "calendar.badge.clock")
-        view.tintColor = .darkText
+        view.tintColor = .mainTextColor
         return view
     }()
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
-        label.tintColor = .darkText
+        label.font = .systemFont(ofSize: 17)
+        label.tintColor = .mainTextColor
         return label
     }()
     
     private let sleepDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
-        label.tintColor = .darkText
+        label.font = .systemFont(ofSize: 15)
+        label.tintColor = .mainTextColor
         return label
     }()
     
     private let countImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "01.circle")
-        view.tintColor = .darkText
+        view.image = UIImage(systemName: "1.circle")
         return view
     }()
     
@@ -116,9 +117,9 @@ final class SleepTableViewCell: UITableViewCell {
         }
         
         countImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(35)
+            $0.height.width.equalTo(30)
         }
     }
     
@@ -137,7 +138,9 @@ final class SleepTableViewCell: UITableViewCell {
     private func updateUIFor(_ sleepType: Sleep.SleepType) {
         let sunImage = UIImage(systemName: "sun.max")
         let moonImage = UIImage(systemName: "moon.zzz")
-        iconView.image = sleepType == .day ? sunImage : moonImage
+        iconView.image = (sleepType == .day) ? sunImage : moonImage
+        iconView.tintColor = (sleepType == .day) ? .mainYellow : .mainBlue
+        countImageView.tintColor = (sleepType == .day) ? .mainYellow : .mainBlue
         containerView.backgroundColor = (sleepType == .day) ? .lightYellow : .mainPurple
     }
 }
