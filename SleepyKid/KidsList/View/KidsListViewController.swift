@@ -38,7 +38,8 @@ class KidsListViewController: UITableViewController {
     
     @objc
      private func addAction() {
-         // TODO: addAction
+         let kidViewController = KidViewController()
+         navigationController?.pushViewController(kidViewController, animated: true)
      }
 }
 

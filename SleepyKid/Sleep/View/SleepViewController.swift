@@ -77,7 +77,7 @@ final class SleepViewController: UIViewController {
                                                          to: sleep.endDate) else { return }
         startSleepDatePicker.date = sleep.startDate
         endSleepDatePicker.date = sleep.endDate
-        sleepDurationLabel.text = "\(hours) h \(minutes) min"
+        sleepDurationLabel.text = (hours == 0) ? ("\(minutes) min") : ("\(hours) h \(minutes) min")
         updateUIFor(sleepType)
     }
     

@@ -60,7 +60,7 @@ extension SleepsListViewController {
               let sleep = viewModel?.sleeps[indexPath.row] else { return UITableViewCell() }
         let viewModel = SleepViewModel(sleep: sleep)
         cell.viewModel = viewModel
-        cell.setSleep(sleep: sleep)
+        cell.setSleep(sleep: sleep, count: indexPath.row)
         
         return cell
     }

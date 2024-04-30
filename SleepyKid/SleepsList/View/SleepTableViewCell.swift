@@ -46,7 +46,6 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let countImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "1.circle")
         return view
     }()
     
@@ -65,17 +64,16 @@ final class SleepTableViewCell: UITableViewCell {
     var viewModel: SleepViewModelProtocol?
     
     // MARK: - Methods
-    func setSleep(sleep: Sleep) {
-        viewModel = SleepViewModel(sleep: sleep)
+    func setSleep(sleep: Sleep, count: Int) {
         let sleepInterval = sleep.endDate.timeIntervalSince(sleep.startDate)
         let (hours, minutes) = viewModel?.secondsToHoursMinutes(seconds: Int(sleepInterval)) ?? (0, 00)
         let stringStartTime = viewModel?.format(date: sleep.startDate) ?? ""
         let stringEndTime = viewModel?.format(date: sleep.endDate) ?? ""
         guard let sleepType = viewModel?.defineSleepType(from: sleep.startDate,
                                                          to: sleep.endDate) else { return }
-        
         timeLabel.text = "\(stringStartTime) - \(stringEndTime)"
-        sleepDurationLabel.text = "\(hours) h \(minutes) min"
+        sleepDurationLabel.text = (hours == 0) ? ("\(minutes) min") : ("\(hours) h \(minutes) min")
+        countImageView.image = UIImage(systemName: "\(count + 1).circle")
         updateUIFor(sleepType)
     }
     
