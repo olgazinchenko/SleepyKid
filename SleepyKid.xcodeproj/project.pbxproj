@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		90091DF82BDD08EB00A92E00 /* SleepsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091DF72BDD08EB00A92E00 /* SleepsListViewModel.swift */; };
 		90091DFB2BDD1DEE00A92E00 /* SleepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091DFA2BDD1DEE00A92E00 /* SleepTableViewCell.swift */; };
+		90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091DFC2BE0259300A92E00 /* SleepViewController.swift */; };
 		9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6482BDBA26E002864AC /* UIColor+Ex.swift */; };
 		9029A64D2BDBB15B002864AC /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A64C2BDBB15B002864AC /* Kid.swift */; };
 		9029A6512BDBB30B002864AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6502BDBB30B002864AC /* Sleep.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		90091DF72BDD08EB00A92E00 /* SleepsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewModel.swift; sourceTree = "<group>"; };
 		90091DFA2BDD1DEE00A92E00 /* SleepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTableViewCell.swift; sourceTree = "<group>"; };
+		90091DFC2BE0259300A92E00 /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
 		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 				90091DF72BDD08EB00A92E00 /* SleepsListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		90091DFE2BE0259B00A92E00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90091DFC2BE0259300A92E00 /* SleepViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9029A6472BDBA22F002864AC /* Extentions */ = {
@@ -112,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				9029A6532BDBB319002864AC /* Model */,
+				90091DFE2BE0259B00A92E00 /* View */,
 			);
 			path = Sleep;
 			sourceTree = "<group>";
@@ -278,6 +289,7 @@
 			files = (
 				9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */,
 				90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */,
+				90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */,
 				9029A64D2BDBB15B002864AC /* Kid.swift in Sources */,
 				90091DFB2BDD1DEE00A92E00 /* SleepTableViewCell.swift in Sources */,
 				907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */,

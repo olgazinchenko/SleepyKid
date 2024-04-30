@@ -62,3 +62,10 @@ extension SleepsListViewController {
         return cell
     }
 }
+
+extension SleepsListViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sleepViewController = SleepViewController()
+        navigationController?.pushViewController(sleepViewController, animated: true)
+    }
+}
