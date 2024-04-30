@@ -73,11 +73,12 @@ final class SleepViewController: UIViewController {
     func setSleep(sleep: Sleep) {
         let sleepInterval = sleep.endDate.timeIntervalSince(sleep.startDate)
         let (hours, minutes) = viewModel?.secondsToHoursMinutes(seconds: Int(sleepInterval)) ?? (0, 0)
-        
+        guard let sleepType = viewModel?.defineSleepType(from: sleep.startDate,
+                                                         to: sleep.endDate) else { return }
         startSleepDatePicker.date = sleep.startDate
         endSleepDatePicker.date = sleep.endDate
         sleepDurationLabel.text = "\(hours) h \(minutes) min"
-        updateUIFor(sleep.sleepType)
+        updateUIFor(sleepType)
     }
     
     // MARK: - Private Methods
@@ -135,7 +136,7 @@ final class SleepViewController: UIViewController {
     private func updateUIFor(_ sleepType: Sleep.SleepType) {
         let sunImage = UIImage(systemName: "sun.max")
         let moonImage = UIImage(systemName: "moon.zzz")
-        var pickedColor: UIColor = {
+        let pickedColor: UIColor = {
             return (sleepType == .day) ? .mainYellow : .mainBlue
         }()
 

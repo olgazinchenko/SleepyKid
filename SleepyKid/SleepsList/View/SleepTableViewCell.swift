@@ -71,10 +71,12 @@ final class SleepTableViewCell: UITableViewCell {
         let (hours, minutes) = viewModel?.secondsToHoursMinutes(seconds: Int(sleepInterval)) ?? (0, 00)
         let stringStartTime = viewModel?.format(date: sleep.startDate) ?? ""
         let stringEndTime = viewModel?.format(date: sleep.endDate) ?? ""
+        guard let sleepType = viewModel?.defineSleepType(from: sleep.startDate,
+                                                         to: sleep.endDate) else { return }
         
         timeLabel.text = "\(stringStartTime) - \(stringEndTime)"
         sleepDurationLabel.text = "\(hours) h \(minutes) min"
-        updateUIFor(sleep.sleepType)
+        updateUIFor(sleepType)
     }
     
     // MARK: - Private Methods
