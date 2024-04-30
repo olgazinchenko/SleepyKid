@@ -13,6 +13,7 @@ final class SleepViewController: UIViewController {
     private let startDateLabel: UILabel = {
         let label = UILabel()
         label.text = "Start time and date"
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .mainBlue
         return label
     }()
@@ -20,6 +21,7 @@ final class SleepViewController: UIViewController {
     private let endDateLabel: UILabel = {
         let label = UILabel()
         label.text = "End time and date"
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .mainBlue
         return label
     }()
@@ -40,16 +42,12 @@ final class SleepViewController: UIViewController {
     
     private let iconView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "moon.zzz")
-        view.tintColor = .mainBlue
-        
         return view
     }()
     
     private let timeImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "calendar.badge.clock")
-        view.tintColor = .mainBlue
         return view
     }()
     
@@ -57,17 +55,29 @@ final class SleepViewController: UIViewController {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 17)
         label.tintColor = .mainTextColor
-        label.text = "2 h 30 min"
         label.textColor = .mainBlue
         return label
     }()
+    
+    // MARK: - Properties
+    var viewModel: SleepViewModelProtocol?
     
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        view.backgroundColor = .mainPurple
+    }
+    
+    // MARK: - Methods
+    func setSleep(sleep: Sleep) {
+        let sleepInterval = sleep.endDate.timeIntervalSince(sleep.startDate)
+        let (hours, minutes) = viewModel?.secondsToHoursMinutes(seconds: Int(sleepInterval)) ?? (0, 0)
+        
+        startSleepDatePicker.date = sleep.startDate
+        endSleepDatePicker.date = sleep.endDate
+        sleepDurationLabel.text = "\(hours) h \(minutes) min"
+        updateUIFor(sleep.sleepType)
     }
     
     // MARK: - Private Methods
@@ -107,7 +117,7 @@ final class SleepViewController: UIViewController {
         timeImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
             $0.top.equalTo(endSleepDatePicker.snp.bottom).offset(30)
-            $0.height.width.equalTo(18)
+            $0.height.width.equalTo(22)
         }
         
         sleepDurationLabel.snp.makeConstraints {
@@ -120,5 +130,22 @@ final class SleepViewController: UIViewController {
             $0.top.equalTo(sleepDurationLabel.snp.bottom).offset(30)
             $0.height.width.equalTo(400)
         }
+    }
+    
+    private func updateUIFor(_ sleepType: Sleep.SleepType) {
+        let sunImage = UIImage(systemName: "sun.max")
+        let moonImage = UIImage(systemName: "moon.zzz")
+        var pickedColor: UIColor = {
+            return (sleepType == .day) ? .mainYellow : .mainBlue
+        }()
+
+        iconView.tintColor = pickedColor
+        timeImageView.tintColor = pickedColor
+        sleepDurationLabel.textColor = pickedColor
+        startDateLabel.textColor = pickedColor
+        endDateLabel.textColor = pickedColor
+        
+        view.backgroundColor = (sleepType == .day) ? .lightYellow : .mainPurple
+        iconView.image = (sleepType == .day) ? sunImage : moonImage
     }
 }

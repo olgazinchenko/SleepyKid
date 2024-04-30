@@ -58,14 +58,22 @@ extension SleepsListViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
                                                        for: indexPath) as? SleepTableViewCell,
               let sleep = viewModel?.sleeps[indexPath.row] else { return UITableViewCell() }
-        cell.setSleep(startTime: sleep.startDate, endTime: sleep.endDate, sleepType: sleep.sleepType)
+        let viewModel = SleepViewModel(sleep: sleep)
+        cell.viewModel = viewModel
+        cell.setSleep(sleep: sleep)
+        
         return cell
     }
 }
 
+// MARK: - UITableViewDelegate
 extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let sleep = viewModel?.sleeps[indexPath.row] as? Sleep else { return }
         let sleepViewController = SleepViewController()
+        let viewModel = SleepViewModel(sleep: sleep)
+        sleepViewController.viewModel = viewModel
+        sleepViewController.setSleep(sleep: sleep)
         navigationController?.pushViewController(sleepViewController, animated: true)
     }
 }

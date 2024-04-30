@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 
 final class SleepTableViewCell: UITableViewCell {
-    // MARK: - Properties
-
-    
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
@@ -64,16 +61,20 @@ final class SleepTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Properties
+    var viewModel: SleepViewModelProtocol?
+    
     // MARK: - Methods
-    func setSleep(startTime: Date, endTime: Date, sleepType: Sleep.SleepType) {
-        let timeInterval = endTime.timeIntervalSince(startTime)
-        let (hours, minutes) = secondsToHoursMinutes(seconds: Int(timeInterval))
-        let stringStartTime = format(date: startTime)
-        let stringEndTime = format(date: endTime)
+    func setSleep(sleep: Sleep) {
+        viewModel = SleepViewModel(sleep: sleep)
+        let sleepInterval = sleep.endDate.timeIntervalSince(sleep.startDate)
+        let (hours, minutes) = viewModel?.secondsToHoursMinutes(seconds: Int(sleepInterval)) ?? (0, 00)
+        let stringStartTime = viewModel?.format(date: sleep.startDate) ?? ""
+        let stringEndTime = viewModel?.format(date: sleep.endDate) ?? ""
         
         timeLabel.text = "\(stringStartTime) - \(stringEndTime)"
         sleepDurationLabel.text = "\(hours) h \(minutes) min"
-        updateUIFor(sleepType)
+        updateUIFor(sleep.sleepType)
     }
     
     // MARK: - Private Methods
@@ -121,18 +122,6 @@ final class SleepTableViewCell: UITableViewCell {
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(30)
         }
-    }
-    
-    private func secondsToHoursMinutes(seconds: Int) -> (hours: Int, minutes: Int) {
-        let hours = seconds / 3600
-        let minutes = (seconds % 3600) / 60
-        return (hours, minutes)
-    }
-    
-    private func format(date: Date) -> String {
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "h:mm a"
-        return dateFormater.string(from: date)
     }
     
     private func updateUIFor(_ sleepType: Sleep.SleepType) {
