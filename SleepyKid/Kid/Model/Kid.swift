@@ -11,8 +11,7 @@ struct Kid {
     let name: String
     let dateOfBirth: Date
     let sex: Sex
-    let photoUrl: URL?
-    var sleeps: [Sleep]
+    var sleeps: [Sleep] = []
     let parent: User = User()
     
     enum Sex {
