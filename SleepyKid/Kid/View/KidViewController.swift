@@ -85,10 +85,12 @@ final class KidViewController: UIViewController {
         
         view.backgroundColor = .white
         setupUI()
+        configure()
     }
     
     // MARK: - Properties
     var viewModel: KidViewModelProtocol?
+    var kidSex: Kid.Sex?
     
     // MARK: - Private Methods
     private func setupUI() {
@@ -155,6 +157,13 @@ final class KidViewController: UIViewController {
         }
     }
     
+    private func configure() {
+        kidNameTextField.text = viewModel?.kid?.name
+        dateOfBirthDatePicker.date = viewModel?.kid?.dateOfBirth ?? .now
+        kidSex = viewModel?.kid?.sex
+        (kidSex == .boy) || (viewModel?.kid == nil) ? boyButtonTapped() : girlButtonTapped()
+    }
+    
     private func setupButtons() {
         girlButton.addTarget(self, action: #selector(girlButtonTapped), for: .touchUpInside)
         boyButton.addTarget(self, action: #selector(boyButtonTapped), for: .touchUpInside)
@@ -164,12 +173,13 @@ final class KidViewController: UIViewController {
     private func girlButtonTapped() {
         girlButton.layer.borderWidth = 5
         boyButton.layer.borderWidth = 1
+        kidSex = .girl
     }
     
     @objc
     private func boyButtonTapped() {
         boyButton.layer.borderWidth = 5
         girlButton.layer.borderWidth = 1
+        kidSex = .boy
     }
-
 }

@@ -39,6 +39,9 @@ class KidsListViewController: UITableViewController {
     @objc
      private func addAction() {
          let kidViewController = KidViewController()
+         let viewModel = KidViewModel(kid: nil)
+         kidViewController.viewModel = viewModel
+         viewModel.isNewKid = true
          navigationController?.pushViewController(kidViewController, animated: true)
      }
 }

@@ -8,13 +8,15 @@
 import Foundation
 
 protocol KidViewModelProtocol {
-    var kid: Kid { get set }
+    var kid: Kid? { get set }
+    var isNewKid: Bool { get set }
 }
 
 final class KidViewModel: KidViewModelProtocol {
-    var kid: Kid
+    var kid: Kid?
+    var isNewKid: Bool = true
     
-    init(kid: Kid) {
+    init(kid: Kid?) {
         self.kid = kid
     }
 }
