@@ -104,6 +104,7 @@ final class KidViewController: UIViewController {
                           iconView])
         setupConstraints()
         setupButtons()
+        setupBars()
     }
     
     private func setupConstraints() {
@@ -181,5 +182,18 @@ final class KidViewController: UIViewController {
         boyButton.layer.borderWidth = 5
         girlButton.layer.borderWidth = 1
         kidSex = .boy
+    }
+    
+    private func setupBars() {
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
+                                         target: self,
+                                         action: #selector(saveAction))
+        navigationItem.rightBarButtonItem = saveButton
+        saveButton.isEnabled = true
+    }
+    
+    @objc
+    private func saveAction() {
+        navigationController?.popViewController(animated: true)
     }
 }
