@@ -66,19 +66,29 @@ final class SleepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
         setupUI()
     }
     
     // MARK: - Methods
-    func setSleep(sleep: Sleep) {
-        let sleepInterval = sleep.endDate.timeIntervalSince(sleep.startDate)
-        let (hours, minutes) = viewModel?.secondsToHoursMinutes(seconds: Int(sleepInterval)) ?? (0, 0)
-        guard let sleepType = viewModel?.defineSleepType(from: sleep.startDate,
-                                                         to: sleep.endDate) else { return }
-        startSleepDatePicker.date = sleep.startDate
-        endSleepDatePicker.date = sleep.endDate
-        sleepDurationLabel.text = (hours == 0) ? ("\(minutes) min") : ("\(hours) h \(minutes) min")
-        updateUIFor(sleepType)
+    func setSleep(sleep: Sleep?) {
+        if sleep != nil {
+            guard let sleep = sleep,
+                  let viewModel = viewModel else {return}
+            let sleepType = viewModel.defineSleepType(from: sleep.startDate,
+                                                             to: sleep.endDate)
+            let sleepInterval = sleep.endDate.timeIntervalSince(sleep.startDate)
+            let (hours, minutes) = viewModel.secondsToHoursMinutes(seconds: Int(sleepInterval))
+            startSleepDatePicker.date = sleep.startDate
+            endSleepDatePicker.date = sleep.endDate
+            sleepDurationLabel.text = (hours == 0) ? ("\(minutes) min") : ("\(hours) h \(minutes) min")
+            updateUIFor(sleepType: sleepType)
+        } else {
+            startSleepDatePicker.date = .now
+            endSleepDatePicker.date = .now
+            sleepDurationLabel.text = "0 h 0 min"
+            updateUIFor(sleepType: nil)
+        }
     }
     
     // MARK: - Private Methods
@@ -92,6 +102,7 @@ final class SleepViewController: UIViewController {
                          timeImageView])
         
         setupConstraints()
+        setupBars()
     }
     
     private func setupConstraints() {
@@ -128,25 +139,67 @@ final class SleepViewController: UIViewController {
         
         iconView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(sleepDurationLabel.snp.bottom).offset(30)
-            $0.height.width.equalTo(400)
+            $0.top.equalTo(sleepDurationLabel.snp.bottom).offset(50)
+            $0.width.equalToSuperview().multipliedBy(0.7) // 50% of the superview's width
+            $0.height.equalTo(iconView.snp.width) // Square aspect ratio
+            $0.bottom.lessThanOrEqualToSuperview().inset(50)
         }
     }
     
-    private func updateUIFor(_ sleepType: Sleep.SleepType) {
-        let sunImage = UIImage(systemName: "sun.max")
-        let moonImage = UIImage(systemName: "moon.zzz")
-        let pickedColor: UIColor = {
-            return (sleepType == .day) ? .mainYellow : .mainBlue
-        }()
+    private func updateUIFor(sleepType: Sleep.SleepType?) {
+        if sleepType != nil {
+            let sunImage = UIImage(systemName: "sun.max")
+            let moonImage = UIImage(systemName: "moon.zzz")
+            let pickedColor: UIColor = {
+                return (sleepType == .day) ? .mainYellow : .mainBlue
+            }()
 
-        iconView.tintColor = pickedColor
-        timeImageView.tintColor = pickedColor
-        sleepDurationLabel.textColor = pickedColor
-        startDateLabel.textColor = pickedColor
-        endDateLabel.textColor = pickedColor
+            iconView.tintColor = pickedColor
+            timeImageView.tintColor = pickedColor
+            sleepDurationLabel.textColor = pickedColor
+            startDateLabel.textColor = pickedColor
+            endDateLabel.textColor = pickedColor
+            
+            view.backgroundColor = (sleepType == .day) ? .lightYellow : .mainPurple
+            iconView.image = (sleepType == .day) ? sunImage : moonImage
+        } else {
+            iconView.tintColor = .systemGray5
+            timeImageView.tintColor = .black
+            sleepDurationLabel.textColor = .black
+            startDateLabel.textColor = .black
+            endDateLabel.textColor = .black
+            
+            view.backgroundColor = .white
+            iconView.image = UIImage(systemName: "cloud.rainbow.half")
+        }
+    }
+    
+    private func setupBars() {
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
+                                         target: self,
+                                         action: #selector(saveAction))
+        navigationItem.rightBarButtonItem = saveButton
+        saveButton.isEnabled = true
+
+        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
+                                          target: self,
+                                          action: #selector(deleteAction))
+
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
-        view.backgroundColor = (sleepType == .day) ? .lightYellow : .mainPurple
-        iconView.image = (sleepType == .day) ? sunImage : moonImage
+        setToolbarItems([trashButton], animated: true)
+        
+        navigationItem.rightBarButtonItem = saveButton
+        saveButton.isEnabled = true
+    }
+    
+    @objc
+    private func saveAction() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func deleteAction() {
+        navigationController?.popViewController(animated: true)
     }
 }
