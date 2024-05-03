@@ -45,36 +45,46 @@ final class SleepViewModel: SleepViewModelProtocol {
         let nightSleepStartHour = 20
         let nightSleepEndHour = 5
         
+        // Get the calendar and components for comparison
+        let calendar = Calendar.current
+        let startComponents = calendar.dateComponents([.hour, .day], from: startTime)
+        let endComponents = calendar.dateComponents([.hour, .day], from: endTime)
+        
+        // Extract the hour and day components
+        guard let startHour = startComponents.hour,
+              let endHour = endComponents.hour,
+              let startDay = startComponents.day,
+              let endDay = endComponents.day else {
+            return .unowned
+        }
+        
         // Check if start date is after end date
         if startTime > endTime {
             return .unowned
         }
         
-        // Get the calendar and components for comparison
-        let calendar = Calendar.current
-        let startComponents = calendar.dateComponents([.hour], from: startTime)
-        let endComponents = calendar.dateComponents([.hour], from: endTime)
-        
-        // Extract the hour component
-        guard let startHour = startComponents.hour, let endHour = endComponents .hour else {
-            return .unowned
+        // When the start of the sleep is on one date and the end of the sleep is on another date
+        if startDay != endDay {
+            return .night
         }
         
         // Check if the start time is after the night sleep start time
-        if startHour >= nightSleepStartHour {
+        if startHour >= nightSleepStartHour || startHour < nightSleepEndHour {
             return .night
         }
         
-        // Check if the end time is before the night sleep end time
-        if endHour < nightSleepEndHour {
+        // When the end of the sleep is on the same day, but after 20:00
+        if endHour >= nightSleepStartHour {
             return .night
         }
         
-        // Check if the sleep period spans across midnight
-        if startHour < endHour && endHour < nightSleepStartHour {
-            return .night
+        // Sleep happening on the same date in the interval from 5:00 till 20:00
+        if startHour >= nightSleepEndHour && endHour < nightSleepStartHour {
+            return .day
         }
         
-        return .day
+        // Default case, not covered by any other condition
+        return .unowned
     }
+
 }
