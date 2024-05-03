@@ -12,7 +12,7 @@ protocol SleepViewModelProtocol {
     var isNewSleep: Bool { get set }
     
     func defineSleepType(from startTime: Date, to endTime: Date) -> Sleep.SleepType
-    func secondsToHoursMinutes(seconds: Int) -> (hours: Int, minutes: Int)
+    func getSleepIntervalText(from startDate: Date, to endDate: Date) -> String
     func format(date: Date) -> String
 }
 
@@ -27,10 +27,11 @@ final class SleepViewModel: SleepViewModelProtocol {
     }
     
     // MARK: Methods
-    func secondsToHoursMinutes(seconds: Int) -> (hours: Int, minutes: Int) {
-        let hours = seconds / 3600
-        let minutes = (seconds % 3600) / 60
-        return (hours, minutes)
+    func getSleepIntervalText(from startDate: Date, to endDate: Date) -> String {
+        let sleepInterval = Int(endDate.timeIntervalSince(startDate))
+        let hours = sleepInterval / 3600
+        let minutes = (sleepInterval % 3600) / 60
+        return (hours == 0) ? ("\(minutes) min") : ("\(hours) h \(minutes) min")
     }
     
     func format(date: Date) -> String {
@@ -41,8 +42,13 @@ final class SleepViewModel: SleepViewModelProtocol {
     
     func defineSleepType(from startTime: Date, to endTime: Date) -> Sleep.SleepType {
         // Define the night sleep interval
-        let nightSleepStartHour = 21
-        let nightSleepEndHour = 6
+        let nightSleepStartHour = 20
+        let nightSleepEndHour = 5
+        
+        // Check if start date is after end date
+        if startTime > endTime {
+            return .unowned
+        }
         
         // Get the calendar and components for comparison
         let calendar = Calendar.current
@@ -51,7 +57,7 @@ final class SleepViewModel: SleepViewModelProtocol {
         
         // Extract the hour component
         guard let startHour = startComponents.hour, let endHour = endComponents .hour else {
-            return .day
+            return .unowned
         }
         
         // Check if the start time is after the night sleep start time

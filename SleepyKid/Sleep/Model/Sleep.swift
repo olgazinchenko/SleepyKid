@@ -13,6 +13,6 @@ struct Sleep {
     let sleepType: SleepType
     
     enum SleepType {
-        case day, night
+        case day, night, unowned
     }
 }
