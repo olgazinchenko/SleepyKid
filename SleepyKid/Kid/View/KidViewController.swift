@@ -63,7 +63,7 @@ final class KidViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .mainBlue
         button.layer.cornerRadius = 35
-        button.layer.borderWidth = 1
+        button.layer.borderWidth = 5
         button.layer.borderColor = UIColor.black.cgColor
         return button
     }()
@@ -74,7 +74,7 @@ final class KidViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .mainPink
         button.layer.cornerRadius = 35
-        button.layer.borderWidth = 5
+        button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
         return button
     }()
@@ -101,6 +101,7 @@ final class KidViewController: UIViewController {
                           girlButton,
                           iconView])
         setupConstraints()
+        setupButtons()
     }
     
     private func setupConstraints() {
@@ -155,7 +156,20 @@ final class KidViewController: UIViewController {
     }
     
     private func setupButtons() {
-        
+        girlButton.addTarget(self, action: #selector(girlButtonTapped), for: .touchUpInside)
+        boyButton.addTarget(self, action: #selector(boyButtonTapped), for: .touchUpInside)
     }
     
+    @objc
+    private func girlButtonTapped() {
+        girlButton.layer.borderWidth = 5
+        boyButton.layer.borderWidth = 1
+    }
+    
+    @objc
+    private func boyButtonTapped() {
+        boyButton.layer.borderWidth = 5
+        girlButton.layer.borderWidth = 1
+    }
+
 }
