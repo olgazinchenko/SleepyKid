@@ -21,12 +21,15 @@
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
+		90B306C42BEE91C500D70648 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90B306C32BEE91C500D70648 /* SnapKit */; };
+		90B306C72BEE921E00D70648 /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */; };
+		90B306C82BEE921E00D70648 /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */; };
 		90B801862BEE305B002B08F6 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateTimeHelper.swift */; };
+		90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801942BEE71EC002B08F6 /* KidPersistent.swift */; };
 		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
 		90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */; };
 		90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A032BDBEC5F00DEBAFF /* KidTableViewCell.swift */; };
 		90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A052BDC077700DEBAFF /* UIView+Ex.swift */; };
-		90EC4A092BDC07FB00DEBAFF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90EC4A082BDC07FB00DEBAFF /* SnapKit */; };
 		90EC4A0B2BDC09C300DEBAFF /* KidsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A0A2BDC09C300DEBAFF /* KidsListViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +50,10 @@
 		907316BD2BDB951100BA92FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		907316C02BDB951100BA92FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		90B801852BEE305B002B08F6 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
+		90B801942BEE71EC002B08F6 /* KidPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPersistent.swift; sourceTree = "<group>"; };
 		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewController.swift; sourceTree = "<group>"; };
 		90EC4A032BDBEC5F00DEBAFF /* KidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidTableViewCell.swift; sourceTree = "<group>"; };
@@ -60,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90EC4A092BDC07FB00DEBAFF /* SnapKit in Frameworks */,
+				90B306C42BEE91C500D70648 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +197,7 @@
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
 				90B801852BEE305B002B08F6 /* DateTimeHelper.swift */,
+				90B801942BEE71EC002B08F6 /* KidPersistent.swift */,
 				90EC49FB2BDBDA2C00DEBAFF /* User */,
 				9029A64E2BDBB161002864AC /* Kid */,
 				9029A6522BDBB30F002864AC /* Sleep */,
@@ -200,9 +207,19 @@
 				907316BD2BDB951100BA92FB /* Assets.xcassets */,
 				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
 				907316C22BDB951100BA92FB /* Info.plist */,
-				907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */,
+				90B801872BEE4504002B08F6 /* CoreData */,
 			);
 			path = SleepyKid;
+			sourceTree = "<group>";
+		};
+		90B801872BEE4504002B08F6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */,
+				90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */,
+				907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		90EC49FB2BDBDA2C00DEBAFF /* User */ = {
@@ -264,7 +281,7 @@
 			);
 			name = SleepyKid;
 			packageProductDependencies = (
-				90EC4A082BDC07FB00DEBAFF /* SnapKit */,
+				90B306C32BEE91C500D70648 /* SnapKit */,
 			);
 			productName = SleepyKid;
 			productReference = 907316AE2BDB950E00BA92FB /* SleepyKid.app */;
@@ -295,7 +312,7 @@
 			);
 			mainGroup = 907316A52BDB950E00BA92FB;
 			packageReferences = (
-				90EC4A072BDC07FB00DEBAFF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				90B306C22BEE91C500D70648 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 907316AF2BDB950E00BA92FB /* Products */;
 			projectDirPath = "";
@@ -324,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */,
+				90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */,
 				90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */,
 				90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */,
 				9029A64D2BDBB15B002864AC /* Kid.swift in Sources */,
@@ -336,6 +354,8 @@
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
 				90091E032BE1813700A92E00 /* KidViewController.swift in Sources */,
 				90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */,
+				90B306C72BEE921E00D70648 /* KidEntity+CoreDataClass.swift in Sources */,
+				90B306C82BEE921E00D70648 /* KidEntity+CoreDataProperties.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
 				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
 				90091E002BE132D300A92E00 /* SleepViewModel.swift in Sources */,
@@ -565,7 +585,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		90EC4A072BDC07FB00DEBAFF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		90B306C22BEE91C500D70648 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -576,9 +596,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		90EC4A082BDC07FB00DEBAFF /* SnapKit */ = {
+		90B306C32BEE91C500D70648 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 90EC4A072BDC07FB00DEBAFF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 90B306C22BEE91C500D70648 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

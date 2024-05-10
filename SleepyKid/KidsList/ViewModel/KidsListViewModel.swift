@@ -18,8 +18,14 @@ final class KidsListViewModel: KidsListViewModelProtocol {
     // MARK: - Initialization
     init() {
         setMocks()
+        getKids()
     }
     // MARK: - Private Methods
+    private func getKids() {
+        let kids = KidPersistent.fetchAll()
+        print(kids)
+    }
+    
     private func setMocks() {
         kids = [Kid(name: "Alisa",
                     dateOfBirth: .now - 4000,
