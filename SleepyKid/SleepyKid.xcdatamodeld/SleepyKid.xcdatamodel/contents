@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="KidEntity" representedClassName="" parentEntity="UserEntity" syncable="YES">
+        <attribute name="dateOfBirth" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="sleeps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SleepEntity" inverseName="kid" inverseEntity="SleepEntity"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="userKids" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="SleepEntity" representedClassName="SleepEntity" parentEntity="KidEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sleepType" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="kid" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KidEntity" inverseName="sleeps" inverseEntity="KidEntity"/>
+    </entity>
+    <entity name="UserEntity" representedClassName="" syncable="YES" coreSpotlightDisplayNameExpression="x">
+        <attribute name="kids" attributeType="Transformable" valueTransformerName=""/>
+        <relationship name="userKids" toMany="YES" deletionRule="Nullify" destinationEntity="KidEntity" inverseName="user" inverseEntity="KidEntity"/>
+    </entity>
 </model>
