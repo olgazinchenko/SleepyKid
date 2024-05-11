@@ -22,13 +22,14 @@ final class KidPersistent {
         
         do {
             try context.save()
+            postNotification()
         } catch let error {
             debugPrint("Save a kid error: \(error)")
         }
     }
     
     static func deleteKid(_ kid: Kid) {
-        
+        postNotification()
     }
     
     static func fetchAll() -> [Kid] {
@@ -51,5 +52,10 @@ final class KidPersistent {
         }
         
         return kids
+    }
+    
+    private static func postNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("Update"), 
+                                        object: nil)
     }
 }

@@ -9,22 +9,27 @@ import Foundation
 
 protocol KidsListViewModelProtocol {
     var kids: [Kid] { get set }
+    var reloadTable: (() -> Void)? { get set }
+    
+    func getKids()
 }
 
 final class KidsListViewModel: KidsListViewModelProtocol {
     // MARK: - Properties
     var kids: [Kid] = []
+    var reloadTable: (() -> Void)?
     
     // MARK: - Initialization
     init() {
         getKids()
     }
     // MARK: - Private Methods
-    private func getKids() {
+    func getKids() {
         kids = KidPersistent.fetchAll()
         print(kids)
     }
     
+    // MARK: - Methods
     private func setMocks() {
         kids = [Kid(name: "Alisa",
                     dateOfBirth: .now - 4000,

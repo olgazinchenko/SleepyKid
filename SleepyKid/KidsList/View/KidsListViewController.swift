@@ -14,9 +14,19 @@ class KidsListViewController: UITableViewController {
     // MARK: - Live Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         title = "Kids".uppercased()
         setupTableView()
         setupToolBar()
+        registerObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel?.reloadTable = { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     // MARK: - Private Methods
@@ -44,6 +54,18 @@ class KidsListViewController: UITableViewController {
          viewModel.isNewKid = true
          navigationController?.pushViewController(kidViewController, animated: true)
      }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateData),
+                                               name: NSNotification.Name("Update"),
+                                               object: nil)
+    }
+    
+    @objc
+    private func updateData() {
+        viewModel?.getKids()
+    }
 }
 
 // MARK: - UITableViewDataSource
