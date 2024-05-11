@@ -17,12 +17,11 @@ final class KidsListViewModel: KidsListViewModelProtocol {
     
     // MARK: - Initialization
     init() {
-        setMocks()
         getKids()
     }
     // MARK: - Private Methods
     private func getKids() {
-        let kids = KidPersistent.fetchAll()
+        kids = KidPersistent.fetchAll()
         print(kids)
     }
     

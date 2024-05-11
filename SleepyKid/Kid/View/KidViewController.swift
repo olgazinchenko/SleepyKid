@@ -105,7 +105,7 @@ final class KidViewController: UIViewController {
     }
     
     private func configure() {
-        kidNameTextField.text = viewModel?.kid?.name
+        kidNameTextField.text = viewModel?.kid?.name ?? ""
         dateOfBirthDatePicker.date = viewModel?.kid?.dateOfBirth ?? .now
     }
     
@@ -119,6 +119,7 @@ final class KidViewController: UIViewController {
     
     @objc
     private func saveAction() {
+        viewModel?.save(with: kidNameTextField.text ?? "", and: dateOfBirthDatePicker.date)
         navigationController?.popViewController(animated: true)
     }
 }
