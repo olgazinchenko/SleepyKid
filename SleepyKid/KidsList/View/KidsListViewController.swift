@@ -79,7 +79,11 @@ extension KidsListViewController {
             let provider: UIContextMenuActionProvider = { _ in
                 UIMenu(title: "", children: [
                     UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
-                        // TODO: Edit action
+                        let kidViewController = KidViewController()
+                        let viewModel = KidViewModel(kid: self.viewModel?.kids[indexPath.row])
+                        viewModel.isNewKid = false
+                        kidViewController.viewModel = viewModel
+                        self.navigationController?.pushViewController(kidViewController, animated: true)
                     },
                     UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
                         // TODO: Delete action
