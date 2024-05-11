@@ -74,4 +74,19 @@ extension KidsListViewController {
         sleepsListViewController.viewModel = viewModel
         navigationController?.pushViewController(sleepsListViewController, animated: true)
     }
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+            let provider: UIContextMenuActionProvider = { _ in
+                UIMenu(title: "", children: [
+                    UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
+                        // TODO: Edit action
+                    },
+                    UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
+                        // TODO: Delete action
+                    }
+                ])
+            }
+            
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: provider)
+        }
 }
