@@ -2,6 +2,15 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="KidEntity" representedClassName=".KidEntity" syncable="YES">
         <attribute name="dateOfBirth" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="kidID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="sleeps" optional="YES" attributeType="Transformable"/>
+        <relationship name="kidSleeps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SleepEntity" inverseName="kid" inverseEntity="SleepEntity"/>
+    </entity>
+    <entity name="SleepEntity" representedClassName="SleepEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sleepType" optional="YES" attributeType="Transformable"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="kid" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KidEntity" inverseName="kidSleeps" inverseEntity="KidEntity"/>
     </entity>
 </model>

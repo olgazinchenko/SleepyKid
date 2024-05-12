@@ -11,7 +11,7 @@ final class KidViewController: UIViewController {
     // MARK: - GUI Variables
     private let kidNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Kid name"
+        label.text = Text.kidName.rawValue
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
@@ -19,15 +19,15 @@ final class KidViewController: UIViewController {
     
     private let kidNameTextField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderWidth = 1
+        textField.layer.borderWidth = Layer.mainBoarderWidth.rawValue
         textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.cornerRadius = 10
+        textField.layer.cornerRadius = Layer.mainCornerRadius.rawValue
         return textField
     }()
     
     private let dateOfBirthLabel: UILabel = {
         let label = UILabel()
-        label.text = "Date of birth"
+        label.text = Text.dateOfBirth.rawValue
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
@@ -37,15 +37,15 @@ final class KidViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.layer.borderColor = UIColor.black.cgColor
-        datePicker.layer.borderWidth = 1
-        datePicker.layer.cornerRadius = 10
+        datePicker.layer.borderWidth = Layer.mainBoarderWidth.rawValue
+        datePicker.layer.cornerRadius = Layer.mainCornerRadius.rawValue
         datePicker.backgroundColor = .clear
         return datePicker
     }()
     
     private let iconView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "SleepyKid")
+        view.image = UIImage(named: Text.iconName.rawValue)
         return view
     }()
     
@@ -122,4 +122,9 @@ final class KidViewController: UIViewController {
         viewModel?.save(with: kidNameTextField.text ?? "", and: dateOfBirthDatePicker.date)
         navigationController?.popViewController(animated: true)
     }
+}
+
+// MARK: - Constants
+private extension KidViewController {
+
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DateTimeHelper {
+final class DateHelper {
     // MARK: Methods
     func getSleepIntervalText(from startDate: Date, to endDate: Date) -> String {
         let sleepInterval = Int(endDate.timeIntervalSince(startDate))

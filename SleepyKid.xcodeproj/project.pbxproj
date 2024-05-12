@@ -16,6 +16,8 @@
 		9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6482BDBA26E002864AC /* UIColor+Ex.swift */; };
 		9029A64D2BDBB15B002864AC /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A64C2BDBB15B002864AC /* Kid.swift */; };
 		9029A6512BDBB30B002864AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6502BDBB30B002864AC /* Sleep.swift */; };
+		9064B4002BF0D65900E795E7 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B3FF2BF0D65900E795E7 /* Text.swift */; };
+		9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B4032BF0DE6E00E795E7 /* Layer.swift */; };
 		907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B12BDB950E00BA92FB /* AppDelegate.swift */; };
 		907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B52BDB950E00BA92FB /* KidsListViewController.swift */; };
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
@@ -24,7 +26,7 @@
 		90B306C42BEE91C500D70648 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90B306C32BEE91C500D70648 /* SnapKit */; };
 		90B306C72BEE921E00D70648 /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */; };
 		90B306C82BEE921E00D70648 /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */; };
-		90B801862BEE305B002B08F6 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateTimeHelper.swift */; };
+		90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateHelper.swift */; };
 		90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801942BEE71EC002B08F6 /* KidPersistent.swift */; };
 		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
 		90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */; };
@@ -43,6 +45,8 @@
 		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
+		9064B3FF2BF0D65900E795E7 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		9064B4032BF0DE6E00E795E7 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		907316AE2BDB950E00BA92FB /* SleepyKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepyKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		907316B12BDB950E00BA92FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		907316B52BDB950E00BA92FB /* KidsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsListViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +56,7 @@
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		90B801852BEE305B002B08F6 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
+		90B801852BEE305B002B08F6 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		90B801942BEE71EC002B08F6 /* KidPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPersistent.swift; sourceTree = "<group>"; };
 		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +180,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9064B4012BF0D66B00E795E7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9064B3FF2BF0D65900E795E7 /* Text.swift */,
+				9064B4032BF0DE6E00E795E7 /* Layer.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		9064B4022BF0D6F200E795E7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				90B801852BEE305B002B08F6 /* DateHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		907316A52BDB950E00BA92FB = {
 			isa = PBXGroup;
 			children = (
@@ -196,13 +217,14 @@
 			isa = PBXGroup;
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
-				90B801852BEE305B002B08F6 /* DateTimeHelper.swift */,
 				90B801942BEE71EC002B08F6 /* KidPersistent.swift */,
 				90EC49FB2BDBDA2C00DEBAFF /* User */,
 				9029A64E2BDBB161002864AC /* Kid */,
 				9029A6522BDBB30F002864AC /* Sleep */,
 				9029A64A2BDBABD6002864AC /* KidsList */,
 				90EC4A012BDBE71000DEBAFF /* SleepsList */,
+				9064B4022BF0D6F200E795E7 /* Helpers */,
+				9064B4012BF0D66B00E795E7 /* Constants */,
 				9029A6472BDBA22F002864AC /* Extentions */,
 				907316BD2BDB951100BA92FB /* Assets.xcassets */,
 				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
@@ -345,10 +367,12 @@
 				90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */,
 				90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */,
 				9029A64D2BDBB15B002864AC /* Kid.swift in Sources */,
-				90B801862BEE305B002B08F6 /* DateTimeHelper.swift in Sources */,
+				90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */,
 				90091DFB2BDD1DEE00A92E00 /* SleepTableViewCell.swift in Sources */,
 				907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */,
+				9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */,
 				90091DF82BDD08EB00A92E00 /* SleepsListViewModel.swift in Sources */,
+				9064B4002BF0D65900E795E7 /* Text.swift in Sources */,
 				90EC4A0B2BDC09C300DEBAFF /* KidsListViewModel.swift in Sources */,
 				900AD2F32BE3BBEE0055DE38 /* KidViewModel.swift in Sources */,
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,

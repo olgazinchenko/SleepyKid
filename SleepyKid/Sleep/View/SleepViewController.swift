@@ -12,7 +12,7 @@ final class SleepViewController: UIViewController {
     // MARK: - GUI Variables
     private let startDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "Start time and date"
+        label.text = Text.startDate.rawValue
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .mainBlue
         return label
@@ -20,7 +20,7 @@ final class SleepViewController: UIViewController {
     
     private let endDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "End time and date"
+        label.text = Text.endDate.rawValue
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .mainBlue
         return label
@@ -47,7 +47,7 @@ final class SleepViewController: UIViewController {
     
     private let timeImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "calendar.badge.clock")
+        view.image = UIImage(systemName: Text.timeImageName.rawValue)
         return view
     }()
     
@@ -62,10 +62,10 @@ final class SleepViewController: UIViewController {
     // MARK: - Properties
     var viewModel: SleepViewModelProtocol?
     var sleepType: Sleep.SleepType = .unowned
-    var sleepImage = UIImage(systemName: "lightbulb.max")
+    var sleepImage = UIImage(systemName: Text.sleepImageDefaultName.rawValue)
     var sleepTextColor: UIColor = .black
     var sleepBackgroundColor: UIColor = .white
-    let dateTimeHelper = DateTimeHelper()
+    let dateTimeHelper = DateHelper()
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -87,7 +87,7 @@ final class SleepViewController: UIViewController {
         
         startSleepDatePicker.date = sleepIsNotNil ? sleep.startDate : .now
         endSleepDatePicker.date = sleepIsNotNil ? sleep.endDate : .now
-        sleepDurationLabel.text = sleepIsNotNil ? sleepIntervalText : "0 h 0 min"
+        sleepDurationLabel.text = sleepIsNotNil ? sleepIntervalText : Text.sleepDurationDefault.rawValue
         
         updateUIFor(sleepType: sleepType)
     }
@@ -154,18 +154,17 @@ final class SleepViewController: UIViewController {
         case .day:
             sleepTextColor = .mainYellow
             sleepBackgroundColor = .lightYellow
-            sleepImage = UIImage(systemName: "sun.max")
+            sleepImage = UIImage(systemName: Text.sleepDayImageName.rawValue)
             updateUI()
-            
         case .night:
             sleepTextColor = .mainBlue
             sleepBackgroundColor = .mainPurple
-            sleepImage = UIImage(systemName: "moon.zzz")
+            sleepImage = UIImage(systemName: Text.sleepNightImageName.rawValue)
             updateUI()
         case .unowned:
             sleepTextColor = .black
             sleepBackgroundColor = .white
-            sleepImage = UIImage(systemName: "lightbulb.max")
+            sleepImage = UIImage(systemName: Text.sleepImageDefaultName.rawValue)
             updateUI()
         }
     }

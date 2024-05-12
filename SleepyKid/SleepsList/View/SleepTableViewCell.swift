@@ -12,8 +12,8 @@ final class SleepTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = Layer.mainBoarderWidth.rawValue
+        view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
         view.layer.borderColor = UIColor.black.cgColor
         return view
     }()
@@ -25,7 +25,7 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let timeImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "calendar.badge.clock")
+        view.image = UIImage(systemName: Text.timeImageName.rawValue)
         view.tintColor = .mainTextColor
         return view
     }()
@@ -62,7 +62,7 @@ final class SleepTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     var viewModel: SleepViewModelProtocol?
-    let dateTimeHelper = DateTimeHelper()
+    let dateTimeHelper = DateHelper()
     
     // MARK: - Methods
     func setSleep(sleep: Sleep, count: Int) {
@@ -127,8 +127,8 @@ final class SleepTableViewCell: UITableViewCell {
     }
     
     private func updateUIFor(_ sleepType: Sleep.SleepType) {
-        let sunImage = UIImage(systemName: "sun.max")
-        let moonImage = UIImage(systemName: "moon.zzz")
+        let sunImage = UIImage(systemName: Text.sleepDayImageName.rawValue)
+        let moonImage = UIImage(systemName: Text.sleepNightImageName.rawValue)
         iconView.image = (sleepType == .day) ? sunImage : moonImage
         iconView.tintColor = (sleepType == .day) ? .mainYellow : .mainBlue
         countImageView.tintColor = (sleepType == .day) ? .mainYellow : .mainBlue
