@@ -19,6 +19,9 @@ class KidsListViewController: UITableViewController {
         setupTableView()
         setupToolBar()
         registerObserver()
+        viewModel?.reloadTable = { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -40,7 +40,7 @@ final class KidPersistent {
         }
     }
     
-    // MARK: - Private Method
+    // MARK: - Private Methods
     private static func convert(entities: [KidEntity]) -> [Kid] {
         let kids = entities.map {
             Kid(name: $0.name ?? "",
