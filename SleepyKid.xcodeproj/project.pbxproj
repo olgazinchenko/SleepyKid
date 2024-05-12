@@ -23,7 +23,7 @@
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
-		90B306C42BEE91C500D70648 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90B306C32BEE91C500D70648 /* SnapKit */; };
+		908C5C1D2BF1143200955FDD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 908C5C1C2BF1143200955FDD /* SnapKit */; };
 		90B306C72BEE921E00D70648 /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */; };
 		90B306C82BEE921E00D70648 /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */; };
 		90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateHelper.swift */; };
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90B306C42BEE91C500D70648 /* SnapKit in Frameworks */,
+				908C5C1D2BF1143200955FDD /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +303,7 @@
 			);
 			name = SleepyKid;
 			packageProductDependencies = (
-				90B306C32BEE91C500D70648 /* SnapKit */,
+				908C5C1C2BF1143200955FDD /* SnapKit */,
 			);
 			productName = SleepyKid;
 			productReference = 907316AE2BDB950E00BA92FB /* SleepyKid.app */;
@@ -334,7 +334,7 @@
 			);
 			mainGroup = 907316A52BDB950E00BA92FB;
 			packageReferences = (
-				90B306C22BEE91C500D70648 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				908C5C1B2BF1143200955FDD /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 907316AF2BDB950E00BA92FB /* Products */;
 			projectDirPath = "";
@@ -609,7 +609,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		90B306C22BEE91C500D70648 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		908C5C1B2BF1143200955FDD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -620,9 +620,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		90B306C32BEE91C500D70648 /* SnapKit */ = {
+		908C5C1C2BF1143200955FDD /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 90B306C22BEE91C500D70648 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 908C5C1B2BF1143200955FDD /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

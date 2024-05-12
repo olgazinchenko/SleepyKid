@@ -98,17 +98,18 @@ extension KidsListViewController {
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let kidViewController = KidViewController()
+        let viewModel = KidViewModel(kid: self.viewModel?.kids[indexPath.row])
+        kidViewController.viewModel = viewModel
             let provider: UIContextMenuActionProvider = { _ in
                 UIMenu(title: "", children: [
                     UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
-                        let kidViewController = KidViewController()
-                        let viewModel = KidViewModel(kid: self.viewModel?.kids[indexPath.row])
                         viewModel.kid?.isNewKid = false
-                        kidViewController.viewModel = viewModel
                         self.navigationController?.pushViewController(kidViewController, animated: true)
                     },
                     UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
                         // TODO: Delete action
+                        viewModel.delete()
                     }
                 ])
             }

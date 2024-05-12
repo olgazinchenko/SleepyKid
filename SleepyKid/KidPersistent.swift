@@ -19,17 +19,13 @@ final class KidPersistent {
         
         entity.name = kid.name
         entity.dateOfBirth = kid.dateOfBirth
-        
-        do {
-            try context.save()
-            postNotification()
-        } catch let error {
-            debugPrint("Save a kid error: \(error)")
-        }
+        saveContext()
     }
     
     static func deleteKid(_ kid: Kid) {
-        postNotification()
+        guard let entity = getEntity(for: kid) else { return }
+        context.delete(entity)
+        saveContext()
     }
     
     static func fetchAll() -> [Kid] {
@@ -57,5 +53,28 @@ final class KidPersistent {
     private static func postNotification() {
         NotificationCenter.default.post(name: NSNotification.Name("Update"), 
                                         object: nil)
+    }
+    
+    private static func getEntity(for kid: Kid) -> KidEntity? {
+        let request = KidEntity.fetchRequest()
+        let predicate = NSPredicate(format: "name = %@", kid.name as String)
+        request.predicate = predicate
+        
+        do {
+            let objects = try context.fetch(request)
+            return objects.first
+        } catch let error {
+            debugPrint("Fetch kids error: \(error)")
+            return nil
+        }
+    }
+    
+    private static func saveContext() {
+        do {
+            try context.save()
+            postNotification()
+        } catch let error {
+            debugPrint("Save a kid error: \(error)")
+        }
     }
 }
