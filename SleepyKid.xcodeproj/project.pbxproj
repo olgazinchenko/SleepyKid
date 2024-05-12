@@ -24,8 +24,10 @@
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
 		908C5C1D2BF1143200955FDD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 908C5C1C2BF1143200955FDD /* SnapKit */; };
-		90B306C72BEE921E00D70648 /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */; };
-		90B306C82BEE921E00D70648 /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */; };
+		908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */; };
+		908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */; };
+		908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */; };
+		908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */; };
 		90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateHelper.swift */; };
 		90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801942BEE71EC002B08F6 /* KidPersistent.swift */; };
 		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
@@ -54,8 +56,10 @@
 		907316BD2BDB951100BA92FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		907316C02BDB951100BA92FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		90B801852BEE305B002B08F6 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		90B801942BEE71EC002B08F6 /* KidPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPersistent.swift; sourceTree = "<group>"; };
 		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -237,8 +241,10 @@
 		90B801872BEE4504002B08F6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				90B306C52BEE921E00D70648 /* KidEntity+CoreDataClass.swift */,
-				90B306C62BEE921E00D70648 /* KidEntity+CoreDataProperties.swift */,
+				908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */,
+				908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */,
+				908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */,
+				908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */,
 				907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -378,12 +384,14 @@
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
 				90091E032BE1813700A92E00 /* KidViewController.swift in Sources */,
 				90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */,
-				90B306C72BEE921E00D70648 /* KidEntity+CoreDataClass.swift in Sources */,
-				90B306C82BEE921E00D70648 /* KidEntity+CoreDataProperties.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
 				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
 				90091E002BE132D300A92E00 /* SleepViewModel.swift in Sources */,
 				90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */,
+				908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */,
+				908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */,
+				908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */,
+				908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */,
 				90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

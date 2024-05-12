@@ -4,12 +4,12 @@
         <attribute name="dateOfBirth" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="kidID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="sleeps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SleepEntity" inverseName="kid" inverseEntity="SleepEntity"/>
+        <relationship name="sleeps" toMany="YES" deletionRule="Nullify" destinationEntity="SleepEntity" inverseName="kid" inverseEntity="SleepEntity"/>
     </entity>
-    <entity name="SleepEntity" representedClassName="SleepEntity" syncable="YES" codeGenerationType="class">
+    <entity name="SleepEntity" representedClassName="SleepEntity" syncable="YES">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="sleepID" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="kid" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KidEntity" inverseName="sleeps" inverseEntity="KidEntity"/>
+        <relationship name="kid" maxCount="1" deletionRule="Nullify" destinationEntity="KidEntity" inverseName="sleeps" inverseEntity="KidEntity"/>
     </entity>
 </model>
