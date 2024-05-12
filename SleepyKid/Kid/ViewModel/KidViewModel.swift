@@ -9,7 +9,6 @@ import Foundation
 
 protocol KidViewModelProtocol {
     var kid: Kid? { get set }
-    var isNewKid: Bool { get set }
     
     func save(with name: String, and dateOfBirth: Date)
     func delete()
@@ -18,7 +17,6 @@ protocol KidViewModelProtocol {
 final class KidViewModel: KidViewModelProtocol {
     // MARK: - Properties
     var kid: Kid?
-    var isNewKid: Bool = true
     
     // MARK: - Initialization
     init(kid: Kid?) {

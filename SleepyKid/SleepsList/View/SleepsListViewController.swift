@@ -44,7 +44,7 @@ class SleepsListViewController: UITableViewController {
          let sleepViewController = SleepViewController()
          let viewModel = SleepViewModel(sleep: nil)
          sleepViewController.viewModel = viewModel
-         viewModel.isNewSleep = true
+         viewModel.sleep?.isNewSleep = true
          sleepViewController.setSleep(sleep: nil)
          navigationController?.pushViewController(sleepViewController, animated: true)
      }

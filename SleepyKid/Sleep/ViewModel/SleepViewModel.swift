@@ -9,13 +9,12 @@ import Foundation
 
 
 protocol SleepViewModelProtocol {
-    var isNewSleep: Bool { get set }
+    var sleep: Sleep? { get set }
 }
 
 final class SleepViewModel: SleepViewModelProtocol {
     // MARK: - Properties
     var sleep: Sleep?
-    var isNewSleep: Bool = false
     
     // MARK: Initialization
     init(sleep: Sleep?) {

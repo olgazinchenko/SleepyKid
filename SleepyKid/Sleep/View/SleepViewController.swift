@@ -198,7 +198,7 @@ final class SleepViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = true
-        trashButton.isHidden = (viewModel?.isNewSleep == true) ? true : false
+        trashButton.isHidden = (viewModel?.sleep?.isNewSleep == true) ? true : false
     }
     
     @objc
