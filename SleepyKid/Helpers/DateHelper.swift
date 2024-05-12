@@ -8,6 +8,9 @@
 import Foundation
 
 final class DateHelper {
+    // MARK: Singleton Setup
+    static let shared = DateHelper()
+   
     // MARK: Methods
     func getSleepIntervalText(from startDate: Date, to endDate: Date) -> String {
         let sleepInterval = Int(endDate.timeIntervalSince(startDate))

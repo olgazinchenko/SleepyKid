@@ -62,15 +62,14 @@ final class SleepTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     var viewModel: SleepViewModelProtocol?
-    let dateTimeHelper = DateHelper()
     
     // MARK: - Methods
     func setSleep(sleep: Sleep, count: Int) {
-        let sleepIntervalText = dateTimeHelper.getSleepIntervalText(from: sleep.startDate,
+        let sleepIntervalText = DateHelper.shared.getSleepIntervalText(from: sleep.startDate,
                                                                 to: sleep.endDate)
-        let stringStartTime = dateTimeHelper.format(date: sleep.startDate)
-        let stringEndTime = dateTimeHelper.format(date: sleep.endDate)
-        let sleepType = dateTimeHelper.defineSleepType(from: sleep.startDate,
+        let stringStartTime = DateHelper.shared.format(date: sleep.startDate)
+        let stringEndTime = DateHelper.shared.format(date: sleep.endDate)
+        let sleepType = DateHelper.shared.defineSleepType(from: sleep.startDate,
                                                          to: sleep.endDate)
         
         timeLabel.text = "\(stringStartTime) - \(stringEndTime)"

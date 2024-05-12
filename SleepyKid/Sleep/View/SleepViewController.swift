@@ -65,7 +65,6 @@ final class SleepViewController: UIViewController {
     var sleepImage = UIImage(systemName: Text.sleepImageDefaultName.rawValue)
     var sleepTextColor: UIColor = .black
     var sleepBackgroundColor: UIColor = .white
-    let dateTimeHelper = DateHelper()
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -79,10 +78,10 @@ final class SleepViewController: UIViewController {
     func setSleep(sleep: Sleep?) {
         let sleepIsNotNil = sleep != nil
         guard let sleep = sleep else { return }
-        let sleepIntervalText = dateTimeHelper.getSleepIntervalText(from: sleep.startDate,
+        let sleepIntervalText = DateHelper.shared.getSleepIntervalText(from: sleep.startDate,
                                                                     to: sleep.endDate)
         
-        sleepType = dateTimeHelper.defineSleepType(from: sleep.startDate,
+        sleepType = DateHelper.shared.defineSleepType(from: sleep.startDate,
                                               to: sleep.endDate)
         
         startSleepDatePicker.date = sleepIsNotNil ? sleep.startDate : .now
@@ -179,7 +178,7 @@ final class SleepViewController: UIViewController {
         view.backgroundColor = sleepBackgroundColor
         iconView.image = sleepImage
         
-        sleepDurationLabel.text = dateTimeHelper.getSleepIntervalText(from: startSleepDatePicker.date,
+        sleepDurationLabel.text = DateHelper.shared.getSleepIntervalText(from: startSleepDatePicker.date,
                                                                  to: endSleepDatePicker.date)
 
     }
@@ -222,9 +221,9 @@ final class SleepViewController: UIViewController {
     @objc private func onDateValueChanged(_ datePicker: UIDatePicker) {
         let startDate = startSleepDatePicker.date
         let endDate = endSleepDatePicker.date
-        sleepDurationLabel.text = dateTimeHelper.getSleepIntervalText(from: startDate,
+        sleepDurationLabel.text = DateHelper.shared.getSleepIntervalText(from: startDate,
                                                                   to: endDate)
-        sleepType = dateTimeHelper.defineSleepType(from: startDate,
+        sleepType = DateHelper.shared.defineSleepType(from: startDate,
                                                to: endDate)
         updateUIFor(sleepType: sleepType)
     }
