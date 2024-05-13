@@ -17,8 +17,13 @@ final class KidPersistent {
         let entity = KidEntity(entity: description,
                                insertInto: context)
         
+        entity.kidID = kid.id
         entity.name = kid.name
         entity.dateOfBirth = kid.dateOfBirth
+        
+        let sleepSet = NSSet(array: kid.sleeps) // Convert [Sleep] array to NSSet
+        entity.sleeps = sleepSet
+ 
         saveContext()
     }
     
@@ -42,9 +47,19 @@ final class KidPersistent {
     
     // MARK: - Private Methods
     private static func convert(entities: [KidEntity]) -> [Kid] {
-        let kids = entities.map {
-            Kid(name: $0.name ?? "",
-                dateOfBirth: $0.dateOfBirth ?? .now)
+        let kids: [Kid] = entities.map { entity in
+            let sleepsArray = (entity.sleeps?.allObjects as? [SleepEntity] ?? []).map { sleep in
+                Sleep(sleepID: sleep.sleepID ?? UUID(),
+                      startDate: sleep.startDate ?? .now,
+                      endDate: sleep.endDate ?? .now,
+                      sleepType: .unowned,
+                      isNewSleep: false)
+            }
+
+            return Kid(id: entity.kidID,
+                name: entity.name ?? "",
+                dateOfBirth: entity.dateOfBirth ?? .now,
+                sleeps: sleepsArray)
         }
         
         return kids
@@ -57,7 +72,7 @@ final class KidPersistent {
     
     private static func getEntity(for kid: Kid) -> KidEntity? {
         let request = KidEntity.fetchRequest()
-        let predicate = NSPredicate(format: "name = %@", kid.name as String)
+        let predicate = NSPredicate(format: "kidID == %@", kid.id! as CVarArg)
         request.predicate = predicate
         
         do {

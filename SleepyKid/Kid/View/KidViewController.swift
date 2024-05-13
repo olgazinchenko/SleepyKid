@@ -119,12 +119,20 @@ final class KidViewController: UIViewController {
     
     @objc
     private func saveAction() {
-        viewModel?.save(with: kidNameTextField.text ?? "", and: dateOfBirthDatePicker.date)
+        guard let viewModel = viewModel else { return }
+        if let kid = viewModel.kid {
+            viewModel.saveKid(id: kid.id,
+                              name: kidNameTextField.text ?? "",
+                              dateOfBirth: dateOfBirthDatePicker.date,
+                              isNewKid: false,
+                              sleeps: kid.sleeps)
+        } else {
+            viewModel.saveKid(id: UUID(),
+                              name: kidNameTextField.text ?? "",
+                              dateOfBirth: dateOfBirthDatePicker.date,
+                              isNewKid: false,
+                              sleeps: [])
+        }
         navigationController?.popViewController(animated: true)
     }
-}
-
-// MARK: - Constants
-private extension KidViewController {
-
 }

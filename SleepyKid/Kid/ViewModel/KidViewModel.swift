@@ -10,7 +10,11 @@ import Foundation
 protocol KidViewModelProtocol {
     var kid: Kid? { get set }
     
-    func save(with name: String, and dateOfBirth: Date)
+    func saveKid(id: UUID?,
+                 name: String,
+                 dateOfBirth: Date,
+                 isNewKid: Bool,
+                 sleeps: [Sleep])
     func delete()
 }
 
@@ -24,9 +28,17 @@ final class KidViewModel: KidViewModelProtocol {
     }
     
     // MARK: - Methods
-    func save(with name: String, and dateOfBirth: Date) {
-        let kid = Kid(name: name,
-                      dateOfBirth: dateOfBirth)
+    func saveKid(id: UUID?,
+                 name: String,
+                 dateOfBirth: Date,
+                 isNewKid: Bool,
+                 sleeps: [Sleep]) {
+        let id = id != nil ? id : UUID()
+        let kid = Kid(id: id,
+                      name: name,
+                      dateOfBirth: dateOfBirth,
+                      sleeps: sleeps, 
+                      isNewKid: false)
         KidPersistent.saveKid(kid)
     }
     

@@ -8,6 +8,7 @@
 import Foundation
 
 struct Kid {
+    let id: UUID?
     let name: String
     let dateOfBirth: Date
     let parent: User = User()
