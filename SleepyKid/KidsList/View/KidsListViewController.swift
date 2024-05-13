@@ -100,7 +100,9 @@ extension KidsListViewController {
         navigationController?.pushViewController(sleepsListViewController, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt 
+                            indexPath: IndexPath,
+                            point: CGPoint) -> UIContextMenuConfiguration? {
         let kidViewController = KidViewController()
         let viewModel = KidViewModel(kid: self.viewModel?.kids[indexPath.row])
         kidViewController.viewModel = viewModel
@@ -108,15 +110,17 @@ extension KidsListViewController {
                 UIMenu(title: "", children: [
                     UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
                         viewModel.kid?.isNewKid = false
-                        self.navigationController?.pushViewController(kidViewController, animated: true)
+                        self.navigationController?.pushViewController(kidViewController, 
+                                                                      animated: true)
                     },
                     UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
-                        // TODO: Delete action
                         viewModel.delete()
                     }
                 ])
             }
             
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: provider)
+            return UIContextMenuConfiguration(identifier: nil, 
+                                              previewProvider: nil,
+                                              actionProvider: provider)
         }
 }

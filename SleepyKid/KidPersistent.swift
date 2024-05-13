@@ -56,10 +56,11 @@ final class KidPersistent {
                       isNewSleep: false)
             }
 
-            return Kid(id: entity.kidID,
+            return Kid(id: entity.kidID ?? UUID(),
                 name: entity.name ?? "",
                 dateOfBirth: entity.dateOfBirth ?? .now,
-                sleeps: sleepsArray)
+                       sleeps: sleepsArray, 
+                       isNewKid: false)
         }
         
         return kids
@@ -72,7 +73,7 @@ final class KidPersistent {
     
     private static func getEntity(for kid: Kid) -> KidEntity? {
         let request = KidEntity.fetchRequest()
-        let predicate = NSPredicate(format: "kidID == %@", kid.id! as CVarArg)
+        let predicate = NSPredicate(format: "kidID == %@", kid.id as CVarArg)
         request.predicate = predicate
         
         do {

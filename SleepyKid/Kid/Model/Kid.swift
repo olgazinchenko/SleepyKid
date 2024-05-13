@@ -8,10 +8,10 @@
 import Foundation
 
 struct Kid {
-    let id: UUID?
+    let id: UUID
     let name: String
     let dateOfBirth: Date
     let parent: User = User()
     var sleeps: [Sleep] = []
-    var isNewKid: Bool = true
+    var isNewKid: Bool
 }
