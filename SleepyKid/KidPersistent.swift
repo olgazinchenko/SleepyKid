@@ -60,7 +60,7 @@ final class KidPersistent {
                       isNewSleep: false)
             }
 
-            return Kid(id: entity.kidID ?? UUID(),
+            return Kid(id: entity.kidID,
                 name: entity.name ?? "",
                 dateOfBirth: entity.dateOfBirth ?? .now,
                        sleeps: sleepsArray, 

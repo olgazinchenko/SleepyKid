@@ -17,7 +17,7 @@ extension KidEntity {
     }
 
     @NSManaged public var dateOfBirth: Date?
-    @NSManaged public var kidID: UUID?
+    @NSManaged public var kidID: UUID
     @NSManaged public var name: String?
     @NSManaged public var sleeps: NSSet?
 
