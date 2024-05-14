@@ -30,6 +30,5 @@ final class KidsListViewModel: KidsListViewModelProtocol {
     // MARK: - Methods
     func getKids() {
         kids = KidPersistent.fetchAll()
-        print(kids)
     }
 }

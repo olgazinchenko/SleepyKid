@@ -25,7 +25,6 @@ final class KidViewModel: KidViewModelProtocol {
     
     // MARK: - Methods
     func save(with name: String, and dateOfBirth: Date) {
-        //        guard let kid = kid else { return }
         let id = ((kid == nil) ? UUID() : kid?.id) ?? UUID()
         let kidToSave = Kid(id: id,
                             name: name,

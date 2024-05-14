@@ -14,15 +14,19 @@ final class KidPersistent {
     static func saveKid(_ kid: Kid) {
         guard let description = NSEntityDescription.entity(forEntityName: "KidEntity",
                                                            in: context) else { return }
-        let entity = KidEntity(entity: description,
-                               insertInto: context)
         
-        entity.kidID = kid.id
-        entity.name = kid.name
-        entity.dateOfBirth = kid.dateOfBirth
-        
-        let sleepSet = NSSet(array: kid.sleeps) // Convert [Sleep] array to NSSet
-        entity.sleeps = sleepSet
+        if let existingEntity = getEntity(for: kid) {
+            existingEntity.name = kid.name
+            existingEntity.dateOfBirth = kid.dateOfBirth
+            existingEntity.sleeps = NSSet(array: kid.sleeps)
+        } else {
+            let entity = KidEntity(entity: description,
+                                   insertInto: context)
+            entity.kidID = kid.id
+            entity.name = kid.name
+            entity.dateOfBirth = kid.dateOfBirth
+            entity.sleeps = NSSet(array: kid.sleeps)
+        }
  
         saveContext()
     }
@@ -73,7 +77,7 @@ final class KidPersistent {
     
     private static func getEntity(for kid: Kid) -> KidEntity? {
         let request = KidEntity.fetchRequest()
-        let predicate = NSPredicate(format: "kidID == %@", kid.id as CVarArg)
+        let predicate = NSPredicate(format: "kidID == %@", kid.id as NSUUID)
         request.predicate = predicate
         
         do {
