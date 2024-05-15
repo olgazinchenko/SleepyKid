@@ -77,7 +77,7 @@ final class SleepPersistent {
     private static func saveContext() {
         do {
             try context.save()
-            // TODO: postNotification()
+            KidPersistent.postNotification()
         } catch let error {
             debugPrint("Save a sleep error: \(error)")
         }

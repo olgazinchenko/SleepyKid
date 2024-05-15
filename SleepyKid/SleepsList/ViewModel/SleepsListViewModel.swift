@@ -10,12 +10,20 @@ import Foundation
 protocol SleepsListViewModelProtocol {
     var sleeps: [Sleep] { get set }
     var kid: Kid { get set }
+    
+    func getSleeps(for kid: Kid)
+    var reloadTable: (() -> Void)? { get set }
 }
 
 final class SleepsListViewModel: SleepsListViewModelProtocol {
     // MARK: - Properties
-    var sleeps: [Sleep]
+    var sleeps: [Sleep] {
+        didSet {
+            reloadTable?()
+        }
+    }
     var kid: Kid
+    var reloadTable: (() -> Void)?
     
     // MARK: - Initialization
     init(sleeps: [Sleep], kid: Kid) {

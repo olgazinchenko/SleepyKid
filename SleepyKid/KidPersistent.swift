@@ -49,6 +49,11 @@ final class KidPersistent {
         }
     }
     
+    static func postNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("Update"),
+                                        object: nil)
+    }
+    
     // MARK: - Private Methods
     private static func convert(entities: [KidEntity]) -> [Kid] {
         let kids: [Kid] = entities.map { entity in
@@ -68,11 +73,6 @@ final class KidPersistent {
         }
         
         return kids
-    }
-    
-    private static func postNotification() {
-        NotificationCenter.default.post(name: NSNotification.Name("Update"), 
-                                        object: nil)
     }
     
     static func getEntity(for kid: Kid) -> KidEntity? {

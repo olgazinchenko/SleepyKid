@@ -17,6 +17,11 @@ class SleepsListViewController: UITableViewController {
         
         setupTableView()
         setupToolBar()
+        registerObserver()
+        
+        viewModel?.reloadTable = { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     // MARK: - Methods
@@ -49,6 +54,20 @@ class SleepsListViewController: UITableViewController {
          sleepViewController.setSleep(sleep: nil)
          navigationController?.pushViewController(sleepViewController, animated: true)
      }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateData),
+                                               name: NSNotification.Name("Update"),
+                                               object: nil)
+    }
+    
+    @objc
+    private func updateData() {
+        viewModel?.getSleeps(for: viewModel?.kid ?? Kid(id: UUID(), name: "",
+                                                        dateOfBirth: .now,
+                                                        isNewKid: false))
+    }
 }
 
 // MARK: - UITableViewDataSource

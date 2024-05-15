@@ -29,14 +29,12 @@ final class SleepViewController: UIViewController {
     private let startSleepDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
-        
         return datePicker
     }()
     
     private let endSleepDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
-        
         return datePicker
     }()
     
@@ -76,31 +74,21 @@ final class SleepViewController: UIViewController {
     
     // MARK: - Methods
     func setSleep(sleep: Sleep?) {
-        let sleepIsNotNil = sleep != nil
         guard let sleep = sleep else { return }
-        let sleepIntervalText = DateHelper.shared.getSleepIntervalText(from: sleep.startDate,
-                                                                    to: sleep.endDate)
+        let sleepIntervalText = DateHelper.shared.getSleepIntervalText(from: sleep.startDate, to: sleep.endDate)
         
-        sleepType = DateHelper.shared.defineSleepType(from: sleep.startDate,
-                                              to: sleep.endDate)
+        sleepType = DateHelper.shared.defineSleepType(from: sleep.startDate, to: sleep.endDate)
         
-        startSleepDatePicker.date = sleepIsNotNil ? sleep.startDate : .now
-        endSleepDatePicker.date = sleepIsNotNil ? sleep.endDate : .now
-        sleepDurationLabel.text = sleepIsNotNil ? sleepIntervalText : Text.sleepDurationDefault.rawValue
+        startSleepDatePicker.date = sleep.startDate
+        endSleepDatePicker.date = sleep.endDate
+        sleepDurationLabel.text = sleepIntervalText
         
         updateUIFor(sleepType: sleepType)
     }
     
     // MARK: - Private Methods
     private func setupUI() {
-        view.addSubviews([startDateLabel,
-                         endDateLabel,
-                         startSleepDatePicker,
-                         endSleepDatePicker,
-                         iconView,
-                         sleepDurationLabel,
-                         timeImageView])
-        
+        view.addSubviews([startDateLabel, endDateLabel, startSleepDatePicker, endSleepDatePicker, iconView, sleepDurationLabel, timeImageView])
         setupConstraints()
         setupBars()
         setupDatePicker()
@@ -179,7 +167,7 @@ final class SleepViewController: UIViewController {
         iconView.image = sleepImage
         
         sleepDurationLabel.text = DateHelper.shared.getSleepIntervalText(from: startSleepDatePicker.date,
-                                                                 to: endSleepDatePicker.date)
+                                                                         to: endSleepDatePicker.date)
 
     }
     
@@ -220,13 +208,14 @@ final class SleepViewController: UIViewController {
                                       for: .valueChanged)
     }
     
-    @objc private func onDateValueChanged(_ datePicker: UIDatePicker) {
-        let startDate = startSleepDatePicker.date
-        let endDate = endSleepDatePicker.date
-        sleepDurationLabel.text = DateHelper.shared.getSleepIntervalText(from: startDate,
-                                                                  to: endDate)
-        sleepType = DateHelper.shared.defineSleepType(from: startDate,
-                                               to: endDate)
+    @objc
+    private func onDateValueChanged(_ sender: UIDatePicker) {
+        let sleepIntervalText = DateHelper.shared.getSleepIntervalText(from: startSleepDatePicker.date, 
+                                                                       to: endSleepDatePicker.date)
+        sleepDurationLabel.text = sleepIntervalText
+        
+        sleepType = DateHelper.shared.defineSleepType(from: startSleepDatePicker.date, 
+                                                      to: endSleepDatePicker.date)
         updateUIFor(sleepType: sleepType)
     }
 }
