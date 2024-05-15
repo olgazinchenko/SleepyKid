@@ -54,7 +54,6 @@ class KidsListViewController: UITableViewController {
          let kidViewController = KidViewController()
          let viewModel = KidViewModel(kid: nil)
          kidViewController.viewModel = viewModel
-         viewModel.kid?.isNewKid = true
          navigationController?.pushViewController(kidViewController, animated: true)
      }
     
@@ -109,7 +108,6 @@ extension KidsListViewController {
             let provider: UIContextMenuActionProvider = { _ in
                 UIMenu(title: "", children: [
                     UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
-                        viewModel.kid?.isNewKid = false
                         self.navigationController?.pushViewController(kidViewController, 
                                                                       animated: true)
                     },

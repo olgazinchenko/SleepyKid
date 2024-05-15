@@ -61,15 +61,13 @@ final class KidPersistent {
                 Sleep(id: sleep.sleepID,
                       startDate: sleep.startDate ?? .now,
                       endDate: sleep.endDate ?? .now,
-                      sleepType: .unowned,
-                      isNewSleep: false)
+                      sleepType: .unowned)
             }
-
+            
             return Kid(id: entity.kidID,
-                name: entity.name ?? "",
-                dateOfBirth: entity.dateOfBirth ?? .now,
-                       sleeps: sleepsArray, 
-                       isNewKid: false)
+                       name: entity.name ?? "",
+                       dateOfBirth: entity.dateOfBirth ?? .now,
+                       sleeps: sleepsArray)
         }
         
         return kids

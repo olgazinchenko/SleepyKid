@@ -29,8 +29,7 @@ final class KidViewModel: KidViewModelProtocol {
         let kidToSave = Kid(id: id,
                             name: name,
                             dateOfBirth: dateOfBirth,
-                            sleeps: kid?.sleeps ?? [],
-                            isNewKid: false)
+                            sleeps: kid?.sleeps ?? [])
         KidPersistent.save(kidToSave)
     }
     

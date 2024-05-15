@@ -64,9 +64,9 @@ class SleepsListViewController: UITableViewController {
     
     @objc
     private func updateData() {
-        viewModel?.getSleeps(for: viewModel?.kid ?? Kid(id: UUID(), name: "",
-                                                        dateOfBirth: .now,
-                                                        isNewKid: false))
+        viewModel?.getSleeps(for: viewModel?.kid ?? Kid(id: UUID(), 
+                                                        name: "",
+                                                        dateOfBirth: .now))
     }
 }
 

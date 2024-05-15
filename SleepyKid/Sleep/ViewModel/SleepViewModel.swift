@@ -36,8 +36,7 @@ final class SleepViewModel: SleepViewModelProtocol {
                                 sleepType: .unowned)
         SleepPersistent.save(sleepToSave, for: kid ?? Kid(id: UUID(),
                                                           name: "",
-                                                          dateOfBirth: .now,
-                                                          isNewKid: true))
+                                                          dateOfBirth: .now))
     }
     
     func delete() {
