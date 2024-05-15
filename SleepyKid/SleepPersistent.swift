@@ -30,6 +30,12 @@ final class SleepPersistent {
         saveContext()
     }
     
+    static func deleteSleep(_ sleep: Sleep) {
+        guard let entity = getEntity(for: sleep) else { return }
+        context.delete(entity)
+        saveContext()
+    }
+    
     static func fetchSleeps(for kid: Kid) -> [Sleep] {
         let request = SleepEntity.fetchRequest()
         

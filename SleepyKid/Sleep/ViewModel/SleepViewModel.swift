@@ -13,6 +13,7 @@ protocol SleepViewModelProtocol {
     var kid: Kid? { get set }
     
     func save(with startDate: Date, and endDate: Date)
+    func delete()
 }
 
 final class SleepViewModel: SleepViewModelProtocol {
@@ -37,5 +38,10 @@ final class SleepViewModel: SleepViewModelProtocol {
                                                           name: "",
                                                           dateOfBirth: .now,
                                                           isNewKid: true))
+    }
+    
+    func delete() {
+        guard let sleep = sleep else { return }
+        SleepPersistent.deleteSleep(sleep)
     }
 }

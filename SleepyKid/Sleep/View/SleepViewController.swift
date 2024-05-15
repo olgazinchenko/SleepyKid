@@ -198,6 +198,7 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func deleteAction() {
+        viewModel?.delete()
         navigationController?.popViewController(animated: true)
     }
     
