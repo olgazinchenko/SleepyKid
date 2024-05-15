@@ -95,7 +95,7 @@ extension KidsListViewController {
                             didSelectRowAt indexPath: IndexPath) {
         guard let kid = viewModel?.kids[indexPath.row] as? Kid else { return }
         let sleepsListViewController = SleepsListViewController()
-        let viewModel = SleepsListViewModel(sleeps: kid.sleeps, kidName: kid.name)
+        let viewModel = SleepsListViewModel(sleeps: kid.sleeps, kid: kid)
         sleepsListViewController.viewModel = viewModel
         navigationController?.pushViewController(sleepsListViewController, animated: true)
     }

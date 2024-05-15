@@ -31,7 +31,7 @@ final class KidViewModel: KidViewModelProtocol {
                             dateOfBirth: dateOfBirth,
                             sleeps: kid?.sleeps ?? [],
                             isNewKid: false)
-        KidPersistent.saveKid(kidToSave)
+        KidPersistent.save(kidToSave)
     }
     
     func delete() {

@@ -25,7 +25,7 @@ class SleepsListViewController: UITableViewController {
                            forCellReuseIdentifier: "SleepTableViewCell")
         tableView.separatorStyle = .none
         
-        guard let name = viewModel?.kidName else { return }
+        guard let name = viewModel?.kid.name else { return }
         title = "\(name) 😴 sleeps".uppercased()
     }
     
@@ -42,7 +42,8 @@ class SleepsListViewController: UITableViewController {
     @objc
      private func addAction() {
          let sleepViewController = SleepViewController()
-         let viewModel = SleepViewModel(sleep: nil)
+         let kid = viewModel?.kid
+         let viewModel = SleepViewModel(sleep: nil, kid: kid)
          sleepViewController.viewModel = viewModel
          viewModel.sleep?.isNewSleep = true
          sleepViewController.setSleep(sleep: nil)
@@ -63,7 +64,8 @@ extension SleepsListViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
                                                        for: indexPath) as? SleepTableViewCell,
               let sleep = viewModel?.sleeps[indexPath.row] else { return UITableViewCell() }
-        let viewModel = SleepViewModel(sleep: sleep)
+        let kid = viewModel?.kid
+        let viewModel = SleepViewModel(sleep: sleep, kid: kid)
         cell.viewModel = viewModel
         cell.setSleep(sleep: sleep, count: indexPath.row)
         
@@ -75,8 +77,9 @@ extension SleepsListViewController {
 extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let sleep = viewModel?.sleeps[indexPath.row] as? Sleep else { return }
+        let kid = viewModel?.kid
         let sleepViewController = SleepViewController()
-        let viewModel = SleepViewModel(sleep: sleep)
+        let viewModel = SleepViewModel(sleep: sleep, kid: kid)
         sleepViewController.viewModel = viewModel
         sleepViewController.setSleep(sleep: sleep)
         navigationController?.pushViewController(sleepViewController, animated: true)

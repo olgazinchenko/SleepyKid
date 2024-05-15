@@ -18,7 +18,7 @@ extension SleepEntity {
 
     @NSManaged public var endDate: Date?
     @NSManaged public var startDate: Date?
-    @NSManaged public var sleepID: UUID?
+    @NSManaged public var sleepID: UUID
     @NSManaged public var kid: KidEntity?
 
 }

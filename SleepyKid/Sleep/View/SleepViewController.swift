@@ -203,6 +203,8 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func saveAction() {
+        viewModel?.save(with: startSleepDatePicker.date,
+                        and: endSleepDatePicker.date)
         navigationController?.popViewController(animated: true)
     }
     

@@ -11,7 +11,7 @@ import Foundation
 final class KidPersistent {
     private static let context = AppDelegate.persistentContainer.viewContext
     
-    static func saveKid(_ kid: Kid) {
+    static func save(_ kid: Kid) {
         guard let description = NSEntityDescription.entity(forEntityName: "KidEntity",
                                                            in: context) else { return }
         
@@ -53,7 +53,7 @@ final class KidPersistent {
     private static func convert(entities: [KidEntity]) -> [Kid] {
         let kids: [Kid] = entities.map { entity in
             let sleepsArray = (entity.sleeps?.allObjects as? [SleepEntity] ?? []).map { sleep in
-                Sleep(sleepID: sleep.sleepID ?? UUID(),
+                Sleep(id: sleep.sleepID,
                       startDate: sleep.startDate ?? .now,
                       endDate: sleep.endDate ?? .now,
                       sleepType: .unowned,
@@ -75,7 +75,7 @@ final class KidPersistent {
                                         object: nil)
     }
     
-    private static func getEntity(for kid: Kid) -> KidEntity? {
+    static func getEntity(for kid: Kid) -> KidEntity? {
         let request = KidEntity.fetchRequest()
         let predicate = NSPredicate(format: "kidID == %@", kid.id as NSUUID)
         request.predicate = predicate

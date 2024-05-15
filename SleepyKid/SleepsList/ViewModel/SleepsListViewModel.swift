@@ -9,19 +9,25 @@ import Foundation
 
 protocol SleepsListViewModelProtocol {
     var sleeps: [Sleep] { get set }
-    var kidName: String { get set }
+    var kid: Kid { get set }
 }
 
 final class SleepsListViewModel: SleepsListViewModelProtocol {
     // MARK: - Properties
     var sleeps: [Sleep]
-    var kidName: String
+    var kid: Kid
     
     // MARK: - Initialization
-    init(sleeps: [Sleep], kidName: String) {
+    init(sleeps: [Sleep], kid: Kid) {
         self.sleeps = sleeps
-        self.kidName = kidName
+        self.kid = kid
+        getSleeps()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
+    func getSleeps() {
+        sleeps = SleepPersistent.fetchAll()
+        print(sleeps)
+        print(sleeps.count)
+    }
 }

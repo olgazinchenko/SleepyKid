@@ -28,6 +28,7 @@
 		908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */; };
 		908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */; };
 		908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */; };
+		90B25CF02BF3F98400A01072 /* SleepPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B25CEF2BF3F98400A01072 /* SleepPersistent.swift */; };
 		90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateHelper.swift */; };
 		90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801942BEE71EC002B08F6 /* KidPersistent.swift */; };
 		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
@@ -60,6 +61,7 @@
 		908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		90B25CEF2BF3F98400A01072 /* SleepPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepPersistent.swift; sourceTree = "<group>"; };
 		90B801852BEE305B002B08F6 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		90B801942BEE71EC002B08F6 /* KidPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPersistent.swift; sourceTree = "<group>"; };
 		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
 				90B801942BEE71EC002B08F6 /* KidPersistent.swift */,
+				90B25CEF2BF3F98400A01072 /* SleepPersistent.swift */,
 				90EC49FB2BDBDA2C00DEBAFF /* User */,
 				9029A64E2BDBB161002864AC /* Kid */,
 				9029A6522BDBB30F002864AC /* Sleep */,
@@ -376,6 +379,7 @@
 				90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */,
 				90091DFB2BDD1DEE00A92E00 /* SleepTableViewCell.swift in Sources */,
 				907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */,
+				90B25CF02BF3F98400A01072 /* SleepPersistent.swift in Sources */,
 				9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */,
 				90091DF82BDD08EB00A92E00 /* SleepsListViewModel.swift in Sources */,
 				9064B4002BF0D65900E795E7 /* Text.swift in Sources */,

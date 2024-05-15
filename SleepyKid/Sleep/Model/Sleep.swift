@@ -8,7 +8,7 @@
 import Foundation
 
 struct Sleep {
-    let sleepID: UUID
+    let id: UUID
     let startDate: Date
     let endDate: Date
     let sleepType: SleepType
