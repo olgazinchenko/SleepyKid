@@ -21,12 +21,12 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
     init(sleeps: [Sleep], kid: Kid) {
         self.sleeps = sleeps
         self.kid = kid
-        getSleeps()
+        getSleeps(for: kid)
     }
     
     // MARK: - Methods
-    func getSleeps() {
-        sleeps = SleepPersistent.fetchAll()
+    func getSleeps(for kid: Kid) {
+        sleeps = SleepPersistent.fetchSleeps(for: kid)
         print(sleeps)
         print(sleeps.count)
     }
