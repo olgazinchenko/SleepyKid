@@ -19,13 +19,13 @@ final class KidPersistent {
         
         if let existingEntity = getEntity(for: kid) {
             existingEntity.name = kid.name
-            existingEntity.dateOfBirth = kid.dateOfBirth
+            existingEntity.birthDate = kid.birthDate
         } else {
             let entity = KidEntity(entity: description,
                                    insertInto: context)
             entity.kidID = kid.id
             entity.name = kid.name
-            entity.dateOfBirth = kid.dateOfBirth
+            entity.birthDate = kid.birthDate
             entity.sleeps = NSSet(array: kid.sleeps)
         }
  
@@ -80,7 +80,7 @@ final class KidPersistent {
             
             return Kid(id: entity.kidID,
                        name: entity.name ?? "",
-                       dateOfBirth: entity.dateOfBirth ?? .now,
+                       birthDate: entity.birthDate ?? .now,
                        sleeps: sleepsArray)
         }
         

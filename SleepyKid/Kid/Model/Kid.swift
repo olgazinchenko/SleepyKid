@@ -10,7 +10,7 @@ import Foundation
 struct Kid {
     let id: UUID
     let name: String
-    let dateOfBirth: Date
+    let birthDate: Date
     let parent: User = User()
     var sleeps: [Sleep] = []
 }

@@ -106,7 +106,7 @@ final class KidViewController: UIViewController {
     
     private func configure() {
         kidNameTextField.text = viewModel?.kid?.name ?? ""
-        dateOfBirthDatePicker.date = viewModel?.kid?.dateOfBirth ?? .now
+        dateOfBirthDatePicker.date = viewModel?.kid?.birthDate ?? .now
     }
     
     private func setupBars() {

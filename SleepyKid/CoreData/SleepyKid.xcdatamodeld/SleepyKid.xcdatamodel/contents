@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="KidEntity" representedClassName="KidEntity" syncable="YES">
-        <attribute name="dateOfBirth" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="birthDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="kidID" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="sleeps" toMany="YES" deletionRule="Cascade" destinationEntity="SleepEntity" inverseName="kid" inverseEntity="SleepEntity"/>

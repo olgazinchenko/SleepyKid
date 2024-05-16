@@ -16,7 +16,7 @@ extension KidEntity {
         return NSFetchRequest<KidEntity>(entityName: "KidEntity")
     }
 
-    @NSManaged public var dateOfBirth: Date?
+    @NSManaged public var birthDate: Date?
     @NSManaged public var kidID: UUID
     @NSManaged public var name: String?
     @NSManaged public var sleeps: NSSet?

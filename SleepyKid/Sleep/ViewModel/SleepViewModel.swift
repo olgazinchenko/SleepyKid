@@ -39,7 +39,7 @@ final class SleepViewModel: SleepViewModelProtocol {
                                 endDate: endDate)
         SleepPersistent.save(sleepToSave, for: kid ?? Kid(id: UUID(),
                                                           name: "",
-                                                          dateOfBirth: .now))
+                                                          birthDate: .now))
     }
     
     func getSleepInterval(from startDate: Date, to endDate: Date) -> String {
