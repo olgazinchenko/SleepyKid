@@ -25,6 +25,12 @@ final class DateHelper {
         return dateFormatter.string(from: date)
     }
     
+    func trimSeconds(from date: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        return calendar.date(from: components) ?? date
+    }
+    
     func defineSleepType(from startTime: Date, to endTime: Date) -> SleepType {
         // Define the night sleep interval
         let nightSleepStartHour = 20

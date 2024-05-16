@@ -67,12 +67,14 @@ final class SleepTableViewCell: UITableViewCell {
     func setSleep(sleep: Sleep, count: Int) {
         guard let viewModel = viewModel else { return }
         
-        let sleepIntervalText = viewModel.getSleepInterval(from: sleep.startDate,
-                                                           to: sleep.endDate)
-        let sleepType = viewModel.getSleepType(from: sleep.startDate,
-                                               to: sleep.endDate)
-        let formattedStartTime = viewModel.getFormatted(date: sleep.startDate)
-        let formattedEndTime = viewModel.getFormatted(date: sleep.endDate)
+        let startDate = viewModel.getTrimmed(date: sleep.startDate)
+        let endDate = viewModel.getTrimmed(date: sleep.endDate)
+        let sleepIntervalText = viewModel.getSleepInterval(from: startDate,
+                                                           to: endDate)
+        let sleepType = viewModel.getSleepType(from: startDate,
+                                               to: endDate)
+        let formattedStartTime = viewModel.getFormatted(date: startDate)
+        let formattedEndTime = viewModel.getFormatted(date: endDate)
         
         timeLabel.text = "\(formattedStartTime) - \(formattedEndTime)"
         sleepDurationLabel.text = sleepIntervalText

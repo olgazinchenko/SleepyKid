@@ -16,12 +16,16 @@ protocol SleepViewModelProtocol {
     func getSleepInterval(from startDate: Date, to endDate: Date) -> String
     func getSleepType(from startDate: Date, to endDate: Date) -> SleepType
     func getFormatted(date: Date) -> String
+    func getTrimmed(date: Date) -> Date 
     func delete()
 }
 
 final class SleepViewModel: SleepViewModelProtocol {
     // MARK: - Properties
-    var sleep: Sleep?
+    var sleep: Sleep? {
+        willSet {
+        }
+    }
     var kid: Kid?
     
     // MARK: Initialization
@@ -33,13 +37,18 @@ final class SleepViewModel: SleepViewModelProtocol {
     // MARK: - Methods
     func save(with startDate: Date, and endDate: Date) {
         let id = ((sleep == nil) ? UUID() : sleep?.id) ?? UUID()
-        let sleepType = getSleepType(from: startDate, to: endDate)
         let sleepToSave = Sleep(id: id,
                                 startDate: startDate,
                                 endDate: endDate)
+        
         SleepPersistent.save(sleepToSave, for: kid ?? Kid(id: UUID(),
                                                           name: "",
                                                           birthDate: .now))
+    }
+    
+    func delete() {
+        guard let sleep = sleep else { return }
+        SleepPersistent.deleteSleep(sleep)
     }
     
     func getSleepInterval(from startDate: Date, to endDate: Date) -> String {
@@ -55,8 +64,7 @@ final class SleepViewModel: SleepViewModelProtocol {
         return DateHelper.shared.format(date: date)
     }
     
-    func delete() {
-        guard let sleep = sleep else { return }
-        SleepPersistent.deleteSleep(sleep)
+    func getTrimmed(date: Date) -> Date {
+        return DateHelper.shared.trimSeconds(from: date)
     }
 }

@@ -86,7 +86,13 @@ final class SleepViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupUI() {
-        view.addSubviews([startDateLabel, endDateLabel, startSleepDatePicker, endSleepDatePicker, iconView, sleepDurationLabel, timeImageView])
+        view.addSubviews([startDateLabel, 
+                          endDateLabel,
+                          startSleepDatePicker,
+                          endSleepDatePicker,
+                          iconView,
+                          sleepDurationLabel,
+                          timeImageView])
         setupConstraints()
         setupBars()
         setupDatePicker()
@@ -164,8 +170,12 @@ final class SleepViewController: UIViewController {
         view.backgroundColor = sleepBackgroundColor
         iconView.image = sleepImage
         
-        sleepDurationLabel.text = DateHelper.shared.defineSleepInterval(from: startSleepDatePicker.date,
-                                                                   to: endSleepDatePicker.date)
+        guard let viewModel = viewModel else { return }
+        
+        let startDate = viewModel.getTrimmed(date: startSleepDatePicker.date)
+        let endDate = viewModel.getTrimmed(date: endSleepDatePicker.date)
+        
+        sleepDurationLabel.text = viewModel.getSleepInterval(from: startDate, to: endDate)
 
     }
     
@@ -189,8 +199,12 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func saveAction() {
-        viewModel?.save(with: startSleepDatePicker.date,
-                        and: endSleepDatePicker.date)
+        guard let viewModel = viewModel else { return }
+        
+        let startDate = viewModel.getTrimmed(date: startSleepDatePicker.date)
+        let endDate = viewModel.getTrimmed(date: endSleepDatePicker.date)
+        
+        viewModel.save(with: startDate, and: endDate)
         navigationController?.popViewController(animated: true)
     }
     
