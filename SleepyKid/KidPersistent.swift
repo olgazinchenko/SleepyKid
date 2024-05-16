@@ -9,8 +9,10 @@ import CoreData
 import Foundation
 
 final class KidPersistent {
+    // MARK: - Properties
     private static let context = AppDelegate.persistentContainer.viewContext
     
+    // MARK: - Methods
     static func save(_ kid: Kid) {
         guard let description = NSEntityDescription.entity(forEntityName: "KidEntity",
                                                            in: context) else { return }
@@ -54,6 +56,20 @@ final class KidPersistent {
                                         object: nil)
     }
     
+    static func getEntity(for kid: Kid) -> KidEntity? {
+        let request = KidEntity.fetchRequest()
+        let predicate = NSPredicate(format: "kidID == %@", kid.id as NSUUID)
+        request.predicate = predicate
+        
+        do {
+            let objects = try context.fetch(request)
+            return objects.first
+        } catch let error {
+            debugPrint("Fetch kids error: \(error)")
+            return nil
+        }
+    }
+    
     // MARK: - Private Methods
     private static func convert(entities: [KidEntity]) -> [Kid] {
         let kids: [Kid] = entities.map { entity in
@@ -71,20 +87,6 @@ final class KidPersistent {
         }
         
         return kids
-    }
-    
-    static func getEntity(for kid: Kid) -> KidEntity? {
-        let request = KidEntity.fetchRequest()
-        let predicate = NSPredicate(format: "kidID == %@", kid.id as NSUUID)
-        request.predicate = predicate
-        
-        do {
-            let objects = try context.fetch(request)
-            return objects.first
-        } catch let error {
-            debugPrint("Fetch kids error: \(error)")
-            return nil
-        }
     }
     
     private static func saveContext() {

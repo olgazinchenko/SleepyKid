@@ -24,7 +24,7 @@ class SleepsListViewController: UITableViewController {
         }
     }
     
-    // MARK: - Methods
+    // MARK: - Private Methods
     private func setupTableView() {
         tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")

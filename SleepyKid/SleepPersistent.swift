@@ -9,8 +9,10 @@ import CoreData
 import Foundation
 
 final class SleepPersistent {
+    // MARK: - Properties
     private static let context = AppDelegate.persistentContainer.viewContext
     
+    // MARK: - Methods
     static func save(_ sleep: Sleep, for kid: Kid) {
         guard let description = NSEntityDescription.entity(forEntityName: "SleepEntity", in: context) else { return }
         
