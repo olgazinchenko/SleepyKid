@@ -59,7 +59,6 @@ final class SleepViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: SleepViewModelProtocol?
-    var sleepType: Sleep.SleepType = .unowned
     var sleepImage = UIImage(systemName: Text.sleepImageDefaultName.rawValue)
     var sleepTextColor: UIColor = .black
     var sleepBackgroundColor: UIColor = .white
@@ -74,10 +73,13 @@ final class SleepViewController: UIViewController {
     
     // MARK: - Methods
     func setSleep(sleep: Sleep?) {
-        guard let sleep = sleep else { return }
-        let sleepIntervalText = DateHelper.shared.getSleepIntervalText(from: sleep.startDate, to: sleep.endDate)
+        guard let sleep = sleep,
+              let viewModel = viewModel else { return }
         
-        sleepType = DateHelper.shared.defineSleepType(from: sleep.startDate, to: sleep.endDate)
+        let sleepIntervalText = viewModel.getSleepInterval(from: sleep.startDate, 
+                                                           to: sleep.endDate)
+        let sleepType = viewModel.getSleepType(from: sleep.startDate,
+                                               to: sleep.endDate)
         
         startSleepDatePicker.date = sleep.startDate
         endSleepDatePicker.date = sleep.endDate
@@ -211,12 +213,16 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func onDateValueChanged(_ sender: UIDatePicker) {
-        let sleepIntervalText = DateHelper.shared.getSleepIntervalText(from: startSleepDatePicker.date, 
-                                                                       to: endSleepDatePicker.date)
-        sleepDurationLabel.text = sleepIntervalText
+        guard let viewModel = viewModel else { return }
         
-        sleepType = DateHelper.shared.defineSleepType(from: startSleepDatePicker.date, 
-                                                      to: endSleepDatePicker.date)
+        let startDate = startSleepDatePicker.date
+        let endDate = endSleepDatePicker.date
+        let sleepIntervalText = viewModel.getSleepInterval(from: startDate,
+                                                           to: endDate)
+        let sleepType = viewModel.getSleepType(from: startDate,
+                                               to: endDate)
+        
+        sleepDurationLabel.text = sleepIntervalText
         updateUIFor(sleepType: sleepType)
     }
 }
