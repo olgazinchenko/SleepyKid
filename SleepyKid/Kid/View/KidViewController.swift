@@ -70,6 +70,7 @@ final class KidViewController: UIViewController {
                           iconView])
         setupConstraints()
         setupBars()
+        hideKeyboardWhenTappedOnScreen()
     }
     
     private func setupConstraints() {
@@ -123,5 +124,19 @@ final class KidViewController: UIViewController {
         viewModel.save(with: kidNameTextField.text ?? "",
                        and: dateOfBirthDatePicker.date)
         navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - Keyboard Events
+extension KidViewController {
+    func hideKeyboardWhenTappedOnScreen() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    func handleTap() {
+        view.endEditing(true)
     }
 }
