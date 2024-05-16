@@ -76,8 +76,7 @@ final class SleepPersistent {
         return entities.map { sleep in
             Sleep(id: sleep.sleepID,
                   startDate: sleep.startDate ?? .now,
-                  endDate: sleep.endDate ?? .now,
-                  sleepType: .unowned)
+                  endDate: sleep.endDate ?? .now)
         }
     }
     

@@ -11,9 +11,4 @@ struct Sleep {
     let id: UUID
     let startDate: Date
     let endDate: Date
-    let sleepType: SleepType
-    
-    enum SleepType {
-        case day, night, unowned
-    }
 }

@@ -12,7 +12,7 @@ final class DateHelper {
     static let shared = DateHelper()
    
     // MARK: Methods
-    func getSleepIntervalText(from startDate: Date, to endDate: Date) -> String {
+    func defineSleepInterval(from startDate: Date, to endDate: Date) -> String {
         let sleepInterval = Int(endDate.timeIntervalSince(startDate))
         let hours = sleepInterval / 3600
         let minutes = (sleepInterval % 3600) / 60
@@ -20,12 +20,12 @@ final class DateHelper {
     }
     
     func format(date: Date) -> String {
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "h:mm a"
-        return dateFormater.string(from: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: date)
     }
     
-    func defineSleepType(from startTime: Date, to endTime: Date) -> Sleep.SleepType {
+    func defineSleepType(from startTime: Date, to endTime: Date) -> SleepType {
         // Define the night sleep interval
         let nightSleepStartHour = 20
         let nightSleepEndHour = 5
@@ -43,8 +43,8 @@ final class DateHelper {
             return .unowned
         }
         
-        // Check if start date is after end date
-        if startTime > endTime {
+        // Check if a start date is after or equal an end date
+        if startTime >= endTime {
             return .unowned
         }
         

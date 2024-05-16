@@ -16,6 +16,7 @@
 		9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6482BDBA26E002864AC /* UIColor+Ex.swift */; };
 		9029A64D2BDBB15B002864AC /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A64C2BDBB15B002864AC /* Kid.swift */; };
 		9029A6512BDBB30B002864AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6502BDBB30B002864AC /* Sleep.swift */; };
+		9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8072BF6A8A600F44BB7 /* SleepType.swift */; };
 		9064B4002BF0D65900E795E7 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B3FF2BF0D65900E795E7 /* Text.swift */; };
 		9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B4032BF0DE6E00E795E7 /* Layer.swift */; };
 		907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B12BDB950E00BA92FB /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
+		9041A8072BF6A8A600F44BB7 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
 		9064B3FF2BF0D65900E795E7 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		9064B4032BF0DE6E00E795E7 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		907316AE2BDB950E00BA92FB /* SleepyKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepyKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				9029A6502BDBB30B002864AC /* Sleep.swift */,
+				9041A8072BF6A8A600F44BB7 /* SleepType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */,
 				908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */,
 				908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */,
+				9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */,
 				908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */,
 				908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */,
 				90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */,

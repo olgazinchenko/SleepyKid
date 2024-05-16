@@ -77,7 +77,7 @@ final class SleepTableViewCell: UITableViewCell {
         timeLabel.text = "\(formattedStartTime) - \(formattedEndTime)"
         sleepDurationLabel.text = sleepIntervalText
         countImageView.image = UIImage(systemName: "\(count + 1).circle")
-        updateUIFor(sleepType)
+        updateUI(for: sleepType)
     }
     
     // MARK: - Private Methods
@@ -127,7 +127,7 @@ final class SleepTableViewCell: UITableViewCell {
         }
     }
     
-    private func updateUIFor(_ sleepType: Sleep.SleepType) {
+    private func updateUI(for sleepType: SleepType) {
         let dayImage = UIImage(systemName: Text.dayImage.rawValue)
         let nightImage = UIImage(systemName: Text.nightImage.rawValue)
         let unownedImage = UIImage(systemName: Text.unownedImage.rawValue)

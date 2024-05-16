@@ -134,7 +134,7 @@ final class SleepViewController: UIViewController {
         }
     }
     
-    private func updateUIFor(sleepType: Sleep.SleepType) {
+    private func updateUIFor(sleepType: SleepType) {
         switch sleepType {
         case .day:
             sleepTextColor = .mainYellow
@@ -164,8 +164,8 @@ final class SleepViewController: UIViewController {
         view.backgroundColor = sleepBackgroundColor
         iconView.image = sleepImage
         
-        sleepDurationLabel.text = DateHelper.shared.getSleepIntervalText(from: startSleepDatePicker.date,
-                                                                         to: endSleepDatePicker.date)
+        sleepDurationLabel.text = DateHelper.shared.defineSleepInterval(from: startSleepDatePicker.date,
+                                                                   to: endSleepDatePicker.date)
 
     }
     

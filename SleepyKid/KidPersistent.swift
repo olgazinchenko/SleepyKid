@@ -75,8 +75,7 @@ final class KidPersistent {
             let sleepsArray = (entity.sleeps?.allObjects as? [SleepEntity] ?? []).map { sleep in
                 Sleep(id: sleep.sleepID,
                       startDate: sleep.startDate ?? .now,
-                      endDate: sleep.endDate ?? .now,
-                      sleepType: .unowned)
+                      endDate: sleep.endDate ?? .now)
             }
             
             return Kid(id: entity.kidID,
