@@ -14,7 +14,6 @@ final class SleepViewController: UIViewController {
         let label = UILabel()
         label.text = Text.startDate.rawValue
         label.font = .boldSystemFont(ofSize: 18)
-        label.textColor = .mainBlue
         return label
     }()
     
@@ -22,7 +21,6 @@ final class SleepViewController: UIViewController {
         let label = UILabel()
         label.text = Text.endDate.rawValue
         label.font = .boldSystemFont(ofSize: 18)
-        label.textColor = .mainBlue
         return label
     }()
     
@@ -45,22 +43,20 @@ final class SleepViewController: UIViewController {
     
     private let timeImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: Text.timeImageName.rawValue)
+        view.image = UIImage(systemName: Text.timeBadge.rawValue)
         return view
     }()
     
     private let sleepDurationLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 17)
-        label.tintColor = .mainTextColor
-        label.textColor = .mainBlue
         return label
     }()
     
     // MARK: - Properties
     var viewModel: SleepViewModelProtocol?
-    var sleepImage = UIImage(systemName: Text.sleepImageDefaultName.rawValue)
-    var sleepTextColor: UIColor = .black
+    var sleepImage = UIImage(systemName: Text.unownedImage.rawValue)
+    var sleepTextColor: UIColor = .systemGray
     var sleepBackgroundColor: UIColor = .white
     
     // MARK: - Initialization
@@ -143,17 +139,17 @@ final class SleepViewController: UIViewController {
         case .day:
             sleepTextColor = .mainYellow
             sleepBackgroundColor = .lightYellow
-            sleepImage = UIImage(systemName: Text.sleepDayImageName.rawValue)
+            sleepImage = UIImage(systemName: Text.dayImage.rawValue)
             updateUI()
         case .night:
             sleepTextColor = .mainBlue
             sleepBackgroundColor = .mainPurple
-            sleepImage = UIImage(systemName: Text.sleepNightImageName.rawValue)
+            sleepImage = UIImage(systemName: Text.nightImage.rawValue)
             updateUI()
         case .unowned:
-            sleepTextColor = .black
+            sleepTextColor = .systemGray
             sleepBackgroundColor = .white
-            sleepImage = UIImage(systemName: Text.sleepImageDefaultName.rawValue)
+            sleepImage = UIImage(systemName: Text.unownedImage.rawValue)
             updateUI()
         }
     }

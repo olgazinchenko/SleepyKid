@@ -25,7 +25,7 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let timeImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: Text.timeImageName.rawValue)
+        view.image = UIImage(systemName: Text.timeBadge.rawValue)
         view.tintColor = .mainTextColor
         return view
     }()
@@ -128,12 +128,27 @@ final class SleepTableViewCell: UITableViewCell {
     }
     
     private func updateUIFor(_ sleepType: Sleep.SleepType) {
-        let sunImage = UIImage(systemName: Text.sleepDayImageName.rawValue)
-        let moonImage = UIImage(systemName: Text.sleepNightImageName.rawValue)
-        iconView.image = (sleepType == .day) ? sunImage : moonImage
-        iconView.tintColor = (sleepType == .day) ? .mainYellow : .mainBlue
-        countImageView.tintColor = (sleepType == .day) ? .mainYellow : .mainBlue
-        containerView.backgroundColor = (sleepType == .day) ? .lightYellow : .mainPurple
+        let dayImage = UIImage(systemName: Text.dayImage.rawValue)
+        let nightImage = UIImage(systemName: Text.nightImage.rawValue)
+        let unownedImage = UIImage(systemName: Text.unownedImage.rawValue)
+        
+        switch sleepType {
+        case .day:
+            iconView.image = dayImage
+            iconView.tintColor = .mainYellow
+            countImageView.tintColor = .mainYellow
+            containerView.backgroundColor = .lightYellow
+        case .night:
+            iconView.image = nightImage
+            iconView.tintColor = .mainBlue
+            countImageView.tintColor = .mainBlue
+            containerView.backgroundColor = .mainPurple
+        case .unowned:
+            iconView.image = unownedImage
+            iconView.tintColor = .systemGray
+            countImageView.tintColor = .systemGray
+            containerView.backgroundColor = .white
+        }
     }
 }
 

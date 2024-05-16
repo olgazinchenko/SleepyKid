@@ -45,7 +45,7 @@ final class KidViewController: UIViewController {
     
     private let iconView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: Text.iconName.rawValue)
+        view.image = UIImage(named: Text.appIcon.rawValue)
         return view
     }()
     
