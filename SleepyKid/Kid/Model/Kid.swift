@@ -13,5 +13,4 @@ struct Kid {
     let dateOfBirth: Date
     let parent: User = User()
     var sleeps: [Sleep] = []
-//    var isNewKid: Bool
 }
