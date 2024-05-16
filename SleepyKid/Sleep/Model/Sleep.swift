@@ -12,7 +12,6 @@ struct Sleep {
     let startDate: Date
     let endDate: Date
     let sleepType: SleepType
-    var isNewSleep: Bool = true
     
     enum SleepType {
         case day, night, unowned

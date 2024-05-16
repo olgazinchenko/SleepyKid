@@ -50,7 +50,6 @@ class SleepsListViewController: UITableViewController {
          let kid = viewModel?.kid
          let viewModel = SleepViewModel(sleep: nil, kid: kid)
          sleepViewController.viewModel = viewModel
-         viewModel.sleep?.isNewSleep = true
          sleepViewController.setSleep(sleep: nil)
          navigationController?.pushViewController(sleepViewController, animated: true)
      }

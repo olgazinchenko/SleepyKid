@@ -75,8 +75,7 @@ final class SleepPersistent {
             Sleep(id: sleep.sleepID,
                   startDate: sleep.startDate ?? .now,
                   endDate: sleep.endDate ?? .now,
-                  sleepType: .unowned,
-                  isNewSleep: false)
+                  sleepType: .unowned)
         }
     }
     
