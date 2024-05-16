@@ -20,7 +20,6 @@ final class KidPersistent {
         if let existingEntity = getEntity(for: kid) {
             existingEntity.name = kid.name
             existingEntity.dateOfBirth = kid.dateOfBirth
-            existingEntity.sleeps = NSSet(array: kid.sleeps)
         } else {
             let entity = KidEntity(entity: description,
                                    insertInto: context)
