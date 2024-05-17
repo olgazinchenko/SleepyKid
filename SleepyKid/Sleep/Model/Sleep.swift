@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sleep {
+struct Sleep: TableViewItemProtocol {
     let id: UUID
     let startDate: Date
     let endDate: Date

@@ -35,24 +35,24 @@ class SleepsListViewController: UITableViewController {
     }
     
     private func setupToolBar() {
-            let addButton = UIBarButtonItem(title: "+Add",
-                                            style: .done,
-                                            target: self,
-                                            action: #selector(addAction))
-            let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
-            setToolbarItems([spacing, addButton], animated: true)
-            navigationController?.isToolbarHidden = false
-        }
+        let addButton = UIBarButtonItem(title: "+Add",
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(addAction))
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        setToolbarItems([spacing, addButton], animated: true)
+        navigationController?.isToolbarHidden = false
+    }
     
     @objc
-     private func addAction() {
-         let sleepViewController = SleepViewController()
-         let kid = viewModel?.kid
-         let viewModel = SleepViewModel(sleep: nil, kid: kid)
-         sleepViewController.viewModel = viewModel
-         sleepViewController.setSleep(sleep: nil)
-         navigationController?.pushViewController(sleepViewController, animated: true)
-     }
+    private func addAction() {
+        let sleepViewController = SleepViewController()
+        let kid = viewModel?.kid
+        let viewModel = SleepViewModel(sleep: nil, kid: kid)
+        sleepViewController.viewModel = viewModel
+        sleepViewController.setSleep(sleep: nil)
+        navigationController?.pushViewController(sleepViewController, animated: true)
+    }
     
     private func registerObserver() {
         NotificationCenter.default.addObserver(self,
@@ -63,7 +63,7 @@ class SleepsListViewController: UITableViewController {
     
     @objc
     private func updateData() {
-        viewModel?.getSleeps(for: viewModel?.kid ?? Kid(id: UUID(), 
+        viewModel?.getSleeps(for: viewModel?.kid ?? Kid(id: UUID(),
                                                         name: "",
                                                         birthDate: .now))
     }
@@ -71,10 +71,18 @@ class SleepsListViewController: UITableViewController {
 
 // MARK: - UITableViewDataSource
 extension SleepsListViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        viewModel?.section.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            titleForHeaderInSection section: Int) -> String? {
+        viewModel?.section[section].title
+    }
+    
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        guard let numberOfRowsInSection = viewModel?.sleeps.count else { return 0 }
-        return numberOfRowsInSection
+        viewModel?.section[section].items.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView,
@@ -99,7 +107,6 @@ extension SleepsListViewController {
         let sleepViewController = SleepViewController()
         let viewModel = SleepViewModel(sleep: sleep, kid: kid)
         sleepViewController.viewModel = viewModel
-        sleepViewController.setSleep(sleep: sleep)
         navigationController?.pushViewController(sleepViewController, animated: true)
     }
 }

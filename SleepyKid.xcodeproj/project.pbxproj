@@ -17,6 +17,7 @@
 		9029A64D2BDBB15B002864AC /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A64C2BDBB15B002864AC /* Kid.swift */; };
 		9029A6512BDBB30B002864AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6502BDBB30B002864AC /* Sleep.swift */; };
 		9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8072BF6A8A600F44BB7 /* SleepType.swift */; };
+		9041A80A2BF7C06600F44BB7 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8092BF7C06600F44BB7 /* TableViewSection.swift */; };
 		9064B4002BF0D65900E795E7 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B3FF2BF0D65900E795E7 /* Text.swift */; };
 		9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B4032BF0DE6E00E795E7 /* Layer.swift */; };
 		907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B12BDB950E00BA92FB /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 		9041A8072BF6A8A600F44BB7 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
+		9041A8092BF7C06600F44BB7 /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		9064B3FF2BF0D65900E795E7 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		9064B4032BF0DE6E00E795E7 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		907316AE2BDB950E00BA92FB /* SleepyKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepyKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				90B801852BEE305B002B08F6 /* DateHelper.swift */,
+				9041A8092BF7C06600F44BB7 /* TableViewSection.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
 				90091E002BE132D300A92E00 /* SleepViewModel.swift in Sources */,
 				90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */,
+				9041A80A2BF7C06600F44BB7 /* TableViewSection.swift in Sources */,
 				908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */,
 				908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */,
 				9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 protocol SleepsListViewModelProtocol {
     var sleeps: [Sleep] { get set }
     var kid: Kid { get set }
+    var section: [TableViewSection] { get }
     
     func getSleeps(for kid: Kid)
     var reloadTable: (() -> Void)? { get set }
@@ -17,13 +18,15 @@ protocol SleepsListViewModelProtocol {
 
 final class SleepsListViewModel: SleepsListViewModelProtocol {
     // MARK: - Properties
-    var sleeps: [Sleep] {
+    var sleeps: [Sleep]
+    var kid: Kid
+    var reloadTable: (() -> Void)?
+    
+    private(set) var section: [TableViewSection] = [] {
         didSet {
             reloadTable?()
         }
     }
-    var kid: Kid
-    var reloadTable: (() -> Void)?
     
     // MARK: - Initialization
     init(sleeps: [Sleep], kid: Kid) {
@@ -35,7 +38,19 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
     // MARK: - Methods
     func getSleeps(for kid: Kid) {
         sleeps = SleepPersistent.fetchSleeps(for: kid)
-        print(sleeps)
-        print(sleeps.count)
+        
+        let groupedObjects = Dictionary(grouping: sleeps) { sleep in
+            Calendar.current.startOfDay(for: sleep.startDate)
+        }
+        
+        let sortedKeys = groupedObjects.keys.sorted(by: >)
+        
+        section = sortedKeys.map { key in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "d MMM yyyy"
+            let stringDate = dateFormatter.string(from: key)
+
+            return TableViewSection(title: stringDate, items: groupedObjects[key] ?? [])
+        }
     }
 }

@@ -24,14 +24,6 @@ class KidsListViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        viewModel?.reloadTable = { [weak self] in
-            self?.tableView.reloadData()
-        }
-    }
-    
     // MARK: - Private Methods
     private func setupTableView() {
         tableView.register(KidTableViewCell.self,

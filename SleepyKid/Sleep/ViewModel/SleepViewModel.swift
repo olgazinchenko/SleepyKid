@@ -22,10 +22,7 @@ protocol SleepViewModelProtocol {
 
 final class SleepViewModel: SleepViewModelProtocol {
     // MARK: - Properties
-    var sleep: Sleep? {
-        willSet {
-        }
-    }
+    var sleep: Sleep?
     var kid: Kid?
     
     // MARK: Initialization
