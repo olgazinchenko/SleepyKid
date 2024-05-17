@@ -19,9 +19,9 @@ final class KidViewController: UIViewController {
     
     private let kidNameTextField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderWidth = Layer.mainBoarderWidth.rawValue
         textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.cornerRadius = Layer.mainCornerRadius.rawValue
+        textField.borderStyle = .roundedRect
+        textField.backgroundColor = .systemGray6
         return textField
     }()
     
@@ -36,10 +36,6 @@ final class KidViewController: UIViewController {
     private let dateOfBirthDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
-        datePicker.layer.borderColor = UIColor.black.cgColor
-        datePicker.layer.borderWidth = Layer.mainBoarderWidth.rawValue
-        datePicker.layer.cornerRadius = Layer.mainCornerRadius.rawValue
-        datePicker.backgroundColor = .clear
         return datePicker
     }()
     

@@ -12,7 +12,6 @@ final class KidTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightYellow
         view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = Layer.mainBoarderWidth.rawValue
@@ -55,7 +54,7 @@ final class KidTableViewCell: UITableViewCell {
         addSubview(containerView)
         containerView.addSubviews([avatarView, nameLabel])
         
-        containerView.backgroundColor = .lightYellow
+        containerView.backgroundColor = .systemGray6
         
         setupConstraints()
     }
