@@ -88,8 +88,11 @@ extension SleepsListViewController {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
-                                                       for: indexPath) as? SleepTableViewCell,
-              let sleep = viewModel?.sleeps[indexPath.row] else { return UITableViewCell() }
+                                                       for: indexPath) 
+                as? SleepTableViewCell,
+              let sleep = viewModel?.section[indexPath.section].items[indexPath.row]
+                as? Sleep else { return UITableViewCell() }
+        
         let kid = viewModel?.kid
         let viewModel = SleepViewModel(sleep: sleep, kid: kid)
         cell.viewModel = viewModel
@@ -102,11 +105,14 @@ extension SleepsListViewController {
 // MARK: - UITableViewDelegate
 extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let sleep = viewModel?.sleeps[indexPath.row] as? Sleep else { return }
+        guard let sleep = viewModel?.section[indexPath.section].items[indexPath.row]
+                as? Sleep else { return }
+        
         let kid = viewModel?.kid
         let sleepViewController = SleepViewController()
         let viewModel = SleepViewModel(sleep: sleep, kid: kid)
         sleepViewController.viewModel = viewModel
+        sleepViewController.setSleep(sleep: sleep)
         navigationController?.pushViewController(sleepViewController, animated: true)
     }
 }

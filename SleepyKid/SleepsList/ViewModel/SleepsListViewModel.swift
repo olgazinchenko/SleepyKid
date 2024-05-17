@@ -49,8 +49,9 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "d MMM yyyy"
             let stringDate = dateFormatter.string(from: key)
+            let sortedSleeps = groupedObjects[key]?.sorted(by: { $0.startDate < $1.startDate }) ?? []
 
-            return TableViewSection(title: stringDate, items: groupedObjects[key] ?? [])
+            return TableViewSection(title: stringDate, items: sortedSleeps)
         }
     }
 }
