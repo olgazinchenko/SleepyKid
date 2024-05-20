@@ -1,5 +1,5 @@
 //
-//  Text.swift
+//  Constant.swift
 //  SleepyKid
 //
 //  Created by ozinchenko.dev on 12/05/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Text: String {
+enum Constant: String {
     case kidName = "Kid name"
     case dateOfBirth = "Date of birth"
     case startDate = "Start time and date"

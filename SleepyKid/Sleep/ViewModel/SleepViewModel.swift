@@ -11,19 +11,35 @@ import Foundation
 protocol SleepViewModelProtocol {
     var sleep: Sleep? { get set }
     var kid: Kid? { get set }
+    var isNewSleep: Bool { get }
     
     func save(with startDate: Date, and endDate: Date)
+    func delete()
+    func getTimeIntervalText(for startDate: Date, and endDate: Date) -> String
     func getSleepInterval(from startDate: Date, to endDate: Date) -> String
     func getSleepType(from startDate: Date, to endDate: Date) -> SleepType
     func getFormatted(date: Date) -> String
-    func getTrimmed(date: Date) -> Date 
-    func delete()
+    func getTrimmed(date: Date) -> Date
 }
 
 final class SleepViewModel: SleepViewModelProtocol {
     // MARK: - Properties
     var sleep: Sleep?
     var kid: Kid?
+    var isNewSleep: Bool {
+        (sleep == nil) ? true : false
+    }
+    
+    private var defaultKid: Kid {
+        Kid(id: UUID(),
+            name: "",
+            birthDate: .now,
+            sleeps: [])
+    }
+    
+    private var sleepID: UUID {
+        ((sleep == nil) ? UUID() : sleep?.id) ?? UUID()
+    }
     
     // MARK: Initialization
     init(sleep: Sleep?, kid: Kid?) {
@@ -33,35 +49,44 @@ final class SleepViewModel: SleepViewModelProtocol {
     
     // MARK: - Methods
     func save(with startDate: Date, and endDate: Date) {
-        let id = ((sleep == nil) ? UUID() : sleep?.id) ?? UUID()
-        let sleepToSave = Sleep(id: id,
+        let sleepToSave = Sleep(id: sleepID,
                                 startDate: startDate,
                                 endDate: endDate)
         
-        SleepPersistent.save(sleepToSave, for: kid ?? Kid(id: UUID(),
-                                                          name: "",
-                                                          birthDate: .now))
+        SleepPersistent.save(sleepToSave, for: kid ?? defaultKid)
     }
     
     func delete() {
-        guard let sleep = sleep else { return }
+        guard let sleep else { return }
         SleepPersistent.deleteSleep(sleep)
     }
     
+    func getTimeIntervalText(for startDate: Date, and endDate: Date) -> String {
+        let trimmedStartDate = getTrimmed(date: startDate)
+        let trimmedEndDate = getTrimmed(date: endDate)
+        let formattedStartTime = getFormatted(date: trimmedStartDate)
+        let formattedEndTime = getFormatted(date: trimmedEndDate)
+        
+        return "\(formattedStartTime) - \(formattedEndTime)"
+    }
+    
     func getSleepInterval(from startDate: Date, to endDate: Date) -> String {
-        return DateHelper.shared.defineSleepInterval(from: startDate,
-                                                     to: endDate)
+        let trimmedStartDate = getTrimmed(date: startDate)
+        let trimmedEndDate = getTrimmed(date: endDate)
+        
+        return DateHelper.shared.defineSleepInterval(from: trimmedStartDate,
+                                                     to: trimmedEndDate)
     }
     
     func getSleepType(from startDate: Date, to endDate: Date) -> SleepType {
-        return DateHelper.shared.defineSleepType(from: startDate, to: endDate)
+        DateHelper.shared.defineSleepType(from: startDate, to: endDate)
     }
     
     func getFormatted(date: Date) -> String {
-        return DateHelper.shared.format(date: date)
+        DateHelper.shared.format(date: date, with: "h:mm a")
     }
     
     func getTrimmed(date: Date) -> Date {
-        return DateHelper.shared.trimSeconds(from: date)
+        DateHelper.shared.trimSeconds(from: date)
     }
 }

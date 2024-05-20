@@ -19,9 +19,9 @@ final class DateHelper {
         return (hours == 0) ? ("\(minutes) min") : ("\(hours) h \(minutes) min")
     }
     
-    func format(date: Date) -> String {
+    func format(date: Date, with format: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.dateFormat = format
         return dateFormatter.string(from: date)
     }
     

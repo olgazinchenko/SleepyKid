@@ -9,7 +9,7 @@ import UIKit
 
 class SleepsListViewController: UITableViewController {
     // MARK: - Properties
-    var viewModel: SleepsListViewModelProtocol?
+    var viewModel: SleepsListViewModelProtocol
     
     // MARK: - Live Cycle
     override func viewDidLoad() {
@@ -19,9 +19,18 @@ class SleepsListViewController: UITableViewController {
         setupToolBar()
         registerObserver()
         
-        viewModel?.reloadTable = { [weak self] in
+        viewModel.reloadTable = { [weak self] in
             self?.tableView.reloadData()
         }
+    }
+    
+    init(viewModel: SleepsListViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Private Methods
@@ -29,9 +38,7 @@ class SleepsListViewController: UITableViewController {
         tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")
         tableView.separatorStyle = .none
-        
-        guard let name = viewModel?.kid.name else { return }
-        title = "\(name) 😴 sleeps".uppercased()
+        title = "\(viewModel.kidName) 😴 sleeps".uppercased()
     }
     
     private func setupToolBar() {
@@ -40,16 +47,16 @@ class SleepsListViewController: UITableViewController {
                                         target: self,
                                         action: #selector(addAction))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        
         setToolbarItems([spacing, addButton], animated: true)
         navigationController?.isToolbarHidden = false
     }
     
     @objc
     private func addAction() {
-        let sleepViewController = SleepViewController()
-        let kid = viewModel?.kid
-        let viewModel = SleepViewModel(sleep: nil, kid: kid)
-        sleepViewController.viewModel = viewModel
+        let sleepViewModel = SleepViewModel(sleep: nil, kid: viewModel.kid)
+        let sleepViewController = SleepViewController(viewModel: sleepViewModel)
+        
         sleepViewController.setSleep(sleep: nil)
         navigationController?.pushViewController(sleepViewController, animated: true)
     }
@@ -63,39 +70,36 @@ class SleepsListViewController: UITableViewController {
     
     @objc
     private func updateData() {
-        viewModel?.getSleeps(for: viewModel?.kid ?? Kid(id: UUID(),
-                                                        name: "",
-                                                        birthDate: .now))
+        viewModel.getSleeps(for: viewModel.kid)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension SleepsListViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel?.section.count ?? 0
+        viewModel.sectionCount
     }
     
     override func tableView(_ tableView: UITableView,
                             titleForHeaderInSection section: Int) -> String? {
-        viewModel?.section[section].title
+        viewModel.getTitle(for: section)
     }
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        viewModel?.section[section].items.count ?? 0
+        viewModel.getNumberOfRows(for: section)
     }
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
-                                                       for: indexPath) 
-                as? SleepTableViewCell,
-              let sleep = viewModel?.section[indexPath.section].items[indexPath.row]
-                as? Sleep else { return UITableViewCell() }
+                                                       for: indexPath) as? SleepTableViewCell
+        else { return UITableViewCell() }
         
-        let kid = viewModel?.kid
-        let viewModel = SleepViewModel(sleep: sleep, kid: kid)
-        cell.viewModel = viewModel
+        let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
+        let sleepViewModel = SleepViewModel(sleep: sleep, kid: viewModel.kid)
+        
+        cell.viewModel = sleepViewModel
         cell.setSleep(sleep: sleep, count: indexPath.row)
         
         return cell
@@ -105,14 +109,10 @@ extension SleepsListViewController {
 // MARK: - UITableViewDelegate
 extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let sleep = viewModel?.section[indexPath.section].items[indexPath.row]
-                as? Sleep else { return }
+        let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
+        let sleepViewModel = SleepViewModel(sleep: sleep, kid: viewModel.kid)
+        let sleepViewController = SleepViewController(viewModel: sleepViewModel)
         
-        let kid = viewModel?.kid
-        let sleepViewController = SleepViewController()
-        let viewModel = SleepViewModel(sleep: sleep, kid: kid)
-        sleepViewController.viewModel = viewModel
-        sleepViewController.setSleep(sleep: sleep)
         navigationController?.pushViewController(sleepViewController, animated: true)
     }
 }

@@ -19,14 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = window {
             let navigationController = UINavigationController()
-            let viewController = KidsListViewController()
-            viewController.viewModel = KidsListViewModel()
+            let kidsViewModel = KidsListViewModel()
+            let viewController = KidsListViewController(viewModel: kidsViewModel)
+            
             navigationController.viewControllers = [viewController]
             navigationController.navigationBar.tintColor = .black
             navigationController.toolbar.tintColor = .black
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
+        
         return true
     }
 

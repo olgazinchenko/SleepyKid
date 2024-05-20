@@ -11,7 +11,7 @@ final class KidViewController: UIViewController {
     // MARK: - GUI Variables
     private let kidNameLabel: UILabel = {
         let label = UILabel()
-        label.text = Text.kidName.rawValue
+        label.text = Constant.kidName.rawValue
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
@@ -27,7 +27,7 @@ final class KidViewController: UIViewController {
     
     private let dateOfBirthLabel: UILabel = {
         let label = UILabel()
-        label.text = Text.dateOfBirth.rawValue
+        label.text = Constant.dateOfBirth.rawValue
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
@@ -41,24 +41,34 @@ final class KidViewController: UIViewController {
     
     private let iconView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: Text.appIcon.rawValue)
+        view.image = UIImage(named: Constant.appIcon.rawValue)
         return view
     }()
+    
+    // MARK: - Properties
+    var viewModel: KidViewModelProtocol?
     
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
         setupUI()
         configure()
+        hideKeyboardWhenTappedOnScreen()
     }
     
-    // MARK: - Properties
-    var viewModel: KidViewModelProtocol?
+    init(viewModel: KidViewModelProtocol?) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Private Methods
     private func setupUI() {
+        view.backgroundColor = .white
         view.addSubviews([kidNameLabel,
                           kidNameTextField,
                           dateOfBirthLabel,
@@ -102,37 +112,24 @@ final class KidViewController: UIViewController {
     }
     
     private func configure() {
-        kidNameTextField.text = viewModel?.kid?.name ?? ""
-        dateOfBirthDatePicker.date = viewModel?.kid?.birthDate ?? .now
+        guard let viewModel else { return }
+        kidNameTextField.text = viewModel.kidName
+        dateOfBirthDatePicker.date = viewModel.kidBirthDate
     }
     
     private func setupBars() {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
-                                         action: #selector(saveAction))
+                                         action: #selector(save))
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = true
     }
     
     @objc
-    private func saveAction() {
-        guard let viewModel = viewModel else { return }
+    private func save() {
+        guard let viewModel else { return }
         viewModel.save(with: kidNameTextField.text ?? "",
                        and: dateOfBirthDatePicker.date)
         navigationController?.popViewController(animated: true)
-    }
-}
-
-// MARK: - Keyboard Events
-extension KidViewController {
-    func hideKeyboardWhenTappedOnScreen() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc
-    func handleTap() {
-        view.endEditing(true)
     }
 }

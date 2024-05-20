@@ -20,7 +20,7 @@ final class KidTableViewCell: UITableViewCell {
     
     private let avatarView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: Text.appIcon.rawValue)
+        view.image = UIImage(named: Constant.appIcon.rawValue)
         view.layer.masksToBounds = true
         view.contentMode = .scaleAspectFill
         return view

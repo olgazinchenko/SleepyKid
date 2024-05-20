@@ -10,8 +10,11 @@ import Foundation
 protocol KidsListViewModelProtocol {
     var kids: [Kid] { get set }
     var reloadTable: (() -> Void)? { get set }
+    var kidsCount: Int { get }
+    var defaultKid: Kid { get }
     
     func getKids()
+    func getKid(for row: Int) -> Kid
 }
 
 final class KidsListViewModel: KidsListViewModelProtocol {
@@ -21,6 +24,18 @@ final class KidsListViewModel: KidsListViewModelProtocol {
             reloadTable?()
         }
     }
+    
+    var kidsCount: Int {
+        kids.count
+    }
+    
+    var defaultKid: Kid {
+        Kid(id: UUID(),
+            name: "",
+            birthDate: .now,
+            sleeps: [])
+    }
+    
     var reloadTable: (() -> Void)?
     
     // MARK: - Initialization
@@ -30,5 +45,9 @@ final class KidsListViewModel: KidsListViewModelProtocol {
     // MARK: - Methods
     func getKids() {
         kids = KidPersistent.fetchAll()
+    }
+    
+    func getKid(for row: Int) -> Kid {
+        kids[row]
     }
 }

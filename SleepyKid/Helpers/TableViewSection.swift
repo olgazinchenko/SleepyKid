@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol TableViewItemProtocol {
-    
-}
+protocol TableViewItemProtocol { }
 
 struct TableViewSection {
     var title: String?

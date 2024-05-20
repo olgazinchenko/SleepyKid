@@ -9,6 +9,8 @@ import Foundation
 
 protocol KidViewModelProtocol {
     var kid: Kid? { get set }
+    var kidBirthDate: Date { get }
+    var kidName: String { get }
     
     func save(with name: String, and dateOfBirth: Date)
     func delete()
@@ -17,6 +19,12 @@ protocol KidViewModelProtocol {
 final class KidViewModel: KidViewModelProtocol {
     // MARK: - Properties
     var kid: Kid?
+    var kidBirthDate: Date {
+        kid?.birthDate ?? .now
+    }
+    var kidName: String {
+        kid?.name ?? ""
+    }
     
     // MARK: - Initialization
     init(kid: Kid?) {
