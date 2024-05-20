@@ -54,7 +54,6 @@ final class KidViewController: UIViewController {
         
         setupUI()
         configure()
-        hideKeyboardWhenTappedOnScreen()
     }
     
     init(viewModel: KidViewModelProtocol?) {

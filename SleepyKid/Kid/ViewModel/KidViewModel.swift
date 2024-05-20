@@ -11,6 +11,7 @@ protocol KidViewModelProtocol {
     var kid: Kid? { get set }
     var kidBirthDate: Date { get }
     var kidName: String { get }
+    var kidID: UUID { get }
     
     func save(with name: String, and dateOfBirth: Date)
     func delete()
@@ -22,8 +23,13 @@ final class KidViewModel: KidViewModelProtocol {
     var kidBirthDate: Date {
         kid?.birthDate ?? .now
     }
+    
     var kidName: String {
         kid?.name ?? ""
+    }
+    
+    var kidID: UUID {
+        ((kid == nil) ? UUID() : kid?.id) ?? UUID()
     }
     
     // MARK: - Initialization
@@ -33,8 +39,7 @@ final class KidViewModel: KidViewModelProtocol {
     
     // MARK: - Methods
     func save(with name: String, and dateOfBirth: Date) {
-        let id = ((kid == nil) ? UUID() : kid?.id) ?? UUID()
-        let kidToSave = Kid(id: id,
+        let kidToSave = Kid(id: kidID,
                             name: name,
                             birthDate: dateOfBirth,
                             sleeps: kid?.sleeps ?? [])

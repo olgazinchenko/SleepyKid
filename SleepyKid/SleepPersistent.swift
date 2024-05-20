@@ -14,7 +14,8 @@ final class SleepPersistent {
     
     // MARK: - Methods
     static func save(_ sleep: Sleep, for kid: Kid) {
-        guard let description = NSEntityDescription.entity(forEntityName: "SleepEntity", in: context) else { return }
+        guard let description = NSEntityDescription.entity(forEntityName: "SleepEntity", 
+                                                           in: context) else { return }
         
         if let existingEntity = getEntity(for: sleep) {
             existingEntity.startDate = sleep.startDate

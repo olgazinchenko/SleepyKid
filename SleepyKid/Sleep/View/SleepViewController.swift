@@ -188,7 +188,8 @@ final class SleepViewController: UIViewController {
         let startDate = viewModel.getTrimmed(date: startSleepDatePicker.date)
         let endDate = viewModel.getTrimmed(date: endSleepDatePicker.date)
         
-        sleepDurationLabel.text = viewModel.getSleepInterval(from: startDate, to: endDate)
+        sleepDurationLabel.text = viewModel.getSleepInterval(from: startDate, 
+                                                             to: endDate)
 
     }
     
