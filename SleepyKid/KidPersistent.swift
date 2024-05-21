@@ -28,7 +28,7 @@ final class KidPersistent {
             entity.birthDate = kid.birthDate
             entity.sleeps = NSSet(array: kid.sleeps)
         }
- 
+        
         saveContext()
     }
     

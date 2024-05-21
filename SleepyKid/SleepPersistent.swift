@@ -14,7 +14,7 @@ final class SleepPersistent {
     
     // MARK: - Methods
     static func save(_ sleep: Sleep, for kid: Kid) {
-        guard let description = NSEntityDescription.entity(forEntityName: "SleepEntity", 
+        guard let description = NSEntityDescription.entity(forEntityName: "SleepEntity",
                                                            in: context) else { return }
         
         if let existingEntity = getEntity(for: sleep) {
@@ -22,14 +22,14 @@ final class SleepPersistent {
             existingEntity.endDate = sleep.endDate
             existingEntity.kid = KidPersistent.getEntity(for: kid)
         } else {
-            let entity = SleepEntity(entity: description, 
+            let entity = SleepEntity(entity: description,
                                      insertInto: context)
             entity.sleepID = sleep.id
             entity.startDate = sleep.startDate
             entity.endDate = sleep.endDate
             entity.kid = KidPersistent.getEntity(for: kid)
         }
- 
+        
         saveContext()
     }
     

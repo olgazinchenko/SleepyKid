@@ -10,7 +10,7 @@ import Foundation
 final class DateHelper {
     // MARK: Singleton Setup
     static let shared = DateHelper()
-   
+    
     // MARK: Methods
     func defineSleepInterval(from startDate: Date, to endDate: Date) -> String {
         let sleepInterval = Int(endDate.timeIntervalSince(startDate))
@@ -27,8 +27,15 @@ final class DateHelper {
     
     func trimSeconds(from date: Date) -> Date {
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute],
+                                                 from: date)
         return calendar.date(from: components) ?? date
+    }
+    
+    func getStartOfDay(for date: Date) -> Date {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        return startOfDay
     }
     
     func defineSleepType(from startTime: Date, to endTime: Date) -> SleepType {

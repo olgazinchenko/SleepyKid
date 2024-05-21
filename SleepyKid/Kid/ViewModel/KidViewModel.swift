@@ -33,7 +33,7 @@ final class KidViewModel: KidViewModelProtocol {
     }
     
     // MARK: - Initialization
-    init(kid: Kid?) {
+    init(kid: Kid? = nil) {
         self.kid = kid
     }
     

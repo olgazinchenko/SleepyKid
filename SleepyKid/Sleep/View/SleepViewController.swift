@@ -54,7 +54,7 @@ final class SleepViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    var viewModel: SleepViewModelProtocol
+    private var viewModel: SleepViewModelProtocol
     private var sleepImage: UIImage
     private var sleepTextColor: UIColor
     private var sleepBackgroundColor: UIColor
@@ -68,14 +68,14 @@ final class SleepViewController: UIViewController {
     
     init(viewModel: SleepViewModelProtocol) {
         self.viewModel = viewModel
-
+        
         sleepImage = UIImage(systemName: Constant.unownedImage.rawValue) ?? .remove
         sleepTextColor = .systemGray
         sleepBackgroundColor = .white
         
         super.init(nibName: nil, bundle: nil)
         
-        setSleep(sleep: viewModel.sleep)
+        setSleep()
     }
     
     required init?(coder: NSCoder) {
@@ -83,10 +83,10 @@ final class SleepViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func setSleep(sleep: Sleep?) {
+    func setSleep(sleep: Sleep? = nil) {
         guard let sleep else { return }
         
-        let sleepIntervalText = viewModel.getSleepInterval(from: sleep.startDate, 
+        let sleepIntervalText = viewModel.getSleepInterval(from: sleep.startDate,
                                                            to: sleep.endDate)
         let sleepType = viewModel.getSleepType(from: sleep.startDate,
                                                to: sleep.endDate)
@@ -176,21 +176,17 @@ final class SleepViewController: UIViewController {
     }
     
     private func updateUI() {
+        view.backgroundColor = sleepBackgroundColor
+        
         iconView.tintColor = sleepTextColor
         timeImageView.tintColor = sleepTextColor
         sleepDurationLabel.textColor = sleepTextColor
         startDateLabel.textColor = sleepTextColor
         endDateLabel.textColor = sleepTextColor
         
-        view.backgroundColor = sleepBackgroundColor
         iconView.image = sleepImage
-        
-        let startDate = viewModel.getTrimmed(date: startSleepDatePicker.date)
-        let endDate = viewModel.getTrimmed(date: endSleepDatePicker.date)
-        
-        sleepDurationLabel.text = viewModel.getSleepInterval(from: startDate, 
-                                                             to: endDate)
-
+        sleepDurationLabel.text = viewModel.getSleepInterval(from: startSleepDatePicker.date,
+                                                             to: endSleepDatePicker.date)
     }
     
     private func setupBars() {
@@ -199,7 +195,7 @@ final class SleepViewController: UIViewController {
                                          action: #selector(save))
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = true
-
+        
         let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
                                           target: self,
                                           action: #selector(deleteAction))
@@ -213,10 +209,8 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func save() {
-        let startDate = viewModel.getTrimmed(date: startSleepDatePicker.date)
-        let endDate = viewModel.getTrimmed(date: endSleepDatePicker.date)
-        
-        viewModel.save(with: startDate, and: endDate)
+        viewModel.save(with: startSleepDatePicker.date,
+                       and: endSleepDatePicker.date)
         navigationController?.popViewController(animated: true)
     }
     
@@ -228,19 +222,17 @@ final class SleepViewController: UIViewController {
     
     private func setupDatePicker() {
         startSleepDatePicker.addTarget(self, action: #selector(onDateValueChanged(_:)),
-                                      for: .valueChanged)
+                                       for: .valueChanged)
         endSleepDatePicker.addTarget(self, action: #selector(onDateValueChanged(_:)),
-                                      for: .valueChanged)
+                                     for: .valueChanged)
     }
     
     @objc
     private func onDateValueChanged(_ sender: UIDatePicker) {
-        let startDate = startSleepDatePicker.date
-        let endDate = endSleepDatePicker.date
-        let sleepIntervalText = viewModel.getSleepInterval(from: startDate,
-                                                           to: endDate)
-        let sleepType = viewModel.getSleepType(from: startDate,
-                                               to: endDate)
+        let sleepIntervalText = viewModel.getSleepInterval(from: startSleepDatePicker.date,
+                                                           to: endSleepDatePicker.date)
+        let sleepType = viewModel.getSleepType(from: startSleepDatePicker.date,
+                                               to: endSleepDatePicker.date)
         
         sleepDurationLabel.text = sleepIntervalText
         updateUIFor(sleepType: sleepType)

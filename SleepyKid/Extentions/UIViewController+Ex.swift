@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension KidViewController {
+extension UIViewController {
     func hideKeyboardWhenTappedOnScreen() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         tapGesture.cancelsTouchesInView = false

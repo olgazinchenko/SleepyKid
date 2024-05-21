@@ -55,7 +55,7 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
         sleeps = SleepPersistent.fetchSleeps(for: kid)
         
         let groupedObjects = Dictionary(grouping: sleeps) { sleep in
-            Calendar.current.startOfDay(for: sleep.startDate)
+            DateHelper().getStartOfDay(for: sleep.startDate)
         }
         
         let sortedKeys = groupedObjects.keys.sorted(by: >)
@@ -63,7 +63,7 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
         section = sortedKeys.map { key in
             let stringDate = DateHelper.shared.format(date: key, with: "d MMM yyyy")
             let sortedSleeps = groupedObjects[key]?.sorted(by: { $0.startDate < $1.startDate }) ?? []
-
+            
             return TableViewSection(title: stringDate, items: sortedSleeps)
         }
     }

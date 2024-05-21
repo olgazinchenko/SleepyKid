@@ -27,14 +27,7 @@ final class SleepViewModel: SleepViewModelProtocol {
     var sleep: Sleep?
     var kid: Kid?
     var isNewSleep: Bool {
-        (sleep == nil) ? true : false
-    }
-    
-    private var defaultKid: Kid {
-        Kid(id: UUID(),
-            name: "",
-            birthDate: .now,
-            sleeps: [])
+        sleep == nil
     }
     
     private var sleepID: UUID {
@@ -49,11 +42,18 @@ final class SleepViewModel: SleepViewModelProtocol {
     
     // MARK: - Methods
     func save(with startDate: Date, and endDate: Date) {
-        let sleepToSave = Sleep(id: sleepID,
-                                startDate: startDate,
-                                endDate: endDate)
+        let trimmedStartDate = getTrimmed(date: startDate)
+        let trimmedEndDate = getTrimmed(date: endDate)
         
-        SleepPersistent.save(sleepToSave, for: kid ?? defaultKid)
+        let sleepToSave = Sleep(id: sleepID,
+                                startDate: trimmedStartDate,
+                                endDate: trimmedEndDate)
+        
+        SleepPersistent.save(sleepToSave, 
+                             for: kid ?? Kid(id: UUID(),
+                                             name: "",
+                                             birthDate: .now,
+                                             sleeps: []))
     }
     
     func delete() {

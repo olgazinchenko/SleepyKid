@@ -15,10 +15,10 @@ class KidsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Kids".uppercased()
         setupTableView()
         setupToolBar()
         registerObserver()
+        
         viewModel.reloadTable = { [weak self] in
             self?.tableView.reloadData()
         }
@@ -38,24 +38,25 @@ class KidsListViewController: UITableViewController {
         tableView.register(KidTableViewCell.self,
                            forCellReuseIdentifier: "KidTableViewCell")
         tableView.separatorStyle = .none
+        title = "Kids".uppercased()
     }
     
     private func setupToolBar() {
-            let addButton = UIBarButtonItem(title: "+Add",
-                                            style: .done,
-                                            target: self,
-                                            action: #selector(addAction))
-            let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
-            setToolbarItems([spacing, addButton], animated: true)
-            navigationController?.isToolbarHidden = false
-        }
+        let addButton = UIBarButtonItem(title: "+Add",
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(addAction))
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        setToolbarItems([spacing, addButton], animated: true)
+        navigationController?.isToolbarHidden = false
+    }
     
     @objc
-     private func addAction() {
-         let kidViewModel = KidViewModel(kid: nil)
-         let kidViewController = KidViewController(viewModel: kidViewModel)
-         navigationController?.pushViewController(kidViewController, animated: true)
-     }
+    private func addAction() {
+        let kidViewModel = KidViewModel()
+        let kidViewController = KidViewController(viewModel: kidViewModel)
+        navigationController?.pushViewController(kidViewController, animated: true)
+    }
     
     private func registerObserver() {
         NotificationCenter.default.addObserver(self,
@@ -72,14 +73,14 @@ class KidsListViewController: UITableViewController {
 
 // MARK: - UITableViewDataSource
 extension KidsListViewController {
-    override func tableView(_ tableView: UITableView, 
+    override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         viewModel.kids.count
     }
     
-    override func tableView(_ tableView: UITableView, 
+    override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "KidTableViewCell", 
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "KidTableViewCell",
                                                        for: indexPath) as? KidTableViewCell
         else { return UITableViewCell() }
         
@@ -101,26 +102,26 @@ extension KidsListViewController {
         navigationController?.pushViewController(sleepsListViewController, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt 
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt
                             indexPath: IndexPath,
                             point: CGPoint) -> UIContextMenuConfiguration? {
         let kid = viewModel.getKid(for: indexPath.row)
         let kidViewModel = KidViewModel(kid: kid)
         let kidViewController = KidViewController(viewModel: kidViewModel)
-            let provider: UIContextMenuActionProvider = { _ in
-                UIMenu(title: "", children: [
-                    UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
-                        self.navigationController?.pushViewController(kidViewController, 
-                                                                      animated: true)
-                    },
-                    UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
-                        kidViewModel.delete()
-                    }
-                ])
-            }
-            
-            return UIContextMenuConfiguration(identifier: nil, 
-                                              previewProvider: nil,
-                                              actionProvider: provider)
+        let provider: UIContextMenuActionProvider = { _ in
+            UIMenu(title: "", children: [
+                UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
+                    self.navigationController?.pushViewController(kidViewController,
+                                                                  animated: true)
+                },
+                UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
+                    kidViewModel.delete()
+                }
+            ])
         }
+        
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: provider)
+    }
 }
