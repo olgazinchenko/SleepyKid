@@ -192,30 +192,27 @@ final class SleepViewController: UIViewController {
     private func setupBars() {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
-                                         action: #selector(save))
-        navigationItem.rightBarButtonItem = saveButton
-        saveButton.isEnabled = true
-        
+                                         action: #selector(saveSleep))
         let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
                                           target: self,
-                                          action: #selector(deleteAction))
-        
-        setToolbarItems([trashButton], animated: true)
+                                          action: #selector(deleteSleep))
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
         navigationItem.rightBarButtonItem = saveButton
+        setToolbarItems([trashButton, spacing], animated: true)
         saveButton.isEnabled = true
         trashButton.isHidden = viewModel.isNewSleep
     }
     
     @objc
-    private func save() {
+    private func saveSleep() {
         viewModel.save(with: startSleepDatePicker.date,
                        and: endSleepDatePicker.date)
         navigationController?.popViewController(animated: true)
     }
     
     @objc
-    private func deleteAction() {
+    private func deleteSleep() {
         viewModel.delete()
         navigationController?.popViewController(animated: true)
     }

@@ -45,7 +45,7 @@ class SleepsListViewController: UITableViewController {
         let addButton = UIBarButtonItem(title: "+Add",
                                         style: .done,
                                         target: self,
-                                        action: #selector(addAction))
+                                        action: #selector(addKid))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
         setToolbarItems([spacing, addButton], animated: true)
@@ -53,7 +53,7 @@ class SleepsListViewController: UITableViewController {
     }
     
     @objc
-    private func addAction() {
+    private func addKid() {
         let sleepViewModel = SleepViewModel(sleep: nil, kid: viewModel.kid)
         let sleepViewController = SleepViewController(viewModel: sleepViewModel)
         

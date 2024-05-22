@@ -45,16 +45,17 @@ class KidsListViewController: UITableViewController {
         let addButton = UIBarButtonItem(title: "+Add",
                                         style: .done,
                                         target: self,
-                                        action: #selector(addAction))
+                                        action: #selector(addKid))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         setToolbarItems([spacing, addButton], animated: true)
         navigationController?.isToolbarHidden = false
     }
     
     @objc
-    private func addAction() {
+    private func addKid() {
         let kidViewModel = KidViewModel()
         let kidViewController = KidViewController(viewModel: kidViewModel)
+        
         navigationController?.pushViewController(kidViewController, animated: true)
     }
     

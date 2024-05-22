@@ -119,13 +119,13 @@ final class KidViewController: UIViewController {
     private func setupBars() {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
-                                         action: #selector(save))
+                                         action: #selector(saveSleep))
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = true
     }
     
     @objc
-    private func save() {
+    private func saveSleep() {
         guard let viewModel else { return }
         viewModel.save(with: kidNameTextField.text ?? "",
                        and: dateOfBirthDatePicker.date)
