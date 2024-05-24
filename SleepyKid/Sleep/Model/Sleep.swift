@@ -7,12 +7,8 @@
 
 import Foundation
 
-struct Sleep {
+struct Sleep: TableViewItemProtocol {
+    let id: UUID
     let startDate: Date
     let endDate: Date
-    let sleepType: SleepType = .unowned
-    
-    enum SleepType {
-        case day, night, unowned
-    }
 }

@@ -9,35 +9,67 @@
 /* Begin PBXBuildFile section */
 		90091DF82BDD08EB00A92E00 /* SleepsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091DF72BDD08EB00A92E00 /* SleepsListViewModel.swift */; };
 		90091DFB2BDD1DEE00A92E00 /* SleepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091DFA2BDD1DEE00A92E00 /* SleepTableViewCell.swift */; };
+		90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091DFC2BE0259300A92E00 /* SleepViewController.swift */; };
+		90091E002BE132D300A92E00 /* SleepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091DFF2BE132D300A92E00 /* SleepViewModel.swift */; };
+		90091E032BE1813700A92E00 /* KidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90091E022BE1813700A92E00 /* KidViewController.swift */; };
+		900AD2F32BE3BBEE0055DE38 /* KidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900AD2F22BE3BBEE0055DE38 /* KidViewModel.swift */; };
 		9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6482BDBA26E002864AC /* UIColor+Ex.swift */; };
 		9029A64D2BDBB15B002864AC /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A64C2BDBB15B002864AC /* Kid.swift */; };
 		9029A6512BDBB30B002864AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6502BDBB30B002864AC /* Sleep.swift */; };
+		9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8072BF6A8A600F44BB7 /* SleepType.swift */; };
+		9041A80A2BF7C06600F44BB7 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8092BF7C06600F44BB7 /* TableViewSection.swift */; };
+		9064B4002BF0D65900E795E7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B3FF2BF0D65900E795E7 /* Constant.swift */; };
+		9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B4032BF0DE6E00E795E7 /* Layer.swift */; };
 		907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B12BDB950E00BA92FB /* AppDelegate.swift */; };
 		907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B52BDB950E00BA92FB /* KidsListViewController.swift */; };
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
+		908124162BFBA58F00E7EFC0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */; };
+		908124192BFDE32C00E7EFC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 908124182BFDE32C00E7EFC0 /* SnapKit */; };
+		908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */; };
+		908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */; };
+		908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */; };
+		908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */; };
+		90B25CF02BF3F98400A01072 /* SleepPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B25CEF2BF3F98400A01072 /* SleepPersistent.swift */; };
+		90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateHelper.swift */; };
+		90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801942BEE71EC002B08F6 /* KidPersistent.swift */; };
 		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
 		90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */; };
 		90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A032BDBEC5F00DEBAFF /* KidTableViewCell.swift */; };
 		90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A052BDC077700DEBAFF /* UIView+Ex.swift */; };
-		90EC4A092BDC07FB00DEBAFF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90EC4A082BDC07FB00DEBAFF /* SnapKit */; };
 		90EC4A0B2BDC09C300DEBAFF /* KidsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A0A2BDC09C300DEBAFF /* KidsListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		90091DF72BDD08EB00A92E00 /* SleepsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewModel.swift; sourceTree = "<group>"; };
 		90091DFA2BDD1DEE00A92E00 /* SleepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTableViewCell.swift; sourceTree = "<group>"; };
+		90091DFC2BE0259300A92E00 /* SleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewController.swift; sourceTree = "<group>"; };
+		90091DFF2BE132D300A92E00 /* SleepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewModel.swift; sourceTree = "<group>"; };
+		90091E022BE1813700A92E00 /* KidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidViewController.swift; sourceTree = "<group>"; };
+		900AD2F22BE3BBEE0055DE38 /* KidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidViewModel.swift; sourceTree = "<group>"; };
 		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
+		9041A8072BF6A8A600F44BB7 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
+		9041A8092BF7C06600F44BB7 /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
+		9064B3FF2BF0D65900E795E7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		9064B4032BF0DE6E00E795E7 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		907316AE2BDB950E00BA92FB /* SleepyKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepyKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		907316B12BDB950E00BA92FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		907316B52BDB950E00BA92FB /* KidsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsListViewController.swift; sourceTree = "<group>"; };
-		907316BB2BDB950E00BA92FB /* SleepyKid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepyKid.xcdatamodel; sourceTree = "<group>"; };
+		907316BB2BDB950E00BA92FB /* SleepyKid.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = SleepyKid.xcdatamodel; sourceTree = "<group>"; };
 		907316BD2BDB951100BA92FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		907316C02BDB951100BA92FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		90B25CEF2BF3F98400A01072 /* SleepPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepPersistent.swift; sourceTree = "<group>"; };
+		90B801852BEE305B002B08F6 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		90B801942BEE71EC002B08F6 /* KidPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPersistent.swift; sourceTree = "<group>"; };
 		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewController.swift; sourceTree = "<group>"; };
 		90EC4A032BDBEC5F00DEBAFF /* KidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidTableViewCell.swift; sourceTree = "<group>"; };
@@ -50,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90EC4A092BDC07FB00DEBAFF /* SnapKit in Frameworks */,
+				908124192BFDE32C00E7EFC0 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,11 +97,44 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		90091DFE2BE0259B00A92E00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90091DFC2BE0259300A92E00 /* SleepViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		90091E012BE1330400A92E00 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				90091DFF2BE132D300A92E00 /* SleepViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		90091E042BE1819600A92E00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90091E022BE1813700A92E00 /* KidViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		900AD2F42BE3BCC50055DE38 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				900AD2F22BE3BBEE0055DE38 /* KidViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9029A6472BDBA22F002864AC /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
 				9029A6482BDBA26E002864AC /* UIColor+Ex.swift */,
 				90EC4A052BDC077700DEBAFF /* UIView+Ex.swift */,
+				908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -96,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				9029A64F2BDBB16B002864AC /* Model */,
+				90091E042BE1819600A92E00 /* View */,
+				900AD2F42BE3BCC50055DE38 /* ViewModel */,
 			);
 			path = Kid;
 			sourceTree = "<group>";
@@ -112,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				9029A6532BDBB319002864AC /* Model */,
+				90091DFE2BE0259B00A92E00 /* View */,
+				90091E012BE1330400A92E00 /* ViewModel */,
 			);
 			path = Sleep;
 			sourceTree = "<group>";
@@ -120,8 +189,27 @@
 			isa = PBXGroup;
 			children = (
 				9029A6502BDBB30B002864AC /* Sleep.swift */,
+				9041A8072BF6A8A600F44BB7 /* SleepType.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9064B4012BF0D66B00E795E7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9064B3FF2BF0D65900E795E7 /* Constant.swift */,
+				9064B4032BF0DE6E00E795E7 /* Layer.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		9064B4022BF0D6F200E795E7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				90B801852BEE305B002B08F6 /* DateHelper.swift */,
+				9041A8092BF7C06600F44BB7 /* TableViewSection.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		907316A52BDB950E00BA92FB = {
@@ -144,18 +232,34 @@
 			isa = PBXGroup;
 			children = (
 				907316B12BDB950E00BA92FB /* AppDelegate.swift */,
+				90B801942BEE71EC002B08F6 /* KidPersistent.swift */,
+				90B25CEF2BF3F98400A01072 /* SleepPersistent.swift */,
 				90EC49FB2BDBDA2C00DEBAFF /* User */,
 				9029A64E2BDBB161002864AC /* Kid */,
 				9029A6522BDBB30F002864AC /* Sleep */,
 				9029A64A2BDBABD6002864AC /* KidsList */,
 				90EC4A012BDBE71000DEBAFF /* SleepsList */,
+				9064B4022BF0D6F200E795E7 /* Helpers */,
+				9064B4012BF0D66B00E795E7 /* Constants */,
 				9029A6472BDBA22F002864AC /* Extentions */,
 				907316BD2BDB951100BA92FB /* Assets.xcassets */,
 				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
 				907316C22BDB951100BA92FB /* Info.plist */,
-				907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */,
+				90B801872BEE4504002B08F6 /* CoreData */,
 			);
 			path = SleepyKid;
+			sourceTree = "<group>";
+		};
+		90B801872BEE4504002B08F6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */,
+				908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */,
+				908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */,
+				908C5C312BF1487000955FDD /* SleepEntity+CoreDataProperties.swift */,
+				907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		90EC49FB2BDBDA2C00DEBAFF /* User */ = {
@@ -217,7 +321,7 @@
 			);
 			name = SleepyKid;
 			packageProductDependencies = (
-				90EC4A082BDC07FB00DEBAFF /* SnapKit */,
+				908124182BFDE32C00E7EFC0 /* SnapKit */,
 			);
 			productName = SleepyKid;
 			productReference = 907316AE2BDB950E00BA92FB /* SleepyKid.app */;
@@ -248,7 +352,7 @@
 			);
 			mainGroup = 907316A52BDB950E00BA92FB;
 			packageReferences = (
-				90EC4A072BDC07FB00DEBAFF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				908124172BFDE32C00E7EFC0 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 907316AF2BDB950E00BA92FB /* Products */;
 			projectDirPath = "";
@@ -277,17 +381,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */,
+				90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */,
 				90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */,
+				90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */,
 				9029A64D2BDBB15B002864AC /* Kid.swift in Sources */,
+				90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */,
 				90091DFB2BDD1DEE00A92E00 /* SleepTableViewCell.swift in Sources */,
 				907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */,
+				908124162BFBA58F00E7EFC0 /* UIViewController+Ex.swift in Sources */,
+				90B25CF02BF3F98400A01072 /* SleepPersistent.swift in Sources */,
+				9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */,
 				90091DF82BDD08EB00A92E00 /* SleepsListViewModel.swift in Sources */,
+				9064B4002BF0D65900E795E7 /* Constant.swift in Sources */,
 				90EC4A0B2BDC09C300DEBAFF /* KidsListViewModel.swift in Sources */,
+				900AD2F32BE3BBEE0055DE38 /* KidViewModel.swift in Sources */,
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
+				90091E032BE1813700A92E00 /* KidViewController.swift in Sources */,
 				90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
 				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
+				90091E002BE132D300A92E00 /* SleepViewModel.swift in Sources */,
 				90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */,
+				9041A80A2BF7C06600F44BB7 /* TableViewSection.swift in Sources */,
+				908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */,
+				908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */,
+				9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */,
+				908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */,
+				908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */,
 				90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,7 +633,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		90EC4A072BDC07FB00DEBAFF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		908124172BFDE32C00E7EFC0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -524,9 +644,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		90EC4A082BDC07FB00DEBAFF /* SnapKit */ = {
+		908124182BFDE32C00E7EFC0 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 90EC4A072BDC07FB00DEBAFF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 908124172BFDE32C00E7EFC0 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

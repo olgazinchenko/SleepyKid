@@ -9,30 +9,45 @@ import Foundation
 
 protocol KidsListViewModelProtocol {
     var kids: [Kid] { get set }
+    var reloadTable: (() -> Void)? { get set }
+    var kidsCount: Int { get }
+    var defaultKid: Kid { get }
+    
+    func getKids()
+    func getKid(for row: Int) -> Kid
 }
 
 final class KidsListViewModel: KidsListViewModelProtocol {
     // MARK: - Properties
-    var kids: [Kid] = []
+    var kids: [Kid] = [] {
+        didSet {
+            reloadTable?()
+        }
+    }
+    
+    var kidsCount: Int {
+        kids.count
+    }
+    
+    var defaultKid: Kid {
+        Kid(id: UUID(),
+            name: "",
+            birthDate: .now,
+            sleeps: [])
+    }
+    
+    var reloadTable: (() -> Void)?
     
     // MARK: - Initialization
     init() {
-        setMocks()
+        getKids()
     }
-    // MARK: - Private Methods
-    private func setMocks() {
-        kids = [Kid(name: "Alisa",
-                    dateOfBirth: .now - 4000,
-                    photoUrl: nil,
-                    sleeps: [Sleep(startDate: .now, endDate: .now + 60)]),
-                Kid(name: "Alex",
-                    dateOfBirth: .now - 9000,
-                    photoUrl: nil,
-                    sleeps: [Sleep(startDate: .now + 100, endDate: .now + 260),
-                             Sleep(startDate: .now + 100, endDate: .now + 260),
-                             Sleep(startDate: .now + 100, endDate: .now + 260),
-                             Sleep(startDate: .now, endDate: .now + 60)]
-                   )
-        ]
+    // MARK: - Methods
+    func getKids() {
+        kids = KidPersistent.fetchAll()
+    }
+    
+    func getKid(for row: Int) -> Kid {
+        kids[row]
     }
 }

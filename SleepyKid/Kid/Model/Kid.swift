@@ -8,14 +8,9 @@
 import Foundation
 
 struct Kid {
+    let id: UUID
     let name: String
-    let dateOfBirth: Date
-    let sex: Sex = .unowned
-    let photoUrl: URL?
-    var sleeps: [Sleep]
+    let birthDate: Date
     let parent: User = User()
-    
-    enum Sex {
-        case girl, boy, unowned
-    }
+    var sleeps: [Sleep] = []
 }

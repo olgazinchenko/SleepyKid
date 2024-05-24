@@ -8,6 +8,7 @@
 import Foundation
 
 struct User {
-    let name: String = "User"
     let kids: [Kid] = []
 }
+
+// TODO: Make a registration for users in the next version of the app
