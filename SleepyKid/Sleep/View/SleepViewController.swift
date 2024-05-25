@@ -75,7 +75,7 @@ final class SleepViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        setSleep()
+        setSleep(sleep: viewModel.sleep)
     }
     
     required init?(coder: NSCoder) {
