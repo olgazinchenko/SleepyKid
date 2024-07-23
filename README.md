@@ -1,5 +1,5 @@
 <h1>SleepyKid</h1>
-<p>SleepyKid is a mobile application designed to help parents keep track of their children&#39;s sleep patterns. The app follows the <strong>MVVM</strong> (Model-View-ViewModel) architecture and is built using <strong>SwiftData</strong> and <strong>SnapKit</strong>.</p>
+<p>SleepyKid is a mobile application designed to help parents keep track of their children&#39;s sleep patterns. The app follows the <strong>MVVM</strong> (Model-View-ViewModel) architecture and is built using <strong>CoreData</strong> and <strong>SnapKit</strong>.</p>
 
 <h3>Screens</h3>
 <table border="0">
