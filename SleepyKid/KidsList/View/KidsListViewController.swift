@@ -92,7 +92,8 @@ extension KidsListViewController {
         else { return UITableViewCell() }
         
         let kid = viewModel.getKid(for: indexPath.row)
-        cell.setKid(name: kid.name)
+        let age = viewModel.getKidAdge(for: indexPath.row)
+        cell.setKid(name: kid.name, age: age)
         
         return cell
     }

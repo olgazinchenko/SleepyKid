@@ -33,6 +33,13 @@ final class KidTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let ageLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .black
+        return label
+    }()
+    
     // MARK: - Initializations
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,14 +52,15 @@ final class KidTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setKid(name: String) {
+    func setKid(name: String, age: String) {
         nameLabel.text = name
+        ageLabel.text = age
     }
     
     // MARK: - Private Methods
     private func setupUI() {
         addSubview(containerView)
-        containerView.addSubviews([avatarView, nameLabel])
+        containerView.addSubviews([avatarView, nameLabel, ageLabel])
         
         containerView.backgroundColor = .systemGray6
         
@@ -74,6 +82,11 @@ final class KidTableViewCell: UITableViewCell {
         
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(avatarView.snp.trailing).offset(20)
+            $0.verticalEdges.equalToSuperview().inset(5)
+        }
+        
+        ageLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
             $0.verticalEdges.equalToSuperview().inset(5)
         }
     }
