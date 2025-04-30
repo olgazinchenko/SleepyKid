@@ -15,6 +15,7 @@ protocol KidsListViewModelProtocol {
     
     func getKids()
     func getKid(for row: Int) -> Kid
+    func getKidAdge(for row: Int) -> String
 }
 
 final class KidsListViewModel: KidsListViewModelProtocol {
@@ -49,5 +50,29 @@ final class KidsListViewModel: KidsListViewModelProtocol {
     
     func getKid(for row: Int) -> Kid {
         kids[row]
+    }
+    
+    func getKidAdge(for row: Int) -> String {
+        let kid = getKid(for: row)
+        let now = Date()
+        let components = Calendar.current.dateComponents([.year, .month, .day],
+                                                         from: kid.birthDate,
+                                                         to: now)
+        
+        let years = components.year ?? 0
+        let monthes = components.month ?? 0
+        let days = components.day ?? 0
+        
+        var ageParts: [String] = []
+        if years > 0 {
+            ageParts.append("\(years) y")
+        }
+        if monthes > 0 {
+            ageParts.append("\(monthes) m")
+        } else {
+            ageParts.append("\(days) d")
+        }
+        
+        return ageParts.isEmpty ? "-" : ageParts.joined(separator: " ")
     }
 }

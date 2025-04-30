@@ -47,6 +47,12 @@ class KidsListViewController: UITableViewController {
                                         target: self,
                                         action: #selector(addKid))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        
+        // Make addButton VoiceOver accessible
+        addButton.isAccessibilityElement = true
+        addButton.accessibilityLabel = "Add new kid"
+        addButton.accessibilityTraits = .button
+        
         setToolbarItems([spacing, addButton], animated: true)
         navigationController?.isToolbarHidden = false
     }
@@ -86,7 +92,8 @@ extension KidsListViewController {
         else { return UITableViewCell() }
         
         let kid = viewModel.getKid(for: indexPath.row)
-        cell.setKid(name: kid.name)
+        let age = viewModel.getKidAdge(for: indexPath.row)
+        cell.setKid(name: kid.name, age: age)
         
         return cell
     }
