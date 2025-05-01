@@ -35,8 +35,8 @@ final class KidTableViewCell: UITableViewCell {
     
     private let ageLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
-        label.textColor = .black
+        label.font = .systemFont(ofSize: 15)
+        label.tintColor = .mainTextColor
         return label
     }()
     
