@@ -10,6 +10,7 @@ import UIKit
 class KidsListViewController: UITableViewController {
     // MARK: - Properties
     var viewModel: KidsListViewModelProtocol
+    weak var coordinator: AppCoordinator?
     
     // MARK: - Live Cycle
     override func viewDidLoad() {
@@ -59,10 +60,7 @@ class KidsListViewController: UITableViewController {
     
     @objc
     private func addKid() {
-        let kidViewModel = KidViewModel()
-        let kidViewController = KidViewController(viewModel: kidViewModel)
-        
-        navigationController?.pushViewController(kidViewController, animated: true)
+        coordinator?.showKidViewController(for: nil)
     }
     
     private func registerObserver() {
@@ -104,10 +102,7 @@ extension KidsListViewController {
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         let kid = viewModel.getKid(for: indexPath.row)
-        let sleepListViewModel = SleepsListViewModel(sleeps: kid.sleeps, kid: kid)
-        let sleepsListViewController = SleepsListViewController(viewModel: sleepListViewModel)
-        
-        navigationController?.pushViewController(sleepsListViewController, animated: true)
+        coordinator?.showSleepsListViewController(for: kid)
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt
@@ -115,12 +110,10 @@ extension KidsListViewController {
                             point: CGPoint) -> UIContextMenuConfiguration? {
         let kid = viewModel.getKid(for: indexPath.row)
         let kidViewModel = KidViewModel(kid: kid)
-        let kidViewController = KidViewController(viewModel: kidViewModel)
         let provider: UIContextMenuActionProvider = { _ in
             UIMenu(title: "", children: [
                 UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
-                    self.navigationController?.pushViewController(kidViewController,
-                                                                  animated: true)
+                    self.coordinator?.showKidViewController(for: kid)
                 },
                 UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
                     kidViewModel.delete()

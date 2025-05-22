@@ -10,6 +10,7 @@ import UIKit
 class SleepsListViewController: UITableViewController {
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
+    weak var coordinator: AppCoordinator?
     
     // MARK: - Live Cycle
     override func viewDidLoad() {
@@ -45,7 +46,7 @@ class SleepsListViewController: UITableViewController {
         let addButton = UIBarButtonItem(title: "+Add",
                                         style: .done,
                                         target: self,
-                                        action: #selector(addKid))
+                                        action: #selector(addSleep))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
         setToolbarItems([spacing, addButton], animated: true)
@@ -53,12 +54,8 @@ class SleepsListViewController: UITableViewController {
     }
     
     @objc
-    private func addKid() {
-        let sleepViewModel = SleepViewModel(sleep: nil, kid: viewModel.kid)
-        let sleepViewController = SleepViewController(viewModel: sleepViewModel)
-        
-        sleepViewController.setSleep()
-        navigationController?.pushViewController(sleepViewController, animated: true)
+    private func addSleep() {
+        coordinator?.showSleepViewController(for: nil, kid: viewModel.kid)
     }
     
     private func registerObserver() {
@@ -110,9 +107,6 @@ extension SleepsListViewController {
 extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
-        let sleepViewModel = SleepViewModel(sleep: sleep, kid: viewModel.kid)
-        let sleepViewController = SleepViewController(viewModel: sleepViewModel)
-        
-        navigationController?.pushViewController(sleepViewController, animated: true)
+        coordinator?.showSleepViewController(for: sleep, kid: viewModel.kid)
     }
 }

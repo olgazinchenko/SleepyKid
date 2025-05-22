@@ -12,6 +12,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var coordinator: AppCoordinator?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -19,10 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = window {
             let navigationController = UINavigationController()
-            let kidsViewModel = KidsListViewModel()
-            let viewController = KidsListViewController(viewModel: kidsViewModel)
-            
-            navigationController.viewControllers = [viewController]
+            let coordinator = AppCoordinator(navigationController: navigationController)
+            self.coordinator = coordinator
+            coordinator.start()
             navigationController.navigationBar.tintColor = .black
             navigationController.toolbar.tintColor = .black
             window.rootViewController = navigationController
