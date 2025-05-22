@@ -23,8 +23,8 @@ protocol SleepsListViewModelProtocol {
 
 final class SleepsListViewModel: SleepsListViewModelProtocol {
     // MARK: - Properties
-    var sleeps: [Sleep]
     var kid: Kid
+    var sleeps: [Sleep] = []
     
     var kidName: String {
         kid.name
@@ -43,10 +43,8 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
     }
     
     // MARK: - Initialization
-    init(sleeps: [Sleep], kid: Kid) {
-        self.sleeps = sleeps
+    init(kid: Kid) {
         self.kid = kid
-        
         getSleeps(for: kid)
     }
     
