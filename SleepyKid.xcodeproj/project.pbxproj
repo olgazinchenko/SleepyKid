@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -42,6 +42,16 @@
 		90EC4A0B2BDC09C300DEBAFF /* KidsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A0A2BDC09C300DEBAFF /* KidsListViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		901AD9662DE0AEC100263A44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 907316A62BDB950E00BA92FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 907316AD2BDB950E00BA92FB;
+			remoteInfo = SleepyKid;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		90091DF72BDD08EB00A92E00 /* SleepsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewModel.swift; sourceTree = "<group>"; };
 		90091DFA2BDD1DEE00A92E00 /* SleepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTableViewCell.swift; sourceTree = "<group>"; };
@@ -49,6 +59,7 @@
 		90091DFF2BE132D300A92E00 /* SleepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepViewModel.swift; sourceTree = "<group>"; };
 		90091E022BE1813700A92E00 /* KidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidViewController.swift; sourceTree = "<group>"; };
 		900AD2F22BE3BBEE0055DE38 /* KidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidViewModel.swift; sourceTree = "<group>"; };
+		901AD9622DE0AEC100263A44 /* SleepyKidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepyKidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
@@ -79,7 +90,18 @@
 		90EC4A0A2BDC09C300DEBAFF /* KidsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		901AD9632DE0AEC100263A44 /* SleepyKidTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SleepyKidTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		901AD95F2DE0AEC100263A44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		907316AB2BDB950E00BA92FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -219,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				907316B02BDB950E00BA92FB /* SleepyKid */,
+				901AD9632DE0AEC100263A44 /* SleepyKidTests */,
 				907316AF2BDB950E00BA92FB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -227,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				907316AE2BDB950E00BA92FB /* SleepyKid.app */,
+				901AD9622DE0AEC100263A44 /* SleepyKidTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -310,6 +334,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		901AD9612DE0AEC100263A44 /* SleepyKidTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 901AD96A2DE0AEC100263A44 /* Build configuration list for PBXNativeTarget "SleepyKidTests" */;
+			buildPhases = (
+				901AD95E2DE0AEC100263A44 /* Sources */,
+				901AD95F2DE0AEC100263A44 /* Frameworks */,
+				901AD9602DE0AEC100263A44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				901AD9672DE0AEC100263A44 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				901AD9632DE0AEC100263A44 /* SleepyKidTests */,
+			);
+			name = SleepyKidTests;
+			packageProductDependencies = (
+			);
+			productName = SleepyKidTests;
+			productReference = 901AD9622DE0AEC100263A44 /* SleepyKidTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		907316AD2BDB950E00BA92FB /* SleepyKid */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 907316C52BDB951100BA92FB /* Build configuration list for PBXNativeTarget "SleepyKid" */;
@@ -337,9 +384,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					901AD9612DE0AEC100263A44 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 907316AD2BDB950E00BA92FB;
+					};
 					907316AD2BDB950E00BA92FB = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -362,11 +413,19 @@
 			projectRoot = "";
 			targets = (
 				907316AD2BDB950E00BA92FB /* SleepyKid */,
+				901AD9612DE0AEC100263A44 /* SleepyKidTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		901AD9602DE0AEC100263A44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		907316AC2BDB950E00BA92FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,6 +438,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		901AD95E2DE0AEC100263A44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		907316AA2BDB950E00BA92FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -418,6 +484,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		901AD9672DE0AEC100263A44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 907316AD2BDB950E00BA92FB /* SleepyKid */;
+			targetProxy = 901AD9662DE0AEC100263A44 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -430,6 +504,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		901AD9682DE0AEC100263A44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ozinchenko.SleepyKidTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SleepyKid.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SleepyKid";
+			};
+			name = Debug;
+		};
+		901AD9692DE0AEC100263A44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ozinchenko.SleepyKidTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SleepyKid.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SleepyKid";
+			};
+			name = Release;
+		};
 		907316C32BDB951100BA92FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -616,6 +726,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		901AD96A2DE0AEC100263A44 /* Build configuration list for PBXNativeTarget "SleepyKidTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				901AD9682DE0AEC100263A44 /* Debug */,
+				901AD9692DE0AEC100263A44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		907316A92BDB950E00BA92FB /* Build configuration list for PBXProject "SleepyKid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
