@@ -5,30 +5,99 @@
 //  Created by ozinchenko.dev on 23/05/2025.
 //
 
+import CoreData
 import XCTest
 
-final class SleepyKidTests: XCTestCase {
+@testable import SleepyKid
 
+final class SleepyKidTests: XCTestCase {
+    // MARK: - Properties
+    private var persistentContainer: NSPersistentContainer!
+    private var context: NSManagedObjectContext!
+
+    // MARK: - Test Lifecycle
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+
+        // Create an in-memory persistent store for testing
+        persistentContainer = NSPersistentContainer(name: "SleepyKid")
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        persistentContainer.persistentStoreDescriptions = [description]
+
+        persistentContainer.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Failed to load test store: \(error)")
+            }
+        }
+
+        context = persistentContainer.viewContext
+        // Override the app's persistent container for testing
+        AppDelegate.persistentContainer = persistentContainer
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        context = nil
+        persistentContainer = nil
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    // MARK: - Tests
+    func testSaveAndRetrieveKid() throws {
+        // Given
+        let kid = Kid(
+            id: UUID(),
+            name: "Test Kid",
+            birthDate: Date(),
+            sleeps: []
+        )
+
+        KidPersistent.deleteAll()
+
+        // When
+        KidPersistent.save(kid)
+        let retrievedKids = KidPersistent.fetchAll()
+
+        // Then
+        XCTAssertEqual(retrievedKids.count, 1, "Should have exactly one kid")
+        XCTAssertEqual(retrievedKids.first?.name, "Test Kid", "Kid name should match")
+        XCTAssertEqual(retrievedKids.first?.id, kid.id, "Kid ID should match")
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
+    func testFetchPerformance() throws {
+        KidPersistent.deleteAll()
+
+        for i in 0..<100 {
+            let kid = Kid(
+                id: UUID(),
+                name: "Test Kid \(i)",
+                birthDate: .now,
+                sleeps: []
+            )
+            KidPersistent.save(kid)
+        }
+
         measure {
-            // Put the code you want to measure the time of here.
+            _ = KidPersistent.fetchAll()
+        }
+    }
+
+    func testSavePerformance() throws {
+        let kids = (0..<100).map {
+            Kid(
+                id: UUID(),
+                name: "Test Kid \($0)",
+                birthDate: .now,
+                sleeps: []
+            )
+        }
+        
+        KidPersistent.deleteAll()
+        
+        measure {
+            for kid in kids {
+                KidPersistent.save(kid)
+            }
         }
     }
 
