@@ -50,6 +50,16 @@ final class KidPersistent {
         }
     }
     
+    static func deleteAll() {
+        let kids = fetchAll()
+        
+        for kid in kids {
+            deleteKid(kid)
+        }
+        
+        saveContext()
+    }
+    
     static func postNotification() {
         NotificationCenter.default.post(name: NSNotification.Name("Update"),
                                         object: nil)
