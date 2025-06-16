@@ -38,6 +38,8 @@ class SleepsListViewController: UITableViewController {
     private func setupTableView() {
         tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")
+        tableView.register(SleepAwakeDurationCell.self,
+                           forCellReuseIdentifier: "SleepAwakeDurationCell")
         tableView.separatorStyle = .none
         title = "\(viewModel.kidName) 😴 sleeps".uppercased()
     }
@@ -89,24 +91,40 @@ extension SleepsListViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
-                                                       for: indexPath) as? SleepTableViewCell
-        else { return UITableViewCell() }
         
-        let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
-        let sleepViewModel = SleepViewModel(sleep: sleep, kid: viewModel.kid)
-        
-        cell.viewModel = sleepViewModel
-        cell.setSleep(sleep: sleep, count: indexPath.row)
-        
-        return cell
+        if viewModel.isAwakeDurationRow(at: indexPath) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepAwakeDurationCell",
+                                                           for: indexPath) as? SleepAwakeDurationCell
+            else { return UITableViewCell() }
+            
+            let awakeDuration = viewModel.getAwakeDuration(for: indexPath)
+            cell.setAwakeDuration(awakeDuration)
+            cell.isUserInteractionEnabled = false
+            
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SleepTableViewCell",
+                                                           for: indexPath) as? SleepTableViewCell
+            else { return UITableViewCell() }
+            
+            let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
+            let sleepViewModel = SleepViewModel(sleep: sleep, kid: viewModel.kid)
+            
+            cell.viewModel = sleepViewModel
+            cell.setSleep(sleep: sleep, count: indexPath.row)
+            cell.selectionStyle = .none
+            
+            return cell
+        }
     }
 }
 
 // MARK: - UITableViewDelegate
 extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
-        coordinator?.showSleepViewController(for: sleep, kid: viewModel.kid)
+        if !viewModel.isAwakeDurationRow(at: indexPath) {
+            let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
+            coordinator?.showSleepViewController(for: sleep, kid: viewModel.kid)
+        }
     }
 }

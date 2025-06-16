@@ -25,6 +25,7 @@
 		907316BC2BDB950E00BA92FB /* SleepyKid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 907316BA2BDB950E00BA92FB /* SleepyKid.xcdatamodeld */; };
 		907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907316BD2BDB951100BA92FB /* Assets.xcassets */; };
 		907316C12BDB951100BA92FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 907316C02BDB951100BA92FB /* Base */; };
+		907987FC2E007ECF0003EE49 /* SleepAwakeDurationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907987FB2E007ECF0003EE49 /* SleepAwakeDurationItem.swift */; };
 		908124162BFBA58F00E7EFC0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */; };
 		908124192BFDE32C00E7EFC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 908124182BFDE32C00E7EFC0 /* SnapKit */; };
 		908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */; };
@@ -35,6 +36,7 @@
 		90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801852BEE305B002B08F6 /* DateHelper.swift */; };
 		90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B801942BEE71EC002B08F6 /* KidPersistent.swift */; };
 		90CE7D232DDF291600C9545E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CE7D222DDF291600C9545E /* Coordinator.swift */; };
+		90EA07552DF8C9DF0052C804 /* SleepAwakeDurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA07542DF8C9DF0052C804 /* SleepAwakeDurationCell.swift */; };
 		90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49F92BDBD9C600DEBAFF /* User.swift */; };
 		90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */; };
 		90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC4A032BDBEC5F00DEBAFF /* KidTableViewCell.swift */; };
@@ -74,6 +76,7 @@
 		907316BD2BDB951100BA92FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		907316C02BDB951100BA92FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		907987FB2E007ECF0003EE49 /* SleepAwakeDurationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepAwakeDurationItem.swift; sourceTree = "<group>"; };
 		908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 		90B801852BEE305B002B08F6 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		90B801942BEE71EC002B08F6 /* KidPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPersistent.swift; sourceTree = "<group>"; };
 		90CE7D222DDF291600C9545E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		90EA07542DF8C9DF0052C804 /* SleepAwakeDurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepAwakeDurationCell.swift; sourceTree = "<group>"; };
 		90EC49F92BDBD9C600DEBAFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListViewController.swift; sourceTree = "<group>"; };
 		90EC4A032BDBEC5F00DEBAFF /* KidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidTableViewCell.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				90CE7D222DDF291600C9545E /* Coordinator.swift */,
 				90B801852BEE305B002B08F6 /* DateHelper.swift */,
 				9041A8092BF7C06600F44BB7 /* TableViewSection.swift */,
+				907987FB2E007ECF0003EE49 /* SleepAwakeDurationItem.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */,
+				90EA07542DF8C9DF0052C804 /* SleepAwakeDurationCell.swift */,
 				90091DFA2BDD1DEE00A92E00 /* SleepTableViewCell.swift */,
 			);
 			path = View;
@@ -463,6 +469,7 @@
 				9064B4042BF0DE6E00E795E7 /* Layer.swift in Sources */,
 				90091DF82BDD08EB00A92E00 /* SleepsListViewModel.swift in Sources */,
 				9064B4002BF0D65900E795E7 /* Constant.swift in Sources */,
+				907987FC2E007ECF0003EE49 /* SleepAwakeDurationItem.swift in Sources */,
 				90EC4A0B2BDC09C300DEBAFF /* KidsListViewModel.swift in Sources */,
 				900AD2F32BE3BBEE0055DE38 /* KidViewModel.swift in Sources */,
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
@@ -477,6 +484,7 @@
 				908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */,
 				9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */,
 				908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */,
+				90EA07552DF8C9DF0052C804 /* SleepAwakeDurationCell.swift in Sources */,
 				908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */,
 				90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */,
 			);

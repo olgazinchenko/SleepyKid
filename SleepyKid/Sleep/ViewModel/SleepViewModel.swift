@@ -74,7 +74,7 @@ final class SleepViewModel: SleepViewModelProtocol {
         let trimmedStartDate = getTrimmed(date: startDate)
         let trimmedEndDate = getTrimmed(date: endDate)
         
-        return DateHelper.shared.defineSleepInterval(from: trimmedStartDate,
+        return DateHelper.shared.defineTimeInterval(from: trimmedStartDate,
                                                      to: trimmedEndDate)
     }
     
