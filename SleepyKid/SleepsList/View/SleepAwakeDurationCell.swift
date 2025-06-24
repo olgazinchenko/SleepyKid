@@ -17,7 +17,7 @@ final class SleepAwakeDurationCell: UITableViewCell {
     
     private let awakeIconView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "eye")
+        view.image = UIImage(systemName: Constant.awakeImage.rawValue)
         view.tintColor = .mainTextColor
         return view
     }()
