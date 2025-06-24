@@ -18,14 +18,14 @@ final class SleepAwakeDurationCell: UITableViewCell {
     private let awakeIconView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "eye")
-        view.tintColor = .systemGray
+        view.tintColor = .mainTextColor
         return view
     }()
     
     private let awakeDurationLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.textColor = .systemGray
+        label.textColor = .mainTextColor
         return label
     }()
     
