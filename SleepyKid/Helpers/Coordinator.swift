@@ -39,8 +39,8 @@ final class AppCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
 
-    func showSleepViewController(for sleep: Sleep?, kid: Kid?) {
-        let viewModel = SleepViewModel(sleep: sleep, kid: kid)
+    func showSleepViewController(for sleep: Sleep?, sleepNumber: Int?, kid: Kid?) {
+        let viewModel = SleepViewModel(sleep: sleep, sleepNumber: sleepNumber, kid: kid)
         let vc = SleepViewController(viewModel: viewModel)
         navigationController.pushViewController(vc, animated: true)
     }

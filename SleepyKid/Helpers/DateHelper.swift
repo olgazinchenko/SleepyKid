@@ -12,7 +12,7 @@ final class DateHelper {
     static let shared = DateHelper()
     
     // MARK: Methods
-    func defineSleepInterval(from startDate: Date, to endDate: Date) -> String {
+    func defineTimeInterval(from startDate: Date, to endDate: Date) -> String {
         let sleepInterval = Int(endDate.timeIntervalSince(startDate))
         let hours = sleepInterval / 3600
         let minutes = (sleepInterval % 3600) / 60

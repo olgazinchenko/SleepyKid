@@ -19,6 +19,8 @@ protocol SleepsListViewModelProtocol {
     func getSleep(for kid: Kid, and indexPath: IndexPath) -> Sleep
     func getTitle(for section: Int) -> String
     func getNumberOfRows(for sectionIndex: Int) -> Int
+    func isAwakeDurationRow(at indexPath: IndexPath) -> Bool
+    func getAwakeDuration(for indexPath: IndexPath) -> String
 }
 
 final class SleepsListViewModel: SleepsListViewModelProtocol {
@@ -62,12 +64,31 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
             let stringDate = DateHelper.shared.format(date: key, with: "d MMM yyyy")
             let sortedSleeps = groupedObjects[key]?.sorted(by: { $0.startDate < $1.startDate }) ?? []
             
-            return TableViewSection(title: stringDate, items: sortedSleeps)
+            var items: [TableViewItemProtocol] = []
+            
+            for (index, sleep) in sortedSleeps.enumerated() {
+                items.append(sleep)
+                
+                if index < sortedSleeps.count - 1 {
+                    let nextSleep = sortedSleeps[index + 1]
+                    let awakeDuration = DateHelper.shared.defineTimeInterval(from:sleep.endDate,
+                                                                             to: nextSleep.startDate)
+                    let awakeItem = SleepAwakeDurationItem(duration: awakeDuration)
+                    items.append(awakeItem)
+                }
+            }
+            
+            return TableViewSection(title: stringDate, items: items)
         }
     }
     
     func getSleep(for kid: Kid, and indexPath: IndexPath) -> Sleep {
-        section[indexPath.section].items[indexPath.row] as! Sleep
+        let item = section[indexPath.section].items[indexPath.row]
+        if let sleep = item as? Sleep {
+            return sleep
+        } else {
+            fatalError("Attempting to get Sleep from awake duration row")
+        }
     }
     
     func getTitle(for sectionIndex: Int) -> String {
@@ -76,5 +97,18 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
     
     func getNumberOfRows(for sectionIndex: Int) -> Int {
         section[sectionIndex].items.count
+    }
+    
+    func isAwakeDurationRow(at indexPath: IndexPath) -> Bool {
+        let item = section[indexPath.section].items[indexPath.row]
+        return item is SleepAwakeDurationItem
+    }
+    
+    func getAwakeDuration(for indexPath: IndexPath) -> String {
+        let item = section[indexPath.section].items[indexPath.row]
+        if let awakeItem = item as? SleepAwakeDurationItem {
+            return awakeItem.duration
+        }
+        return ""
     }
 }

@@ -14,7 +14,6 @@ final class SleepTableViewCell: UITableViewCell {
         let view = UIView()
         view.layer.borderWidth = Layer.mainBoarderWidth.rawValue
         view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
-        view.layer.borderColor = UIColor.black.cgColor
         return view
     }()
     
@@ -73,9 +72,10 @@ final class SleepTableViewCell: UITableViewCell {
                                                            to: sleep.endDate)
         let sleepType = viewModel.getSleepType(from: sleep.startDate,
                                                to: sleep.endDate)
+        let sleepNumber = viewModel.sleepNumber
         timeLabel.text = timeIntervalText
         sleepDurationLabel.text = sleepIntervalText
-        countImageView.image = UIImage(systemName: "\(count + 1).circle")
+        countImageView.image = UIImage(systemName: "\((sleepNumber ?? 0) + 1).circle")
         updateUI(for: sleepType)
     }
     
@@ -92,9 +92,9 @@ final class SleepTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         containerView.snp.makeConstraints{
-            $0.verticalEdges.equalToSuperview().inset(5)
+            $0.verticalEdges.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(10)
-            $0.height.equalTo(100)
+            $0.height.equalTo(80)
         }
         
         iconView.snp.makeConstraints {
@@ -137,16 +137,19 @@ final class SleepTableViewCell: UITableViewCell {
             iconView.tintColor = .mainYellow
             countImageView.tintColor = .mainYellow
             containerView.backgroundColor = .lightYellow
+            containerView.layer.borderColor = UIColor.mainYellow.cgColor
         case .night:
             iconView.image = nightImage
             iconView.tintColor = .mainBlue
             countImageView.tintColor = .mainBlue
             containerView.backgroundColor = .mainPurple
+            containerView.layer.borderColor = UIColor.mainBlue.cgColor
         case .unowned:
             iconView.image = unownedImage
             iconView.tintColor = .systemGray
             countImageView.tintColor = .systemGray
             containerView.backgroundColor = .white
+            containerView.layer.borderColor = UIColor.systemGray.cgColor
         }
     }
 }
