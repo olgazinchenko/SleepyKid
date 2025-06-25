@@ -10,6 +10,7 @@ import Foundation
 
 protocol SleepViewModelProtocol {
     var sleep: Sleep? { get set }
+    var sleepNumber: Int? { get }
     var kid: Kid? { get set }
     var isNewSleep: Bool { get }
     
@@ -30,13 +31,16 @@ final class SleepViewModel: SleepViewModelProtocol {
         sleep == nil
     }
     
+    var sleepNumber: Int?
+    
     private var sleepID: UUID {
         ((sleep == nil) ? UUID() : sleep?.id) ?? UUID()
     }
     
     // MARK: Initialization
-    init(sleep: Sleep?, kid: Kid?) {
+    init(sleep: Sleep?, sleepNumber: Int?, kid: Kid?) {
         self.sleep = sleep
+        self.sleepNumber = sleepNumber
         self.kid = kid
     }
     

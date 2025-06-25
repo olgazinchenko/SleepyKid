@@ -72,9 +72,10 @@ final class SleepTableViewCell: UITableViewCell {
                                                            to: sleep.endDate)
         let sleepType = viewModel.getSleepType(from: sleep.startDate,
                                                to: sleep.endDate)
+        let sleepNumber = viewModel.sleepNumber
         timeLabel.text = timeIntervalText
         sleepDurationLabel.text = sleepIntervalText
-        countImageView.image = UIImage(systemName: "\(count + 1).circle")
+        countImageView.image = UIImage(systemName: "\((sleepNumber ?? 0) + 1).circle")
         updateUI(for: sleepType)
     }
     
