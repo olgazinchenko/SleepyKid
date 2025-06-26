@@ -11,10 +11,16 @@ class SleepsListViewController: UITableViewController {
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
     weak var coordinator: AppCoordinator?
+    private let dateHeader = DateTimelineHeaderView()
     
     // MARK: - Live Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: - Refactoring the implementation
+        dateHeader.delegate = self
+        tableView.tableHeaderView = dateHeader
+        dateHeader.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 60)
         
         setupTableView()
         setupToolBar()
@@ -69,7 +75,8 @@ class SleepsListViewController: UITableViewController {
     
     @objc
     private func updateData() {
-        viewModel.getSleeps(for: viewModel.kid)
+        // TODO: - Update the method in the viewModel
+        viewModel.getSleeps(for: viewModel.kid, on: .now)
     }
 }
 
@@ -134,5 +141,13 @@ extension SleepsListViewController {
                                                  sleepNumber: nil,
                                                  kid: viewModel.kid)
         }
+    }
+}
+
+// MARK: - DateTimelineHeaderViewDelegate
+extension SleepsListViewController: DateTimelineHeaderViewDelegate {
+    internal func didSelectDate(_ date: Date) {
+        viewModel.getSleeps(for: viewModel.kid, on: date)
+        tableView.reloadData()
     }
 }

@@ -15,7 +15,7 @@ protocol SleepsListViewModelProtocol {
     var section: [TableViewSection] { get }
     var sectionCount: Int { get }
     
-    func getSleeps(for kid: Kid)
+    func getSleeps(for kid: Kid, on date: Date)
     func getSleep(for kid: Kid, and indexPath: IndexPath) -> Sleep
     func getTitle(for section: Int) -> String
     func getNumberOfRows(for sectionIndex: Int) -> Int
@@ -47,15 +47,15 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
     // MARK: - Initialization
     init(kid: Kid) {
         self.kid = kid
-        getSleeps(for: kid)
+        getSleeps(for: kid, on: .now)
     }
     
     // MARK: - Methods
-    func getSleeps(for kid: Kid) {
+    func getSleeps(for kid: Kid, on date: Date) {
         sleeps = SleepPersistent.fetchSleeps(for: kid)
         
         let groupedObjects = Dictionary(grouping: sleeps) { sleep in
-            DateHelper().getStartOfDay(for: sleep.startDate)
+            DateHelper().getStartOfDay(for: date)
         }
         
         let sortedKeys = groupedObjects.keys.sorted(by: >)
