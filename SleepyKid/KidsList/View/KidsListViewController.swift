@@ -102,7 +102,8 @@ extension KidsListViewController {
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         let kid = viewModel.getKid(for: indexPath.row)
-        coordinator?.showSleepsListViewController(for: kid)
+        let startDate = viewModel.getStartDate(for: kid)
+        coordinator?.showSleepsListViewController(for: kid, startDate: startDate)
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt

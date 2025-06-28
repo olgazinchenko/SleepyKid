@@ -36,6 +36,13 @@ final class DateTimelineHeaderView: UIView {
         setupUI()
     }
     
+    init(startDate: Date, frame: CGRect) {
+        self.dates = DateHelper.shared.getDates(from: startDate)
+        super.init(frame: frame)
+        
+        setupUI()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -52,33 +59,13 @@ final class DateTimelineHeaderView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         
         setupConstraints()
-        mockDates()
     }
     
     private func setupConstraints() {
         collectionView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(10)
             $0.verticalEdges.equalToSuperview()
         }
-    }
-    
-    private func mockDates() {
-        let today = Date()
-        dates = [
-            today,
-            Date(timeInterval: 80000, since: today),
-            Date(timeInterval: 160000, since: today),
-            Date(timeInterval: 320000, since: today),
-            today,
-            Date(timeInterval: 80000, since: today),
-            Date(timeInterval: 160000, since: today),
-            Date(timeInterval: 320000, since: today),
-            today,
-            Date(timeInterval: 80000, since: today),
-            Date(timeInterval: 160000, since: today),
-            Date(timeInterval: 320000, since: today),
-        ]
-        collectionView.reloadData()
     }
 }
 
@@ -113,6 +100,6 @@ extension DateTimelineHeaderView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60, height: 60)
+        return CGSize(width: 120, height: 60)
     }
 }

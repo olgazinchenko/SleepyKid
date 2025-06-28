@@ -32,9 +32,9 @@ final class AppCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
 
-    func showSleepsListViewController(for kid: Kid) {
+    func showSleepsListViewController(for kid: Kid, startDate: Date) {
         let viewModel = SleepsListViewModel(kid: kid)
-        let vc = SleepsListViewController(viewModel: viewModel)
+        let vc = SleepsListViewController(viewModel: viewModel, startDate: startDate)
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
