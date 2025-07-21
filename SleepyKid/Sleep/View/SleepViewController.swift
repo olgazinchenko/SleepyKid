@@ -13,14 +13,14 @@ final class SleepViewController: UIViewController {
     private let startDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.startDate.rawValue
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "Poppins-Bold", size: 18)
         return label
     }()
     
     private let endDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.endDate.rawValue
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "Poppins-Bold", size: 18)
         return label
     }()
     
@@ -49,7 +49,7 @@ final class SleepViewController: UIViewController {
     
     private let sleepDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 17)
+        label.font = UIFont(name: "Poppins-Bold", size: 17)
         return label
     }()
     

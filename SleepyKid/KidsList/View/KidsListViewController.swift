@@ -41,16 +41,19 @@ class KidsListViewController: UITableViewController {
         registerObserver()
     }
     
-    private func setupTableView() {
-        tableView.register(KidTableViewCell.self,
-                           forCellReuseIdentifier: "KidTableViewCell")
-        tableView.separatorStyle = .none
-        
+    private func setupTableHeader() {
         let label = UILabel()
         label.text = "Kids".uppercased()
         label.font = UIFont(name: "Poppins-Bold", size: 28)
         label.textColor = .label
         navigationItem.titleView = label
+    }
+    
+    private func setupTableView() {
+        tableView.register(KidTableViewCell.self,
+                           forCellReuseIdentifier: "KidTableViewCell")
+        tableView.separatorStyle = .none
+        setupTableHeader()
     }
     
     private func setupToolBar() {
@@ -103,6 +106,7 @@ extension KidsListViewController {
         let kid = viewModel.getKid(for: indexPath.row)
         let age = viewModel.getKidAdge(for: indexPath.row)
         cell.setKid(name: kid.name, age: age)
+        cell.selectionStyle = .none
         
         return cell
     }

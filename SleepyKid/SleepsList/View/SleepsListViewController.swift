@@ -35,9 +35,7 @@ class SleepsListViewController: UITableViewController {
         dateHeader.delegate = self
         tableView.tableHeaderView = dateHeader
         
-        setupTableView()
-        setupToolBar()
-        registerObserver()
+        setupUI()
         
         viewModel.reloadTable = { [weak self] in
             self?.tableView.reloadData()
@@ -45,13 +43,29 @@ class SleepsListViewController: UITableViewController {
     }
     
     // MARK: - Private Methods
+    func setupUI() {
+        view.backgroundColor = .athensGray
+        
+        setupTableView()
+        setupToolBar()
+        registerObserver()
+    }
+    
+    private func setupTableHeader() {
+        let label = UILabel()
+        label.text = "\(viewModel.kidName) 😴 sleeps".uppercased()
+        label.font = UIFont(name: "Poppins-Bold", size: 28)
+        label.textColor = .label
+        navigationItem.titleView = label
+    }
+    
     private func setupTableView() {
         tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")
         tableView.register(SleepAwakeDurationCell.self,
                            forCellReuseIdentifier: "SleepAwakeDurationCell")
         tableView.separatorStyle = .none
-        title = "\(viewModel.kidName) 😴 sleeps".uppercased()
+        setupTableHeader()
     }
     
     private func setupToolBar() {
