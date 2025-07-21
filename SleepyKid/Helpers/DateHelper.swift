@@ -38,6 +38,26 @@ final class DateHelper {
         return startOfDay
     }
     
+    func getDates(from startDate: Date) -> [Date] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let start = calendar.startOfDay(for: startDate)
+        
+        guard start <= today else { return [] }
+        
+        var dates: [Date] = []
+        var currentDate = start
+        
+        while currentDate <= today {
+            dates.append(currentDate)
+            guard let nextDate = calendar.date(byAdding: .day,
+                                               value: 1,
+                                               to: currentDate) else { break }
+            currentDate = nextDate
+        }
+        return dates
+    }
+    
     func defineSleepType(from startTime: Date, to endTime: Date) -> SleepType {
         // Define the night sleep interval
         let nightSleepStartHour = 20

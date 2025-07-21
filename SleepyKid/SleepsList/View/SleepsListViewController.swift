@@ -11,10 +11,29 @@ class SleepsListViewController: UITableViewController {
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
     weak var coordinator: AppCoordinator?
+    private let dateHeader: DateTimelineHeaderView
+    
+    // MARK: - Initialization
+    init(viewModel: SleepsListViewModelProtocol, startDate: Date) {
+        self.viewModel = viewModel
+        self.dateHeader = DateTimelineHeaderView(startDate: startDate,
+                                                 frame: CGRect(x: 0,
+                                                               y: 0,
+                                                               width: UIScreen.main.bounds.width,
+                                                               height: 60))
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Live Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateHeader.delegate = self
+        tableView.tableHeaderView = dateHeader
         
         setupTableView()
         setupToolBar()
@@ -23,15 +42,6 @@ class SleepsListViewController: UITableViewController {
         viewModel.reloadTable = { [weak self] in
             self?.tableView.reloadData()
         }
-    }
-    
-    init(viewModel: SleepsListViewModelProtocol) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Private Methods
@@ -69,7 +79,8 @@ class SleepsListViewController: UITableViewController {
     
     @objc
     private func updateData() {
-        viewModel.getSleeps(for: viewModel.kid)
+        // TODO: - Update the method in the viewModel
+        viewModel.getSleeps(for: viewModel.kid, on: .now)
     }
 }
 
@@ -134,5 +145,13 @@ extension SleepsListViewController {
                                                  sleepNumber: nil,
                                                  kid: viewModel.kid)
         }
+    }
+}
+
+// MARK: - DateTimelineHeaderViewDelegate
+extension SleepsListViewController: DateTimelineHeaderViewDelegate {
+    internal func didSelectDate(_ date: Date) {
+        viewModel.getSleeps(for: viewModel.kid, on: date)
+        tableView.reloadData()
     }
 }

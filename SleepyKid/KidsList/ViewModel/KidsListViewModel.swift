@@ -16,6 +16,7 @@ protocol KidsListViewModelProtocol {
     func getKids()
     func getKid(for row: Int) -> Kid
     func getKidAdge(for row: Int) -> String
+    func getStartDate(for kid: Kid) -> Date
 }
 
 final class KidsListViewModel: KidsListViewModelProtocol {
@@ -74,5 +75,13 @@ final class KidsListViewModel: KidsListViewModelProtocol {
         }
         
         return ageParts.isEmpty ? "-" : ageParts.joined(separator: " ")
+    }
+    
+    func getStartDate(for kid: Kid) -> Date {
+        if let firstSleep = kid.sleeps.min(by: { $0.startDate < $1.startDate }) {
+            return firstSleep.startDate
+        } else {
+            return .now
+        }
     }
 }
