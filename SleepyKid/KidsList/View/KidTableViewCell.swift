@@ -13,8 +13,6 @@ final class KidTableViewCell: UITableViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
-        view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = Layer.mainBoarderWidth.rawValue
         return view
     }()
     
@@ -28,14 +26,15 @@ final class KidTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
-        label.textColor = .black
+        label.font = UIFont(name: "Poppins-Bold", size: 20)
+        
+        label.textColor = .mainTextColor
         return label
     }()
     
     private let ageLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = UIFont(name: "Poppins-Medium", size: 15)
         label.tintColor = .mainTextColor
         return label
     }()
@@ -62,7 +61,8 @@ final class KidTableViewCell: UITableViewCell {
         addSubview(containerView)
         containerView.addSubviews([avatarView, nameLabel, ageLabel])
         
-        containerView.backgroundColor = .systemGray6
+        backgroundColor = .athensGray
+        containerView.backgroundColor = .white
         
         setupConstraints()
     }
