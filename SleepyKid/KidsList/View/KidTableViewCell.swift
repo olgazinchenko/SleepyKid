@@ -70,7 +70,7 @@ final class KidTableViewCell: UITableViewCell {
     private func setupConstraints() {
         containerView.snp.makeConstraints{
             $0.verticalEdges.equalToSuperview().inset(5)
-            $0.horizontalEdges.equalToSuperview().inset(10)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(80)
         }
         

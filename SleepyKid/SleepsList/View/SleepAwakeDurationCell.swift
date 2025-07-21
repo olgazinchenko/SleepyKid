@@ -64,7 +64,7 @@ final class SleepAwakeDurationCell: UITableViewCell {
         }
         
         awakeDurationLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(15)
+            $0.trailing.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
         }
         

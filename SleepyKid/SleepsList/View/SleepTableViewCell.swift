@@ -98,7 +98,7 @@ final class SleepTableViewCell: UITableViewCell {
     private func setupConstraints() {
         containerView.snp.makeConstraints{
             $0.verticalEdges.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(10)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(80)
         }
         
