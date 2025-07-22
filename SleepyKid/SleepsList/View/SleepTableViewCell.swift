@@ -47,6 +47,9 @@ final class SleepTableViewCell: UITableViewCell {
         return view
     }()
     
+    // MARK: - Properties
+    var viewModel: SleepViewModelProtocol?
+    
     // MARK: - Initializations
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -57,9 +60,6 @@ final class SleepTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Properties
-    var viewModel: SleepViewModelProtocol?
     
     // MARK: - Methods
     func setSleep(sleep: Sleep, count: Int) {

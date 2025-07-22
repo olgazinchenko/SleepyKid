@@ -155,8 +155,13 @@ extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !viewModel.isAwakeDurationRow(at: indexPath) {
             let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
+            let sectionItems = viewModel.section[indexPath.section].items
+            let sleepIndexInSection = sectionItems
+                .enumerated()
+                .filter { $0.element is Sleep }
+                .firstIndex(where: { ($0.element as? Sleep)?.id == sleep.id }) ?? 0
             coordinator?.showSleepViewController(for: sleep,
-                                                 sleepNumber: nil,
+                                                 sleepNumber: sleepIndexInSection,
                                                  kid: viewModel.kid)
         }
     }
