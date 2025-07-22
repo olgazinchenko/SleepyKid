@@ -26,7 +26,7 @@ final class KidTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Bold", size: 20)
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.labelFontSizeLarge.rawValue)
         
         label.textColor = .mainTextColor
         return label
@@ -34,7 +34,7 @@ final class KidTableViewCell: UITableViewCell {
     
     private let ageLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Medium", size: 15)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeSmall.rawValue)
         label.tintColor = .mainTextColor
         return label
     }()

@@ -12,7 +12,7 @@ final class KidViewController: UIViewController {
     private let kidNameLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.kidName.rawValue
-        label.font = UIFont(name: "Poppins-Bold", size: 18)
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.labelFontSizeLarge.rawValue)
         label.textColor = .black
         return label
     }()
@@ -28,7 +28,7 @@ final class KidViewController: UIViewController {
     private let dateOfBirthLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.dateOfBirth.rawValue
-        label.font = UIFont(name: "Poppins-Bold", size: 18)
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.labelFontSizeLarge.rawValue)
         label.textColor = .black
         return label
     }()

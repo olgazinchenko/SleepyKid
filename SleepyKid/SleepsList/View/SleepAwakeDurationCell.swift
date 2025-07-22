@@ -24,7 +24,7 @@ final class SleepAwakeDurationCell: UITableViewCell {
     
     private let awakeDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Regular", size: 14)
+        label.font = UIFont(name: "Poppins-Regular", size: Layer.labelFontSizeSmall.rawValue)
         label.textColor = .mainTextColor
         return label
     }()

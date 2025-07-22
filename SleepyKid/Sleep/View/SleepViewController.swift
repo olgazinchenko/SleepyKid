@@ -13,14 +13,14 @@ final class SleepViewController: UIViewController {
     private let startDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.startDate.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: 18)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         return label
     }()
     
     private let endDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.endDate.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: 18)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         return label
     }()
     
@@ -37,6 +37,15 @@ final class SleepViewController: UIViewController {
     }()
     
     private let sleepCell = SleepTableViewCell()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constant.edit.rawValue.uppercased()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .mainTextColor
+        label.sizeToFit()
+        return label
+    }()
     
     // MARK: - Properties
     private var viewModel: SleepViewModelProtocol
@@ -78,6 +87,7 @@ final class SleepViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupUI() {
+        navigationItem.titleView = titleLabel
         view.backgroundColor = .athensGray
         view.addSubviews([startDateLabel,
                           endDateLabel,

@@ -54,7 +54,7 @@ class SleepsListViewController: UITableViewController {
     private func setupTableHeader() {
         let label = UILabel()
         label.text = "\(viewModel.kidName) 😴 sleeps".uppercased()
-        label.font = UIFont(name: "Poppins-Bold", size: 28)
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
         label.textColor = .label
         navigationItem.titleView = label
     }

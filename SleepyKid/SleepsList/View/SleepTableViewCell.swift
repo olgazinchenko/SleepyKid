@@ -30,14 +30,14 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Regular", size: 17)
+        label.font = UIFont(name: "Poppins-Regular", size: Layer.labelFontSizeLarge.rawValue)
         label.tintColor = .mainTextColor
         return label
     }()
     
     private let sleepDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Medium", size: 15)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeSmall.rawValue)
         label.tintColor = .mainTextColor
         return label
     }()

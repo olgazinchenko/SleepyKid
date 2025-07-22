@@ -44,7 +44,7 @@ class KidsListViewController: UITableViewController {
     private func setupTableHeader() {
         let label = UILabel()
         label.text = "Kids".uppercased()
-        label.font = UIFont(name: "Poppins-Bold", size: 28)
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
         label.textColor = .label
         navigationItem.titleView = label
     }

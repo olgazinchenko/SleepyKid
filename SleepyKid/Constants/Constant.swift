@@ -19,4 +19,5 @@ enum Constant: String {
     case dayImage = "sun.max"
     case nightImage = "moon.zzz"
     case awakeImage = "teddybear"
+    case edit = "Edit"
 }
