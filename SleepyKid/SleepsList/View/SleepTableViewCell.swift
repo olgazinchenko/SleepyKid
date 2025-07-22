@@ -12,7 +12,6 @@ final class SleepTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-//        view.layer.borderWidth = Layer.mainBoarderWidth.rawValue
         view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
         view.backgroundColor = .white
         return view
@@ -23,9 +22,8 @@ final class SleepTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let timeImageView: UIImageView = {
+    private var timeImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: Constant.timeBadge.rawValue)
         view.tintColor = .mainTextColor
         return view
     }()
@@ -39,7 +37,7 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let sleepDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Regular", size: 15)
+        label.font = UIFont(name: "Poppins-Medium", size: 15)
         label.tintColor = .mainTextColor
         return label
     }()
@@ -135,20 +133,30 @@ final class SleepTableViewCell: UITableViewCell {
         let dayImage = UIImage(systemName: Constant.dayImage.rawValue)
         let nightImage = UIImage(systemName: Constant.nightImage.rawValue)
         let unownedImage = UIImage(systemName: Constant.unownedImage.rawValue)
+        let sleepImage = UIImage(systemName: Constant.timeBadge.rawValue)
         
         switch sleepType {
         case .day:
             iconView.image = dayImage
             iconView.tintColor = .mainYellow
             countImageView.tintColor = .mainYellow
+            timeImageView.image = sleepImage
+            timeImageView.tintColor = .mainYellow
+            sleepDurationLabel.textColor = .mainYellow
         case .night:
             iconView.image = nightImage
             iconView.tintColor = .mainBlue
             countImageView.tintColor = .mainBlue
+            timeImageView.image = sleepImage
+            timeImageView.tintColor = .mainBlue
+            sleepDurationLabel.textColor = .mainBlue
         case .unowned:
             iconView.image = unownedImage
             iconView.tintColor = .systemGray
             countImageView.tintColor = .systemGray
+            timeImageView.image = sleepImage
+            timeImageView.tintColor = .systemGray
+            sleepDurationLabel.textColor = .systemGray
         }
     }
 }
