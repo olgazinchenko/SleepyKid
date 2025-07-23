@@ -20,4 +20,5 @@ enum Constant: String {
     case nightImage = "moon.zzz"
     case awakeImage = "teddybear"
     case edit = "Edit"
+    case name = "Name"
 }

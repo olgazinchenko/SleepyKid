@@ -58,6 +58,29 @@ final class DateHelper {
         return dates
     }
     
+    func getKidAge(birthDate: Date) -> String {
+        let now = Date()
+        let components = Calendar.current.dateComponents([.year, .month, .day],
+                                                         from: birthDate,
+                                                         to: now)
+        
+        let years = components.year ?? 0
+        let monthes = components.month ?? 0
+        let days = components.day ?? 0
+        
+        var ageParts: [String] = []
+        if years > 0 {
+            ageParts.append("\(years) y")
+        }
+        if monthes > 0 {
+            ageParts.append("\(monthes) m")
+        } else {
+            ageParts.append("\(days) d")
+        }
+        
+        return ageParts.isEmpty ? "-" : ageParts.joined(separator: " ")
+    }
+    
     func defineSleepType(from startTime: Date, to endTime: Date) -> SleepType {
         // Define the night sleep interval
         let nightSleepStartHour = 20

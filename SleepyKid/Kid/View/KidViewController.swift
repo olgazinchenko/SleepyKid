@@ -12,7 +12,7 @@ final class KidViewController: UIViewController {
     private let kidNameLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.kidName.rawValue
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         label.textColor = .black
         return label
     }()
@@ -20,15 +20,17 @@ final class KidViewController: UIViewController {
     private let kidNameTextField: UITextField = {
         let textField = UITextField()
         textField.layer.borderColor = UIColor.black.cgColor
+        textField.font = UIFont(name: "Poppins-Light", size: Layer.labelFontSizeLarge.rawValue)
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = .systemGray6
+        textField.placeholder = Constant.name.rawValue
+        textField.backgroundColor = .mischka
         return textField
     }()
     
     private let dateOfBirthLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.dateOfBirth.rawValue
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         label.textColor = .black
         return label
     }()
@@ -45,6 +47,17 @@ final class KidViewController: UIViewController {
         return view
     }()
     
+    private let kidCell = KidTableViewCell()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constant.edit.rawValue.uppercased()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .mainTextColor
+        label.sizeToFit()
+        return label
+    }()
+    
     // MARK: - Properties
     var viewModel: KidViewModelProtocol?
     
@@ -58,6 +71,7 @@ final class KidViewController: UIViewController {
     
     init(viewModel: KidViewModelProtocol?) {
         self.viewModel = viewModel
+        kidCell.setKid(name: viewModel?.kidName ?? "", age: viewModel?.kidAge ?? "--")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,27 +81,34 @@ final class KidViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupUI() {
-        view.backgroundColor = .white
-        view.addSubviews([kidNameLabel,
+        navigationItem.titleView = titleLabel
+        view.backgroundColor = .athensGray
+        view.addSubviews([kidCell,
+                          kidNameLabel,
                           kidNameTextField,
                           dateOfBirthLabel,
-                          dateOfBirthDatePicker,
-                          iconView])
+                          dateOfBirthDatePicker])
         setupConstraints()
         setupBars()
         hideKeyboardWhenTappedOnScreen()
     }
     
     private func setupConstraints() {
+        kidCell.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(15)
+            $0.height.equalTo(90)
+        }
+        
         kidNameLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(30)
+            $0.top.equalTo(kidCell.snp.bottom).offset(25)
         }
         
         kidNameTextField.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(kidNameLabel.snp.bottom).offset(5)
-            $0.height.equalTo(50)
+            $0.top.equalTo(kidNameLabel.snp.bottom).offset(10)
+            $0.height.equalTo(35)
         }
         
         dateOfBirthLabel.snp.makeConstraints {
@@ -97,16 +118,8 @@ final class KidViewController: UIViewController {
         
         dateOfBirthDatePicker.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
-            $0.top.equalTo(dateOfBirthLabel.snp.bottom).offset(5)
+            $0.top.equalTo(dateOfBirthLabel.snp.bottom)
             $0.height.equalTo(50)
-        }
-        
-        iconView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(dateOfBirthDatePicker.snp.bottom).offset(50)
-            $0.width.equalToSuperview().multipliedBy(0.7)
-            $0.height.equalTo(iconView.snp.width) // Square aspect ratio
-            $0.bottom.lessThanOrEqualToSuperview().inset(50)
         }
     }
     
