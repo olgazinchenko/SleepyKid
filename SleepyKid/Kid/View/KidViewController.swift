@@ -19,19 +19,19 @@ final class KidViewController: UIViewController {
     
     private let kidNameTextField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.font = UIFont(name: "Poppins-Light", size: Layer.labelFontSizeLarge.rawValue)
+        textField.backgroundColor = .mischka
         textField.borderStyle = .roundedRect
         textField.placeholder = Constant.name.rawValue
-        textField.backgroundColor = .mischka
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.font = UIFont(name: "Poppins-Light", size: Layer.labelFontSizeLarge.rawValue)
         return textField
     }()
     
     private let dateOfBirthLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .black
         label.text = Constant.dateOfBirth.rawValue
         label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
-        label.textColor = .black
         return label
     }()
     
@@ -51,7 +51,6 @@ final class KidViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = Constant.edit.rawValue.uppercased()
         label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
         label.textColor = .mainTextColor
         label.sizeToFit()
@@ -62,21 +61,20 @@ final class KidViewController: UIViewController {
     var viewModel: KidViewModelProtocol?
     
     // MARK: - Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-        configure()
-    }
-    
     init(viewModel: KidViewModelProtocol?) {
         self.viewModel = viewModel
-        kidCell.setKid(name: viewModel?.kidName ?? "", age: viewModel?.kidAge ?? "--")
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupUI()
+        configure()
     }
     
     // MARK: - Private Methods
@@ -124,9 +122,36 @@ final class KidViewController: UIViewController {
     }
     
     private func configure() {
-        guard let viewModel else { return }
+        guard var viewModel else { return }
+        let isNew = viewModel.kid == nil
+        
+        titleLabel.text = (isNew ? Constant.add : Constant.edit).rawValue.uppercased()
+        if isNew {
+            viewModel.kid = Kid(id: UUID(), name: "", birthDate: .now)
+        }
+        
+        kidCell.setKid(name: viewModel.kidName, age: viewModel.kidAge)
         kidNameTextField.text = viewModel.kidName
+        kidNameTextField.becomeFirstResponder()
+        kidNameTextField.addTarget(self,
+                            action: #selector(updateKidCell),
+                            for: .editingChanged)
         dateOfBirthDatePicker.date = viewModel.kidBirthDate
+        dateOfBirthDatePicker.addTarget(KidViewController.self,
+                             action: #selector(updateKidCell),
+                             for: .valueChanged)
+        
+//        // Set title for new kid
+//        if viewModel?.kid == nil {
+//            titleLabel.text = Constant.add.rawValue.uppercased()
+//            let newKid = Kid(id: UUID(), name: Constant.name.rawValue, birthDate: .now)
+//            self.viewModel?.kid = newKid
+//        } else {
+//            titleLabel.text = Constant.edit.rawValue.uppercased()
+//        }
+//        
+//
+//
     }
     
     private func setupBars() {
@@ -143,5 +168,13 @@ final class KidViewController: UIViewController {
         viewModel.save(with: kidNameTextField.text ?? "",
                        and: dateOfBirthDatePicker.date)
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func updateKidCell() {
+        let name = kidNameTextField.text ?? ""
+        let birthDate = dateOfBirthDatePicker.date
+        let age = DateHelper.shared.getKidAge(birthDate: birthDate)
+        kidCell.setKid(name: name, age: age)
     }
 }

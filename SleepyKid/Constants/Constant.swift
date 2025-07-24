@@ -21,4 +21,5 @@ enum Constant: String {
     case awakeImage = "teddybear"
     case edit = "Edit"
     case name = "Name"
+    case add = "Add"
 }
