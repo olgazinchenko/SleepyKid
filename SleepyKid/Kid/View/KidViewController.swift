@@ -137,21 +137,9 @@ final class KidViewController: UIViewController {
                             action: #selector(updateKidCell),
                             for: .editingChanged)
         dateOfBirthDatePicker.date = viewModel.kidBirthDate
-        dateOfBirthDatePicker.addTarget(KidViewController.self,
+        dateOfBirthDatePicker.addTarget(self,
                              action: #selector(updateKidCell),
                              for: .valueChanged)
-        
-//        // Set title for new kid
-//        if viewModel?.kid == nil {
-//            titleLabel.text = Constant.add.rawValue.uppercased()
-//            let newKid = Kid(id: UUID(), name: Constant.name.rawValue, birthDate: .now)
-//            self.viewModel?.kid = newKid
-//        } else {
-//            titleLabel.text = Constant.edit.rawValue.uppercased()
-//        }
-//        
-//
-//
     }
     
     private func setupBars() {

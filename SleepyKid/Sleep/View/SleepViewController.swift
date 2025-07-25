@@ -57,6 +57,7 @@ final class SleepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         setupUI()
     }
     
@@ -97,6 +98,18 @@ final class SleepViewController: UIViewController {
         setupConstraints()
         setupBars()
         setupDatePicker()
+    }
+    
+    private func configure() {
+        let isNew = viewModel.sleep == nil
+        titleLabel.text = (isNew ? Constant.add : Constant.edit).rawValue.uppercased()
+        
+        if isNew {
+            let now = Date()
+            let defaultSleep = Sleep(id: UUID(), startDate: now, endDate: now)
+            viewModel.sleep = defaultSleep
+            setSleep(sleep: defaultSleep, number: viewModel.sleepNumber)
+        }
     }
     
     private func setupConstraints() {
@@ -170,5 +183,8 @@ final class SleepViewController: UIViewController {
             endDate: endSleepDatePicker.date
         )
         setSleep(sleep: updatedSleep, number: viewModel.sleepNumber)
+        
+//        let sleepNumber = viewModel.getSleepNumber(date: updatedSleep.startDate)
+//        setSleep(sleep: updatedSleep, number: sleepNumber)
     }
 }
