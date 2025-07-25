@@ -7,6 +7,11 @@
 
 import UIKit
 
+
+protocol SleepsListHeaderDelegate: AnyObject {
+  func sleepsListHeader(_ header: SleepsListHeader, didPick date: Date)
+}
+
 final class SleepsListHeader: UIView {
     // MARK: - GUI Variables
     private let containerView: UIView = {
@@ -26,23 +31,23 @@ final class SleepsListHeader: UIView {
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
+    weak var delegate: SleepsListHeaderDelegate?
     
     // MARK: - Initialization
     init(viewModel: SleepsListViewModelProtocol) {
         self.viewModel = viewModel
         
-        super.init(frame: CGRect(x: 0,
-                                 y: 0,
-                                 width: UIScreen.main.bounds.width,
-                                 height: 40))
+        super.init(frame: .zero)
         setupUI()
+        
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private methods
+    // MARK: - Private Methods
     private func setupUI() {
         addSubview(containerView)
         containerView.addSubviews([datePicker])
@@ -59,5 +64,13 @@ final class SleepsListHeader: UIView {
             $0.centerX.equalToSuperview()
             $0.verticalEdges.equalToSuperview()
         }
+    }
+    
+    func setDate(_ date: Date) {
+      datePicker.date = date
+    }
+    
+    @objc private func dateChanged(_ picker: UIDatePicker) {
+      delegate?.sleepsListHeader(self, didPick: picker.date)
     }
 }

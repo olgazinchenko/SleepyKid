@@ -19,6 +19,7 @@ class SleepsListViewController: UITableViewController {
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
     weak var coordinator: AppCoordinator?
+    private var selectedDate: Date = .now
     
     // MARK: - Initialization
     init(viewModel: SleepsListViewModelProtocol, startDate: Date) {
@@ -117,15 +118,15 @@ extension SleepsListViewController {
     
     override func tableView(_ tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 else { return nil }
-        
         let header = SleepsListHeader(viewModel: viewModel)
+        header.delegate = self
+        header.setDate(selectedDate)
         return header
     }
     
     override func tableView(_ tableView: UITableView,
                             heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        50
     }
     
     override func tableView(_ tableView: UITableView,
@@ -178,5 +179,14 @@ extension SleepsListViewController {
                                                  sleepNumber: sleepIndexInSection,
                                                  kid: viewModel.kid)
         }
+    }
+}
+
+// MARK: - SleepsListHeaderDelegate
+extension SleepsListViewController: SleepsListHeaderDelegate {
+    func sleepsListHeader(_ header: SleepsListHeader, didPick date: Date) {
+        selectedDate = date
+        viewModel.getSleeps(for: viewModel.kid, on: date)
+        tableView.reloadData()
     }
 }

@@ -38,77 +38,74 @@ final class SleepsListViewModel: SleepsListViewModelProtocol {
         section.count
     }
     
-    private(set) var section: [TableViewSection] = [] {
-        didSet {
-            reloadTable?()
-        }
+    // Keep track of the selected date so we can title the section
+    private var selectedDate: Date = .now
+    
+    // Flat list of items (Sleep + SleepAwakeDurationItem) for that day
+    private(set) var items: [TableViewItemProtocol] = [] {
+        didSet { reloadTable?() }
+    }
+    
+    // Always a single section
+    var section: [TableViewSection] {
+        let title = DateHelper.shared.format(date: selectedDate, with: "d MMM yyyy")
+        return [ TableViewSection(title: title, items: items) ]
     }
     
     // MARK: - Initialization
-    init(kid: Kid) {
-        self.kid = kid
-        getSleeps(for: kid, on: .now)
-    }
-    
+       init(kid: Kid) {
+           self.kid = kid
+           getSleeps(for: kid, on: .now)
+       }
+       
     // MARK: - Methods
     func getSleeps(for kid: Kid, on date: Date) {
-        sleeps = SleepPersistent.fetchSleeps(for: kid)
+        selectedDate = date
         
-        let groupedObjects = Dictionary(grouping: sleeps) { sleep in
-            DateHelper().getStartOfDay(for: date)
-        }
+        let all = SleepPersistent.fetchSleeps(for: kid)
+        let startOfDay = DateHelper.shared.getStartOfDay(for: date)
+        guard let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)
+        else { sleeps = []; items = []; return }
         
-        let sortedKeys = groupedObjects.keys.sorted(by: >)
-        
-        section = sortedKeys.map { key in
-            let stringDate = DateHelper.shared.format(date: key, with: "d MMM yyyy")
-            let sortedSleeps = groupedObjects[key]?.sorted(by: { $0.startDate < $1.startDate }) ?? []
-            
-            var items: [TableViewItemProtocol] = []
-            
-            for (index, sleep) in sortedSleeps.enumerated() {
-                items.append(sleep)
-                
-                if index < sortedSleeps.count - 1 {
-                    let nextSleep = sortedSleeps[index + 1]
-                    let awakeDuration = DateHelper.shared.defineTimeInterval(from:sleep.endDate,
-                                                                             to: nextSleep.startDate)
-                    let awakeItem = SleepAwakeDurationItem(duration: awakeDuration)
-                    items.append(awakeItem)
-                }
+        sleeps = all
+            .filter { $0.startDate >= startOfDay && $0.startDate < endOfDay }
+            .sorted { $0.startDate < $1.startDate }
+           
+        var newItems: [TableViewItemProtocol] = []
+        for (idx, sleep) in sleeps.enumerated() {
+            newItems.append(sleep)
+            if idx < sleeps.count - 1 {
+                let next = sleeps[idx + 1]
+                let awake = DateHelper.shared.defineTimeInterval(from: sleep.endDate,
+                                                                 to: next.startDate)
+                newItems.append(SleepAwakeDurationItem(duration: awake))
             }
-            
-            return TableViewSection(title: stringDate, items: items)
         }
+        items = newItems
     }
-    
+       
     func getSleep(for kid: Kid, and indexPath: IndexPath) -> Sleep {
         let item = section[indexPath.section].items[indexPath.row]
-        if let sleep = item as? Sleep {
-            return sleep
-        } else {
-            fatalError("Attempting to get Sleep from awake duration row")
+        guard let sleep = item as? Sleep else {
+            fatalError("Expected a Sleep at row \(indexPath.row)")
         }
+        return sleep
     }
-    
+       
     func getTitle(for sectionIndex: Int) -> String {
         section[sectionIndex].title ?? ""
     }
-    
+       
     func getNumberOfRows(for sectionIndex: Int) -> Int {
         section[sectionIndex].items.count
     }
-    
+       
     func isAwakeDurationRow(at indexPath: IndexPath) -> Bool {
-        let item = section[indexPath.section].items[indexPath.row]
-        return item is SleepAwakeDurationItem
+        section[indexPath.section].items[indexPath.row] is SleepAwakeDurationItem
     }
-    
+       
     func getAwakeDuration(for indexPath: IndexPath) -> String {
         let item = section[indexPath.section].items[indexPath.row]
-        if let awakeItem = item as? SleepAwakeDurationItem {
-            return awakeItem.duration
-        }
-        return ""
+        return (item as? SleepAwakeDurationItem)?.duration ?? ""
     }
 }
