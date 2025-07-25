@@ -83,7 +83,7 @@ final class SleepViewController: UIViewController {
         
         startSleepDatePicker.date = sleep.startDate
         endSleepDatePicker.date = sleep.endDate
-        sleepCell.setSleep(sleep: sleep, count: number ?? 0)
+        sleepCell.setSleep(sleep: sleep)
     }
     
     // MARK: - Private Methods

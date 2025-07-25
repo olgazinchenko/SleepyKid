@@ -142,7 +142,7 @@ extension SleepsListViewController {
                                                 sleepNumber: sleepIndexInSection,
                                                 kid: viewModel.kid)
             cell.viewModel = sleepViewModel
-            cell.setSleep(sleep: sleep, count: sleepIndexInSection)
+            cell.setSleep(sleep: sleep)
             cell.selectionStyle = .none
             
             return cell

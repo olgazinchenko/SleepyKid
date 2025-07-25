@@ -62,7 +62,7 @@ final class SleepTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setSleep(sleep: Sleep, count: Int) {
+    func setSleep(sleep: Sleep) {
         guard let viewModel else { return }
         
         let timeIntervalText = viewModel.getTimeIntervalText(for: sleep.startDate,
@@ -74,7 +74,8 @@ final class SleepTableViewCell: UITableViewCell {
         let sleepNumber = viewModel.sleepNumber
         timeLabel.text = timeIntervalText
         sleepDurationLabel.text = sleepIntervalText
-        countImageView.image = UIImage(systemName: "\((sleepNumber ?? 0) + 1).circle")
+        countImageView.image = sleepNumber.map { UIImage(systemName: "\($0 + 1).circle") ?? .add }
+        countImageView.isHidden = (countImageView.image == nil)
         updateUI(for: sleepType)
     }
     
