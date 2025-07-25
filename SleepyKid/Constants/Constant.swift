@@ -13,7 +13,7 @@ enum Constant: String {
     case startDate = "Start time and date"
     case endDate = "End time and date"
     case sleepDurationDefault = "0 h 0 min"
-    case appIcon = "SleepyKid"
+    case appIcon = "sleepyKidIcon"
     case timeBadge = "bed.double"
     case unownedImage = "unowned"
     case dayImage = "sun"

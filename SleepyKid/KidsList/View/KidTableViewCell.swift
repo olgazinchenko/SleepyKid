@@ -18,8 +18,9 @@ final class KidTableViewCell: UITableViewCell {
     
     private let avatarView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: Constant.appIcon.rawValue)
         view.layer.masksToBounds = true
+        view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
+        view.image = UIImage(named: Constant.appIcon.rawValue)
         view.contentMode = .scaleAspectFill
         return view
     }()
@@ -74,18 +75,18 @@ final class KidTableViewCell: UITableViewCell {
         }
         
         avatarView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(15)
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(50)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.leading.equalTo(avatarView.snp.trailing).offset(20)
+            $0.leading.equalTo(avatarView.snp.trailing).offset(15)
             $0.verticalEdges.equalToSuperview().inset(5)
         }
         
         ageLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(15)
             $0.verticalEdges.equalToSuperview().inset(5)
         }
     }
