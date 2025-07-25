@@ -10,4 +10,7 @@ import Foundation
 enum Layer: CGFloat {
     case mainCornerRadius = 10
     case mainBoarderWidth = 1
+    case screenTitleFontSize = 18
+    case labelFontSizeLarge = 17
+    case labelFontSizeSmall = 15
 }

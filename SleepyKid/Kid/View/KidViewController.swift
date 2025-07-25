@@ -12,24 +12,26 @@ final class KidViewController: UIViewController {
     private let kidNameLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.kidName.rawValue
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         label.textColor = .black
         return label
     }()
     
     private let kidNameTextField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.backgroundColor = .mischka
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = .systemGray6
+        textField.placeholder = Constant.name.rawValue
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.font = UIFont(name: "Poppins-Light", size: Layer.labelFontSizeLarge.rawValue)
         return textField
     }()
     
     private let dateOfBirthLabel: UILabel = {
         let label = UILabel()
-        label.text = Constant.dateOfBirth.rawValue
-        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
+        label.text = Constant.dateOfBirth.rawValue
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         return label
     }()
     
@@ -45,17 +47,20 @@ final class KidViewController: UIViewController {
         return view
     }()
     
+    private let kidCell = KidTableViewCell()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .mainTextColor
+        label.sizeToFit()
+        return label
+    }()
+    
     // MARK: - Properties
     var viewModel: KidViewModelProtocol?
     
     // MARK: - Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-        configure()
-    }
-    
     init(viewModel: KidViewModelProtocol?) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -65,29 +70,43 @@ final class KidViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupUI()
+        configure()
+    }
+    
     // MARK: - Private Methods
     private func setupUI() {
-        view.backgroundColor = .white
-        view.addSubviews([kidNameLabel,
+        navigationItem.titleView = titleLabel
+        view.backgroundColor = .athensGray
+        view.addSubviews([kidCell,
+                          kidNameLabel,
                           kidNameTextField,
                           dateOfBirthLabel,
-                          dateOfBirthDatePicker,
-                          iconView])
+                          dateOfBirthDatePicker])
         setupConstraints()
         setupBars()
         hideKeyboardWhenTappedOnScreen()
     }
     
     private func setupConstraints() {
+        kidCell.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(15)
+            $0.height.equalTo(90)
+        }
+        
         kidNameLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(30)
+            $0.top.equalTo(kidCell.snp.bottom).offset(25)
         }
         
         kidNameTextField.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(kidNameLabel.snp.bottom).offset(5)
-            $0.height.equalTo(50)
+            $0.top.equalTo(kidNameLabel.snp.bottom).offset(10)
+            $0.height.equalTo(35)
         }
         
         dateOfBirthLabel.snp.makeConstraints {
@@ -97,23 +116,30 @@ final class KidViewController: UIViewController {
         
         dateOfBirthDatePicker.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
-            $0.top.equalTo(dateOfBirthLabel.snp.bottom).offset(5)
+            $0.top.equalTo(dateOfBirthLabel.snp.bottom)
             $0.height.equalTo(50)
-        }
-        
-        iconView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(dateOfBirthDatePicker.snp.bottom).offset(50)
-            $0.width.equalToSuperview().multipliedBy(0.7)
-            $0.height.equalTo(iconView.snp.width) // Square aspect ratio
-            $0.bottom.lessThanOrEqualToSuperview().inset(50)
         }
     }
     
     private func configure() {
-        guard let viewModel else { return }
+        guard var viewModel else { return }
+        let isNew = viewModel.kid == nil
+        
+        titleLabel.text = (isNew ? Constant.add : Constant.edit).rawValue.uppercased()
+        if isNew {
+            viewModel.kid = Kid(id: UUID(), name: "", birthDate: .now)
+        }
+        
+        kidCell.setKid(name: viewModel.kidName, age: viewModel.kidAge)
         kidNameTextField.text = viewModel.kidName
+        kidNameTextField.becomeFirstResponder()
+        kidNameTextField.addTarget(self,
+                            action: #selector(updateKidCell),
+                            for: .editingChanged)
         dateOfBirthDatePicker.date = viewModel.kidBirthDate
+        dateOfBirthDatePicker.addTarget(self,
+                             action: #selector(updateKidCell),
+                             for: .valueChanged)
     }
     
     private func setupBars() {
@@ -130,5 +156,13 @@ final class KidViewController: UIViewController {
         viewModel.save(with: kidNameTextField.text ?? "",
                        and: dateOfBirthDatePicker.date)
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func updateKidCell() {
+        let name = kidNameTextField.text ?? ""
+        let birthDate = dateOfBirthDatePicker.date
+        let age = DateHelper.shared.getKidAge(birthDate: birthDate)
+        kidCell.setKid(name: name, age: age)
     }
 }

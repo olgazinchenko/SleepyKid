@@ -8,19 +8,22 @@
 import UIKit
 
 class SleepsListViewController: UITableViewController {
+    // MARK: - GUI Variables
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .label
+        return label
+    }()
+    
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
     weak var coordinator: AppCoordinator?
-    private let dateHeader: DateTimelineHeaderView
+    private var selectedDate: Date = .now
     
     // MARK: - Initialization
     init(viewModel: SleepsListViewModelProtocol, startDate: Date) {
         self.viewModel = viewModel
-        self.dateHeader = DateTimelineHeaderView(startDate: startDate,
-                                                 frame: CGRect(x: 0,
-                                                               y: 0,
-                                                               width: UIScreen.main.bounds.width,
-                                                               height: 60))
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,12 +35,11 @@ class SleepsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateHeader.delegate = self
-        tableView.tableHeaderView = dateHeader
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
         
-        setupTableView()
-        setupToolBar()
-        registerObserver()
+        setupUI()
         
         viewModel.reloadTable = { [weak self] in
             self?.tableView.reloadData()
@@ -45,13 +47,27 @@ class SleepsListViewController: UITableViewController {
     }
     
     // MARK: - Private Methods
+    func setupUI() {
+        view.backgroundColor = .athensGray
+        
+        setupTableView()
+        setupToolBar()
+        registerObserver()
+    }
+    
     private func setupTableView() {
         tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")
         tableView.register(SleepAwakeDurationCell.self,
                            forCellReuseIdentifier: "SleepAwakeDurationCell")
         tableView.separatorStyle = .none
-        title = "\(viewModel.kidName) 😴 sleeps".uppercased()
+        setupScreeHeader()
+    }
+    
+    private func setupScreeHeader() {
+        titleLabel.text = "\(viewModel.kidName) 😴 sleeps".uppercased()
+        navigationItem.titleView = titleLabel
+        
     }
     
     private func setupToolBar() {
@@ -101,6 +117,19 @@ extension SleepsListViewController {
     }
     
     override func tableView(_ tableView: UITableView,
+                            viewForHeaderInSection section: Int) -> UIView? {
+        let header = SleepsListHeader(viewModel: viewModel)
+        header.delegate = self
+        header.setDate(selectedDate)
+        return header
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            heightForHeaderInSection section: Int) -> CGFloat {
+        50
+    }
+    
+    override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if viewModel.isAwakeDurationRow(at: indexPath) {
@@ -128,7 +157,7 @@ extension SleepsListViewController {
                                                 sleepNumber: sleepIndexInSection,
                                                 kid: viewModel.kid)
             cell.viewModel = sleepViewModel
-            cell.setSleep(sleep: sleep, count: sleepIndexInSection)
+            cell.setSleep(sleep: sleep)
             cell.selectionStyle = .none
             
             return cell
@@ -141,16 +170,22 @@ extension SleepsListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !viewModel.isAwakeDurationRow(at: indexPath) {
             let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
+            let sectionItems = viewModel.section[indexPath.section].items
+            let sleepIndexInSection = sectionItems
+                .enumerated()
+                .filter { $0.element is Sleep }
+                .firstIndex(where: { ($0.element as? Sleep)?.id == sleep.id }) ?? 0
             coordinator?.showSleepViewController(for: sleep,
-                                                 sleepNumber: nil,
+                                                 sleepNumber: sleepIndexInSection,
                                                  kid: viewModel.kid)
         }
     }
 }
 
-// MARK: - DateTimelineHeaderViewDelegate
-extension SleepsListViewController: DateTimelineHeaderViewDelegate {
-    internal func didSelectDate(_ date: Date) {
+// MARK: - SleepsListHeaderDelegate
+extension SleepsListViewController: SleepsListHeaderDelegate {
+    func sleepsListHeader(_ header: SleepsListHeader, didPick date: Date) {
+        selectedDate = date
         viewModel.getSleeps(for: viewModel.kid, on: date)
         tableView.reloadData()
     }

@@ -12,8 +12,8 @@ final class SleepTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.layer.borderWidth = Layer.mainBoarderWidth.rawValue
         view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
+        view.backgroundColor = .white
         return view
     }()
     
@@ -22,23 +22,22 @@ final class SleepTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let timeImageView: UIImageView = {
+    private var timeImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: Constant.timeBadge.rawValue)
         view.tintColor = .mainTextColor
         return view
     }()
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 17)
+        label.font = UIFont(name: "Poppins-Regular", size: Layer.labelFontSizeLarge.rawValue)
         label.tintColor = .mainTextColor
         return label
     }()
     
     private let sleepDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeSmall.rawValue)
         label.tintColor = .mainTextColor
         return label
     }()
@@ -47,6 +46,9 @@ final class SleepTableViewCell: UITableViewCell {
         let view = UIImageView()
         return view
     }()
+    
+    // MARK: - Properties
+    var viewModel: SleepViewModelProtocol?
     
     // MARK: - Initializations
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -59,11 +61,8 @@ final class SleepTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Properties
-    var viewModel: SleepViewModelProtocol?
-    
     // MARK: - Methods
-    func setSleep(sleep: Sleep, count: Int) {
+    func setSleep(sleep: Sleep) {
         guard let viewModel else { return }
         
         let timeIntervalText = viewModel.getTimeIntervalText(for: sleep.startDate,
@@ -75,7 +74,8 @@ final class SleepTableViewCell: UITableViewCell {
         let sleepNumber = viewModel.sleepNumber
         timeLabel.text = timeIntervalText
         sleepDurationLabel.text = sleepIntervalText
-        countImageView.image = UIImage(systemName: "\((sleepNumber ?? 0) + 1).circle")
+        countImageView.image = sleepNumber.map { UIImage(systemName: "\($0 + 1).circle") ?? .add }
+        countImageView.isHidden = (countImageView.image == nil)
         updateUI(for: sleepType)
     }
     
@@ -87,13 +87,17 @@ final class SleepTableViewCell: UITableViewCell {
                                    sleepDurationLabel,
                                    timeImageView,
                                    countImageView])
+        
+        backgroundColor = .athensGray
+        containerView.backgroundColor = .white
+        
         setupConstraints()
     }
     
     private func setupConstraints() {
         containerView.snp.makeConstraints{
             $0.verticalEdges.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(10)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(80)
         }
         
@@ -130,26 +134,30 @@ final class SleepTableViewCell: UITableViewCell {
         let dayImage = UIImage(systemName: Constant.dayImage.rawValue)
         let nightImage = UIImage(systemName: Constant.nightImage.rawValue)
         let unownedImage = UIImage(systemName: Constant.unownedImage.rawValue)
+        let sleepImage = UIImage(systemName: Constant.timeBadge.rawValue)
         
         switch sleepType {
         case .day:
             iconView.image = dayImage
             iconView.tintColor = .mainYellow
             countImageView.tintColor = .mainYellow
-            containerView.backgroundColor = .lightYellow
-            containerView.layer.borderColor = UIColor.mainYellow.cgColor
+            timeImageView.image = sleepImage
+            timeImageView.tintColor = .mainYellow
+            sleepDurationLabel.textColor = .mainYellow
         case .night:
             iconView.image = nightImage
             iconView.tintColor = .mainBlue
             countImageView.tintColor = .mainBlue
-            containerView.backgroundColor = .mainPurple
-            containerView.layer.borderColor = UIColor.mainBlue.cgColor
+            timeImageView.image = sleepImage
+            timeImageView.tintColor = .mainBlue
+            sleepDurationLabel.textColor = .mainBlue
         case .unowned:
             iconView.image = unownedImage
             iconView.tintColor = .systemGray
             countImageView.tintColor = .systemGray
-            containerView.backgroundColor = .white
-            containerView.layer.borderColor = UIColor.systemGray.cgColor
+            timeImageView.image = sleepImage
+            timeImageView.tintColor = .systemGray
+            sleepDurationLabel.textColor = .systemGray
         }
     }
 }

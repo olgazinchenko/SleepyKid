@@ -16,9 +16,7 @@ class KidsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
-        setupToolBar()
-        registerObserver()
+        setupUI()
         
         viewModel.reloadTable = { [weak self] in
             self?.tableView.reloadData()
@@ -35,11 +33,27 @@ class KidsListViewController: UITableViewController {
     }
     
     // MARK: - Private Methods
+    func setupUI() {
+        view.backgroundColor = .athensGray
+        
+        setupTableView()
+        setupToolBar()
+        registerObserver()
+    }
+    
+    private func setupTableHeader() {
+        let label = UILabel()
+        label.text = "Kids".uppercased()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .label
+        navigationItem.titleView = label
+    }
+    
     private func setupTableView() {
         tableView.register(KidTableViewCell.self,
                            forCellReuseIdentifier: "KidTableViewCell")
         tableView.separatorStyle = .none
-        title = "Kids".uppercased()
+        setupTableHeader()
     }
     
     private func setupToolBar() {
@@ -92,6 +106,7 @@ extension KidsListViewController {
         let kid = viewModel.getKid(for: indexPath.row)
         let age = viewModel.getKidAdge(for: indexPath.row)
         cell.setKid(name: kid.name, age: age)
+        cell.selectionStyle = .none
         
         return cell
     }

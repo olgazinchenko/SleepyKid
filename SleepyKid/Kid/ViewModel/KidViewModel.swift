@@ -10,6 +10,7 @@ import Foundation
 protocol KidViewModelProtocol {
     var kid: Kid? { get set }
     var kidBirthDate: Date { get }
+    var kidAge: String { get }
     var kidName: String { get }
     var kidID: UUID { get }
     
@@ -22,6 +23,10 @@ final class KidViewModel: KidViewModelProtocol {
     var kid: Kid?
     var kidBirthDate: Date {
         kid?.birthDate ?? .now
+    }
+    
+    var kidAge: String {
+        DateHelper.shared.getKidAge(birthDate: kidBirthDate)
     }
     
     var kidName: String {

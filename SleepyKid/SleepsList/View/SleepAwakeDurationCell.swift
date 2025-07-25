@@ -24,7 +24,7 @@ final class SleepAwakeDurationCell: UITableViewCell {
     
     private let awakeDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
+        label.font = UIFont(name: "Poppins-Regular", size: Layer.labelFontSizeSmall.rawValue)
         label.textColor = .mainTextColor
         return label
     }()
@@ -50,6 +50,10 @@ final class SleepAwakeDurationCell: UITableViewCell {
         addSubview(containerView)
         containerView.addSubviews([awakeIconView, 
                                    awakeDurationLabel])
+        
+        backgroundColor = .athensGray
+        containerView.backgroundColor = .athensGray
+        
         setupConstraints()
     }
     
@@ -60,7 +64,7 @@ final class SleepAwakeDurationCell: UITableViewCell {
         }
         
         awakeDurationLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(15)
+            $0.trailing.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
         }
         

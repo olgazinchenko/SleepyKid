@@ -16,6 +16,24 @@
 		9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6482BDBA26E002864AC /* UIColor+Ex.swift */; };
 		9029A64D2BDBB15B002864AC /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A64C2BDBB15B002864AC /* Kid.swift */; };
 		9029A6512BDBB30B002864AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9029A6502BDBB30B002864AC /* Sleep.swift */; };
+		902BA8802E2E445900EADD0C /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA87B2E2E445900EADD0C /* Poppins-Regular.ttf */; };
+		902BA8812E2E445900EADD0C /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA86F2E2E445900EADD0C /* Poppins-BlackItalic.ttf */; };
+		902BA8822E2E445900EADD0C /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8702E2E445900EADD0C /* Poppins-Bold.ttf */; };
+		902BA8832E2E445900EADD0C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA87F2E2E445900EADD0C /* Poppins-ThinItalic.ttf */; };
+		902BA8842E2E445900EADD0C /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8742E2E445900EADD0C /* Poppins-ExtraLight.ttf */; };
+		902BA8852E2E445900EADD0C /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8762E2E445900EADD0C /* Poppins-Italic.ttf */; };
+		902BA8862E2E445900EADD0C /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8732E2E445900EADD0C /* Poppins-ExtraBoldItalic.ttf */; };
+		902BA8872E2E445900EADD0C /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8752E2E445900EADD0C /* Poppins-ExtraLightItalic.ttf */; };
+		902BA8882E2E445900EADD0C /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA87C2E2E445900EADD0C /* Poppins-SemiBold.ttf */; };
+		902BA8892E2E445900EADD0C /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8772E2E445900EADD0C /* Poppins-Light.ttf */; };
+		902BA88A2E2E445900EADD0C /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8782E2E445900EADD0C /* Poppins-LightItalic.ttf */; };
+		902BA88B2E2E445900EADD0C /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8792E2E445900EADD0C /* Poppins-Medium.ttf */; };
+		902BA88C2E2E445900EADD0C /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA87E2E2E445900EADD0C /* Poppins-Thin.ttf */; };
+		902BA88D2E2E445900EADD0C /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA86E2E2E445900EADD0C /* Poppins-Black.ttf */; };
+		902BA88E2E2E445900EADD0C /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8722E2E445900EADD0C /* Poppins-ExtraBold.ttf */; };
+		902BA88F2E2E445900EADD0C /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA87A2E2E445900EADD0C /* Poppins-MediumItalic.ttf */; };
+		902BA8902E2E445900EADD0C /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA8712E2E445900EADD0C /* Poppins-BoldItalic.ttf */; };
+		902BA8912E2E445900EADD0C /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902BA87D2E2E445900EADD0C /* Poppins-SemiBoldItalic.ttf */; };
 		9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8072BF6A8A600F44BB7 /* SleepType.swift */; };
 		9041A80A2BF7C06600F44BB7 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8092BF7C06600F44BB7 /* TableViewSection.swift */; };
 		9064B4002BF0D65900E795E7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B3FF2BF0D65900E795E7 /* Constant.swift */; };
@@ -28,8 +46,7 @@
 		907987FC2E007ECF0003EE49 /* SleepAwakeDurationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907987FB2E007ECF0003EE49 /* SleepAwakeDurationItem.swift */; };
 		908124162BFBA58F00E7EFC0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */; };
 		908124192BFDE32C00E7EFC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 908124182BFDE32C00E7EFC0 /* SnapKit */; };
-		908ADD3D2E0D9B120029A5B6 /* DateTimelineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908ADD3C2E0D9B110029A5B6 /* DateTimelineHeaderView.swift */; };
-		908ADD452E0DADFD0029A5B6 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908ADD442E0DADFD0029A5B6 /* DateCollectionViewCell.swift */; };
+		908C432C2E33A54D00FA4C06 /* SleepsListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C432B2E33A54D00FA4C06 /* SleepsListHeader.swift */; };
 		908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */; };
 		908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */; };
 		908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */; };
@@ -67,6 +84,24 @@
 		9029A6482BDBA26E002864AC /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		9029A64C2BDBB15B002864AC /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		9029A6502BDBB30B002864AC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
+		902BA86E2E2E445900EADD0C /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		902BA86F2E2E445900EADD0C /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
+		902BA8702E2E445900EADD0C /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		902BA8712E2E445900EADD0C /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		902BA8722E2E445900EADD0C /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		902BA8732E2E445900EADD0C /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		902BA8742E2E445900EADD0C /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		902BA8752E2E445900EADD0C /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		902BA8762E2E445900EADD0C /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		902BA8772E2E445900EADD0C /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		902BA8782E2E445900EADD0C /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		902BA8792E2E445900EADD0C /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		902BA87A2E2E445900EADD0C /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		902BA87B2E2E445900EADD0C /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		902BA87C2E2E445900EADD0C /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		902BA87D2E2E445900EADD0C /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		902BA87E2E2E445900EADD0C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		902BA87F2E2E445900EADD0C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		9041A8072BF6A8A600F44BB7 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
 		9041A8092BF7C06600F44BB7 /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		9064B3FF2BF0D65900E795E7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -80,8 +115,7 @@
 		907316C22BDB951100BA92FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		907987FB2E007ECF0003EE49 /* SleepAwakeDurationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepAwakeDurationItem.swift; sourceTree = "<group>"; };
 		908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
-		908ADD3C2E0D9B110029A5B6 /* DateTimelineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimelineHeaderView.swift; sourceTree = "<group>"; };
-		908ADD442E0DADFD0029A5B6 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		908C432B2E33A54D00FA4C06 /* SleepsListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListHeader.swift; sourceTree = "<group>"; };
 		908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -226,6 +260,41 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		902BA86A2E2E42AA00EADD0C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				902BA86D2E2E443200EADD0C /* Fonts */,
+				907316BD2BDB951100BA92FB /* Assets.xcassets */,
+				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		902BA86D2E2E443200EADD0C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				902BA86E2E2E445900EADD0C /* Poppins-Black.ttf */,
+				902BA86F2E2E445900EADD0C /* Poppins-BlackItalic.ttf */,
+				902BA8702E2E445900EADD0C /* Poppins-Bold.ttf */,
+				902BA8712E2E445900EADD0C /* Poppins-BoldItalic.ttf */,
+				902BA8722E2E445900EADD0C /* Poppins-ExtraBold.ttf */,
+				902BA8732E2E445900EADD0C /* Poppins-ExtraBoldItalic.ttf */,
+				902BA8742E2E445900EADD0C /* Poppins-ExtraLight.ttf */,
+				902BA8752E2E445900EADD0C /* Poppins-ExtraLightItalic.ttf */,
+				902BA8762E2E445900EADD0C /* Poppins-Italic.ttf */,
+				902BA8772E2E445900EADD0C /* Poppins-Light.ttf */,
+				902BA8782E2E445900EADD0C /* Poppins-LightItalic.ttf */,
+				902BA8792E2E445900EADD0C /* Poppins-Medium.ttf */,
+				902BA87A2E2E445900EADD0C /* Poppins-MediumItalic.ttf */,
+				902BA87B2E2E445900EADD0C /* Poppins-Regular.ttf */,
+				902BA87C2E2E445900EADD0C /* Poppins-SemiBold.ttf */,
+				902BA87D2E2E445900EADD0C /* Poppins-SemiBoldItalic.ttf */,
+				902BA87E2E2E445900EADD0C /* Poppins-Thin.ttf */,
+				902BA87F2E2E445900EADD0C /* Poppins-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		9064B4012BF0D66B00E795E7 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,10 +347,9 @@
 				9064B4022BF0D6F200E795E7 /* Helpers */,
 				9064B4012BF0D66B00E795E7 /* Constants */,
 				9029A6472BDBA22F002864AC /* Extentions */,
-				907316BD2BDB951100BA92FB /* Assets.xcassets */,
-				907316BF2BDB951100BA92FB /* LaunchScreen.storyboard */,
-				907316C22BDB951100BA92FB /* Info.plist */,
+				902BA86A2E2E42AA00EADD0C /* Resources */,
 				90B801872BEE4504002B08F6 /* CoreData */,
+				907316C22BDB951100BA92FB /* Info.plist */,
 			);
 			path = SleepyKid;
 			sourceTree = "<group>";
@@ -329,8 +397,7 @@
 				90EC49FF2BDBE70A00DEBAFF /* SleepsListViewController.swift */,
 				90EA07542DF8C9DF0052C804 /* SleepAwakeDurationCell.swift */,
 				90091DFA2BDD1DEE00A92E00 /* SleepTableViewCell.swift */,
-				908ADD3C2E0D9B110029A5B6 /* DateTimelineHeaderView.swift */,
-				908ADD442E0DADFD0029A5B6 /* DateCollectionViewCell.swift */,
+				908C432B2E33A54D00FA4C06 /* SleepsListHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -444,6 +511,24 @@
 			files = (
 				907316BE2BDB951100BA92FB /* Assets.xcassets in Resources */,
 				907316C12BDB951100BA92FB /* Base in Resources */,
+				902BA8802E2E445900EADD0C /* Poppins-Regular.ttf in Resources */,
+				902BA8812E2E445900EADD0C /* Poppins-BlackItalic.ttf in Resources */,
+				902BA8822E2E445900EADD0C /* Poppins-Bold.ttf in Resources */,
+				902BA8832E2E445900EADD0C /* Poppins-ThinItalic.ttf in Resources */,
+				902BA8842E2E445900EADD0C /* Poppins-ExtraLight.ttf in Resources */,
+				902BA8852E2E445900EADD0C /* Poppins-Italic.ttf in Resources */,
+				902BA8862E2E445900EADD0C /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				902BA8872E2E445900EADD0C /* Poppins-ExtraLightItalic.ttf in Resources */,
+				902BA8882E2E445900EADD0C /* Poppins-SemiBold.ttf in Resources */,
+				902BA8892E2E445900EADD0C /* Poppins-Light.ttf in Resources */,
+				902BA88A2E2E445900EADD0C /* Poppins-LightItalic.ttf in Resources */,
+				902BA88B2E2E445900EADD0C /* Poppins-Medium.ttf in Resources */,
+				902BA88C2E2E445900EADD0C /* Poppins-Thin.ttf in Resources */,
+				902BA88D2E2E445900EADD0C /* Poppins-Black.ttf in Resources */,
+				902BA88E2E2E445900EADD0C /* Poppins-ExtraBold.ttf in Resources */,
+				902BA88F2E2E445900EADD0C /* Poppins-MediumItalic.ttf in Resources */,
+				902BA8902E2E445900EADD0C /* Poppins-BoldItalic.ttf in Resources */,
+				902BA8912E2E445900EADD0C /* Poppins-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +548,7 @@
 			files = (
 				9029A6492BDBA26E002864AC /* UIColor+Ex.swift in Sources */,
 				90B801952BEE71EC002B08F6 /* KidPersistent.swift in Sources */,
+				908C432C2E33A54D00FA4C06 /* SleepsListHeader.swift in Sources */,
 				90CE7D232DDF291600C9545E /* Coordinator.swift in Sources */,
 				90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */,
 				90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */,
@@ -483,7 +569,6 @@
 				90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
 				9029A6512BDBB30B002864AC /* Sleep.swift in Sources */,
-				908ADD452E0DADFD0029A5B6 /* DateCollectionViewCell.swift in Sources */,
 				90091E002BE132D300A92E00 /* SleepViewModel.swift in Sources */,
 				90EC4A042BDBEC5F00DEBAFF /* KidTableViewCell.swift in Sources */,
 				9041A80A2BF7C06600F44BB7 /* TableViewSection.swift in Sources */,
@@ -491,7 +576,6 @@
 				908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */,
 				9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */,
 				908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */,
-				908ADD3D2E0D9B120029A5B6 /* DateTimelineHeaderView.swift in Sources */,
 				90EA07552DF8C9DF0052C804 /* SleepAwakeDurationCell.swift in Sources */,
 				908C5C352BF1487000955FDD /* SleepEntity+CoreDataProperties.swift in Sources */,
 				90EC49FA2BDBD9C600DEBAFF /* User.swift in Sources */,

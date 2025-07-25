@@ -13,14 +13,14 @@ final class SleepViewController: UIViewController {
     private let startDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.startDate.rawValue
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         return label
     }()
     
     private let endDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.endDate.rawValue
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         return label
     }()
     
@@ -36,20 +36,14 @@ final class SleepViewController: UIViewController {
         return datePicker
     }()
     
-    private let iconView: UIImageView = {
-        let view = UIImageView()
-        return view
-    }()
+    private let sleepCell = SleepTableViewCell()
     
-    private let timeImageView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(systemName: Constant.timeBadge.rawValue)
-        return view
-    }()
-    
-    private let sleepDurationLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 17)
+        label.text = Constant.edit.rawValue.uppercased()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .mainTextColor
+        label.sizeToFit()
         return label
     }()
     
@@ -63,6 +57,7 @@ final class SleepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         setupUI()
     }
     
@@ -70,12 +65,12 @@ final class SleepViewController: UIViewController {
         self.viewModel = viewModel
         
         sleepImage = UIImage(systemName: Constant.unownedImage.rawValue) ?? .remove
-        sleepTextColor = .systemGray
-        sleepBackgroundColor = .white
+        sleepTextColor = .mainTextColor
+        sleepBackgroundColor = .athensGray
         
         super.init(nibName: nil, bundle: nil)
-        
-        setSleep(sleep: viewModel.sleep)
+        sleepCell.viewModel = viewModel
+        setSleep(sleep: viewModel.sleep, number: viewModel.sleepNumber)
     }
     
     required init?(coder: NSCoder) {
@@ -83,41 +78,50 @@ final class SleepViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func setSleep(sleep: Sleep? = nil) {
+    func setSleep(sleep: Sleep? = nil, number: Int?) {
         guard let sleep else { return }
-        
-        let sleepIntervalText = viewModel.getSleepInterval(from: sleep.startDate,
-                                                           to: sleep.endDate)
-        let sleepType = viewModel.getSleepType(from: sleep.startDate,
-                                               to: sleep.endDate)
         
         startSleepDatePicker.date = sleep.startDate
         endSleepDatePicker.date = sleep.endDate
-        sleepDurationLabel.text = sleepIntervalText
-        
-        updateUIFor(sleepType: sleepType)
+        sleepCell.setSleep(sleep: sleep)
     }
     
     // MARK: - Private Methods
     private func setupUI() {
-        view.backgroundColor = .white
+        navigationItem.titleView = titleLabel
+        view.backgroundColor = .athensGray
         view.addSubviews([startDateLabel,
                           endDateLabel,
                           startSleepDatePicker,
                           endSleepDatePicker,
-                          iconView,
-                          sleepDurationLabel,
-                          timeImageView])
+                          sleepCell])
         setupConstraints()
         setupBars()
         setupDatePicker()
-        updateUI()
+    }
+    
+    private func configure() {
+        let isNew = viewModel.sleep == nil
+        titleLabel.text = (isNew ? Constant.add : Constant.edit).rawValue.uppercased()
+        
+        if isNew {
+            let now = Date()
+            let defaultSleep = Sleep(id: UUID(), startDate: now, endDate: now)
+            viewModel.sleep = defaultSleep
+            setSleep(sleep: defaultSleep, number: viewModel.sleepNumber)
+        }
     }
     
     private func setupConstraints() {
+        sleepCell.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(80)
+        }
+        
         startDateLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().offset(20)
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(30)
+            $0.top.equalTo(sleepCell.snp.bottom).offset(30)
         }
         
         startSleepDatePicker.snp.makeConstraints {
@@ -134,59 +138,6 @@ final class SleepViewController: UIViewController {
             $0.leading.equalToSuperview().offset(20)
             $0.top.equalTo(endDateLabel.snp.bottom).offset(10)
         }
-        
-        timeImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(20)
-            $0.top.equalTo(endSleepDatePicker.snp.bottom).offset(30)
-            $0.height.width.equalTo(22)
-        }
-        
-        sleepDurationLabel.snp.makeConstraints {
-            $0.leading.equalTo(timeImageView.snp.trailing).offset(5)
-            $0.centerY.equalTo(timeImageView)
-        }
-        
-        iconView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(sleepDurationLabel.snp.bottom).offset(50)
-            $0.width.equalToSuperview().multipliedBy(0.8)
-            $0.height.equalTo(iconView.snp.width) // Square aspect ratio
-            $0.bottom.lessThanOrEqualToSuperview().inset(50)
-        }
-    }
-    
-    private func updateUIFor(sleepType: SleepType) {
-        switch sleepType {
-        case .day:
-            sleepTextColor = .mainYellow
-            sleepBackgroundColor = .lightYellow
-            sleepImage = UIImage(systemName: Constant.dayImage.rawValue) ?? .remove
-            updateUI()
-        case .night:
-            sleepTextColor = .mainBlue
-            sleepBackgroundColor = .mainPurple
-            sleepImage = UIImage(systemName: Constant.nightImage.rawValue) ?? .remove
-            updateUI()
-        case .unowned:
-            sleepTextColor = .systemGray
-            sleepBackgroundColor = .white
-            sleepImage = UIImage(systemName: Constant.unownedImage.rawValue) ?? .remove
-            updateUI()
-        }
-    }
-    
-    private func updateUI() {
-        view.backgroundColor = sleepBackgroundColor
-        
-        iconView.tintColor = sleepTextColor
-        timeImageView.tintColor = sleepTextColor
-        sleepDurationLabel.textColor = sleepTextColor
-        startDateLabel.textColor = sleepTextColor
-        endDateLabel.textColor = sleepTextColor
-        
-        iconView.image = sleepImage
-        sleepDurationLabel.text = viewModel.getSleepInterval(from: startSleepDatePicker.date,
-                                                             to: endSleepDatePicker.date)
     }
     
     private func setupBars() {
@@ -226,12 +177,14 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func onDateValueChanged(_ sender: UIDatePicker) {
-        let sleepIntervalText = viewModel.getSleepInterval(from: startSleepDatePicker.date,
-                                                           to: endSleepDatePicker.date)
-        let sleepType = viewModel.getSleepType(from: startSleepDatePicker.date,
-                                               to: endSleepDatePicker.date)
+        let updatedSleep = Sleep(
+            id: viewModel.sleep?.id ?? UUID(),
+            startDate: startSleepDatePicker.date,
+            endDate: endSleepDatePicker.date
+        )
+        setSleep(sleep: updatedSleep, number: viewModel.sleepNumber)
         
-        sleepDurationLabel.text = sleepIntervalText
-        updateUIFor(sleepType: sleepType)
+//        let sleepNumber = viewModel.getSleepNumber(date: updatedSleep.startDate)
+//        setSleep(sleep: updatedSleep, number: sleepNumber)
     }
 }
