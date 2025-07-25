@@ -8,19 +8,21 @@
 import UIKit
 
 class SleepsListViewController: UITableViewController {
+    // MARK: - GUI Variables
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .label
+        return label
+    }()
+    
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
     weak var coordinator: AppCoordinator?
-    private let dateHeader: DateTimelineHeaderView
     
     // MARK: - Initialization
     init(viewModel: SleepsListViewModelProtocol, startDate: Date) {
         self.viewModel = viewModel
-        self.dateHeader = DateTimelineHeaderView(startDate: startDate,
-                                                 frame: CGRect(x: 0,
-                                                               y: 0,
-                                                               width: UIScreen.main.bounds.width,
-                                                               height: 60))
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,8 +34,9 @@ class SleepsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateHeader.delegate = self
-        tableView.tableHeaderView = dateHeader
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
         
         setupUI()
         
@@ -51,21 +54,19 @@ class SleepsListViewController: UITableViewController {
         registerObserver()
     }
     
-    private func setupTableHeader() {
-        let label = UILabel()
-        label.text = "\(viewModel.kidName) 😴 sleeps".uppercased()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
-        label.textColor = .label
-        navigationItem.titleView = label
-    }
-    
     private func setupTableView() {
         tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")
         tableView.register(SleepAwakeDurationCell.self,
                            forCellReuseIdentifier: "SleepAwakeDurationCell")
         tableView.separatorStyle = .none
-        setupTableHeader()
+        setupScreeHeader()
+    }
+    
+    private func setupScreeHeader() {
+        titleLabel.text = "\(viewModel.kidName) 😴 sleeps".uppercased()
+        navigationItem.titleView = titleLabel
+        
     }
     
     private func setupToolBar() {
@@ -112,6 +113,19 @@ extension SleepsListViewController {
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         viewModel.getNumberOfRows(for: section)
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 0 else { return nil }
+        
+        let header = SleepsListHeader(viewModel: viewModel)
+        return header
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     override func tableView(_ tableView: UITableView,
@@ -164,13 +178,5 @@ extension SleepsListViewController {
                                                  sleepNumber: sleepIndexInSection,
                                                  kid: viewModel.kid)
         }
-    }
-}
-
-// MARK: - DateTimelineHeaderViewDelegate
-extension SleepsListViewController: DateTimelineHeaderViewDelegate {
-    internal func didSelectDate(_ date: Date) {
-        viewModel.getSleeps(for: viewModel.kid, on: date)
-        tableView.reloadData()
     }
 }
