@@ -19,6 +19,8 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let iconView: UIImageView = {
         let view = UIImageView()
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
         return view
     }()
     
@@ -102,18 +104,18 @@ final class SleepTableViewCell: UITableViewCell {
         }
         
         iconView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(15)
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(50)
         }
         
         timeLabel.snp.makeConstraints {
-            $0.leading.equalTo(iconView.snp.trailing).offset(20)
+            $0.leading.equalTo(iconView.snp.trailing).offset(15)
             $0.centerY.equalToSuperview().offset(-10)
         }
         
         timeImageView.snp.makeConstraints {
-            $0.leading.equalTo(iconView.snp.trailing).offset(20)
+            $0.leading.equalTo(iconView.snp.trailing).offset(15)
             $0.top.equalTo(timeLabel.snp.bottom).offset(5)
             $0.height.width.equalTo(16)
         }
@@ -124,16 +126,16 @@ final class SleepTableViewCell: UITableViewCell {
         }
         
         countImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(15)
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(30)
         }
     }
     
     private func updateUI(for sleepType: SleepType) {
-        let dayImage = UIImage(systemName: Constant.dayImage.rawValue)
-        let nightImage = UIImage(systemName: Constant.nightImage.rawValue)
-        let unownedImage = UIImage(systemName: Constant.unownedImage.rawValue)
+        let dayImage = UIImage(named: Constant.dayImage.rawValue)
+        let nightImage = UIImage(named: Constant.nightImage.rawValue)
+        let unownedImage = UIImage(named: Constant.unownedImage.rawValue)
         let sleepImage = UIImage(systemName: Constant.timeBadge.rawValue)
         
         switch sleepType {
