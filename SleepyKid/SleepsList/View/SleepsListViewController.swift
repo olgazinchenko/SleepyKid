@@ -27,7 +27,8 @@ class SleepsListViewController: UIViewController {
         return tableView
     }()
     
-    let addButton = FloatingAddButton()
+    private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
+                                                 backgroundColor: .orange)
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol

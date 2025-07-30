@@ -47,6 +47,7 @@
 		908124162BFBA58F00E7EFC0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */; };
 		908124192BFDE32C00E7EFC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 908124182BFDE32C00E7EFC0 /* SnapKit */; };
 		908C432C2E33A54D00FA4C06 /* SleepsListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C432B2E33A54D00FA4C06 /* SleepsListHeader.swift */; };
+		908C433F2E3A3C8B00FA4C06 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C433E2E3A3C8B00FA4C06 /* FloatingActionButton.swift */; };
 		908C5C322BF1487000955FDD /* KidEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */; };
 		908C5C332BF1487000955FDD /* KidEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */; };
 		908C5C342BF1487000955FDD /* SleepEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */; };
@@ -116,6 +117,7 @@
 		907987FB2E007ECF0003EE49 /* SleepAwakeDurationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepAwakeDurationItem.swift; sourceTree = "<group>"; };
 		908124152BFBA58F00E7EFC0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		908C432B2E33A54D00FA4C06 /* SleepsListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsListHeader.swift; sourceTree = "<group>"; };
+		908C433E2E3A3C8B00FA4C06 /* FloatingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
 		908C5C2E2BF1487000955FDD /* KidEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		908C5C2F2BF1487000955FDD /* KidEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KidEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		908C5C302BF1487000955FDD /* SleepEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SleepEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -134,7 +136,6 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		901AD9632DE0AEC100263A44 /* SleepyKidTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SleepyKidTests; sourceTree = "<group>"; };
-		908C43392E3A1E2000FA4C06 /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,7 +346,7 @@
 				9029A6522BDBB30F002864AC /* Sleep */,
 				9029A64A2BDBABD6002864AC /* KidsList */,
 				90EC4A012BDBE71000DEBAFF /* SleepsList */,
-				908C43392E3A1E2000FA4C06 /* Components */,
+				908C43402E3A473E00FA4C06 /* Components */,
 				9064B4022BF0D6F200E795E7 /* Helpers */,
 				9064B4012BF0D66B00E795E7 /* Constants */,
 				9029A6472BDBA22F002864AC /* Extentions */,
@@ -354,6 +355,14 @@
 				907316C22BDB951100BA92FB /* Info.plist */,
 			);
 			path = SleepyKid;
+			sourceTree = "<group>";
+		};
+		908C43402E3A473E00FA4C06 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				908C433E2E3A3C8B00FA4C06 /* FloatingActionButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		90B801872BEE4504002B08F6 /* CoreData */ = {
@@ -449,9 +458,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				908C43392E3A1E2000FA4C06 /* Components */,
 			);
 			name = SleepyKid;
 			packageProductDependencies = (
@@ -570,6 +576,7 @@
 				90EC4A0B2BDC09C300DEBAFF /* KidsListViewModel.swift in Sources */,
 				900AD2F32BE3BBEE0055DE38 /* KidViewModel.swift in Sources */,
 				907316B62BDB950E00BA92FB /* KidsListViewController.swift in Sources */,
+				908C433F2E3A3C8B00FA4C06 /* FloatingActionButton.swift in Sources */,
 				90091E032BE1813700A92E00 /* KidViewController.swift in Sources */,
 				90EC4A002BDBE70A00DEBAFF /* SleepsListViewController.swift in Sources */,
 				907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */,
