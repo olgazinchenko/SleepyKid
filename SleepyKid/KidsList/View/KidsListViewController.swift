@@ -7,22 +7,57 @@
 
 import UIKit
 
-class KidsListViewController: UITableViewController {
+class KidsListViewController: UIViewController {
+    // MARK: - GUI Variables
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .athensGray
+        return tableView
+    }()
+    
+    private let addButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .orange
+        button.setTitle("+", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Poppins-Regular",
+                                         size: Layer.actionButtonTitleSize.rawValue)
+        button.layer.cornerRadius = Layer.actionButtonCornerRadius.rawValue
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = Layer.actionButtonssHadowRadius.rawValue
+        return button
+    }()
+    
     // MARK: - Properties
     var viewModel: KidsListViewModelProtocol
     weak var coordinator: AppCoordinator?
     
     // MARK: - Live Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.toolbar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         
-        viewModel.reloadTable = { [weak self] in
-            self?.tableView.reloadData()
+        viewModel.reloadTable = { [weak tableView] in
+            tableView?.reloadData()
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.toolbar.isHidden = false
+    }
+    
+    // MARK: - Initialization
     init(viewModel: KidsListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -33,11 +68,13 @@ class KidsListViewController: UITableViewController {
     }
     
     // MARK: - Private Methods
-    func setupUI() {
+    private func setupUI() {
         view.backgroundColor = .athensGray
+        view.addSubviews([tableView,
+                          addButton])
         
         setupTableView()
-        setupToolBar()
+        setupConstraints()
         registerObserver()
     }
     
@@ -46,7 +83,9 @@ class KidsListViewController: UITableViewController {
         label.text = "Kids".uppercased()
         label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
         label.textColor = .label
+        
         navigationItem.titleView = label
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
     private func setupTableView() {
@@ -54,27 +93,9 @@ class KidsListViewController: UITableViewController {
                            forCellReuseIdentifier: "KidTableViewCell")
         tableView.separatorStyle = .none
         setupTableHeader()
-    }
-    
-    private func setupToolBar() {
-        let addButton = UIBarButtonItem(title: "+Add",
-                                        style: .done,
-                                        target: self,
-                                        action: #selector(addKid))
-        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        tableView.dataSource = self
+        tableView.delegate = self
         
-        // Make addButton VoiceOver accessible
-        addButton.isAccessibilityElement = true
-        addButton.accessibilityLabel = "Add new kid"
-        addButton.accessibilityTraits = .button
-        
-        setToolbarItems([spacing, addButton], animated: true)
-        navigationController?.isToolbarHidden = false
-    }
-    
-    @objc
-    private func addKid() {
-        coordinator?.showKidViewController(for: nil)
     }
     
     private func registerObserver() {
@@ -84,6 +105,23 @@ class KidsListViewController: UITableViewController {
                                                object: nil)
     }
     
+    private func setupConstraints() {
+        addButton.snp.makeConstraints {
+            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    
+    @objc private func addButtonTapped() {
+        coordinator?.showKidViewController(for: nil)
+    }
+    
     @objc
     private func updateData() {
         viewModel.getKids()
@@ -91,13 +129,13 @@ class KidsListViewController: UITableViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension KidsListViewController {
-    override func tableView(_ tableView: UITableView,
+extension KidsListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         viewModel.kids.count
     }
     
-    override func tableView(_ tableView: UITableView,
+    func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "KidTableViewCell",
                                                        for: indexPath) as? KidTableViewCell
@@ -113,15 +151,15 @@ extension KidsListViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension KidsListViewController {
-    override func tableView(_ tableView: UITableView,
+extension KidsListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         let kid = viewModel.getKid(for: indexPath.row)
         let startDate = viewModel.getStartDate(for: kid)
         coordinator?.showSleepsListViewController(for: kid, startDate: startDate)
     }
     
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt
                             indexPath: IndexPath,
                             point: CGPoint) -> UIContextMenuConfiguration? {
         let kid = viewModel.getKid(for: indexPath.row)
