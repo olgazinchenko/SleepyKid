@@ -9,9 +9,20 @@ import UIKit
 
 class KidsListViewController: UIViewController {
     // MARK: - GUI Variables
+    private let tableHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Kids".uppercased()
+        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.textColor = .label
+        return label
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.separatorStyle = .none
         tableView.backgroundColor = .athensGray
+        tableView.register(KidTableViewCell.self,
+                           forCellReuseIdentifier: "KidTableViewCell")
         return tableView
     }()
     
@@ -79,23 +90,15 @@ class KidsListViewController: UIViewController {
     }
     
     private func setupTableHeader() {
-        let label = UILabel()
-        label.text = "Kids".uppercased()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
-        label.textColor = .label
-        
-        navigationItem.titleView = label
+        navigationItem.titleView = tableHeaderLabel
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
     private func setupTableView() {
-        tableView.register(KidTableViewCell.self,
-                           forCellReuseIdentifier: "KidTableViewCell")
-        tableView.separatorStyle = .none
-        setupTableHeader()
         tableView.dataSource = self
         tableView.delegate = self
         
+        setupTableHeader()
     }
     
     private func registerObserver() {
