@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol SleepsListHeaderDelegate: AnyObject {
   func sleepsListHeader(_ header: SleepsListHeader, didPick date: Date)
 }

@@ -134,6 +134,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		901AD9632DE0AEC100263A44 /* SleepyKidTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SleepyKidTests; sourceTree = "<group>"; };
+		908C43392E3A1E2000FA4C06 /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +345,7 @@
 				9029A6522BDBB30F002864AC /* Sleep */,
 				9029A64A2BDBABD6002864AC /* KidsList */,
 				90EC4A012BDBE71000DEBAFF /* SleepsList */,
+				908C43392E3A1E2000FA4C06 /* Components */,
 				9064B4022BF0D6F200E795E7 /* Helpers */,
 				9064B4012BF0D66B00E795E7 /* Constants */,
 				9029A6472BDBA22F002864AC /* Extentions */,
@@ -447,6 +449,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				908C43392E3A1E2000FA4C06 /* Components */,
 			);
 			name = SleepyKid;
 			packageProductDependencies = (

@@ -183,8 +183,5 @@ final class SleepViewController: UIViewController {
             endDate: endSleepDatePicker.date
         )
         setSleep(sleep: updatedSleep, number: viewModel.sleepNumber)
-        
-//        let sleepNumber = viewModel.getSleepNumber(date: updatedSleep.startDate)
-//        setSleep(sleep: updatedSleep, number: sleepNumber)
     }
 }
