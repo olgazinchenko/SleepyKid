@@ -55,6 +55,7 @@ final class SleepViewController: UIViewController {
     private var sleepImage: UIImage
     private var sleepTextColor: UIColor
     private var sleepBackgroundColor: UIColor
+    var onSave: ((Date) -> Void)?
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -175,8 +176,10 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func saveButtonTapped() {
-        viewModel.save(with: startSleepDatePicker.date,
-                       and: endSleepDatePicker.date)
+        let startDate = startSleepDatePicker.date
+        let endDate = endSleepDatePicker.date
+        viewModel.save(with: startDate, and: endDate)
+        onSave?(startDate)
         navigationController?.popViewController(animated: true)
     }
     

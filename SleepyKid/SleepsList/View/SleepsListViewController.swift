@@ -125,9 +125,20 @@ class SleepsListViewController: UIViewController {
         }
     }
     
+    private func setDateFromSleep(_ date: Date) {
+        selectedDate = date
+        viewModel.getSleeps(for: viewModel.kid, on: date)
+        tableView.reloadData()
+    }
+    
     @objc
     private func addButtonTapped() {
-        coordinator?.showSleepViewController(for: nil, sleepNumber: nil, kid: viewModel.kid)
+        coordinator?.showSleepViewController(for: nil,
+                                             sleepNumber: nil,
+                                             kid: viewModel.kid,
+                                             onSave: { [weak self] startDate in
+            self?.setDateFromSleep(startDate)
+        })
     }
     
     private func registerObserver() {
@@ -220,7 +231,10 @@ extension SleepsListViewController: UITableViewDelegate {
                 .firstIndex(where: { ($0.element as? Sleep)?.id == sleep.id }) ?? 0
             coordinator?.showSleepViewController(for: sleep,
                                                  sleepNumber: sleepIndexInSection,
-                                                 kid: viewModel.kid)
+                                                 kid: viewModel.kid,
+                                                 onSave: { [weak self] startDate in
+                self?.setDateFromSleep(startDate)
+            })
         }
     }
 }
