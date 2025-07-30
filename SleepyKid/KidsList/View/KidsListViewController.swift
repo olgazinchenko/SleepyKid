@@ -26,24 +26,21 @@ class KidsListViewController: UIViewController {
         return tableView
     }()
     
-    private let addButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .orange
-        button.setTitle("+", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Poppins-Regular",
-                                         size: Layer.actionButtonTitleSize.rawValue)
-        button.layer.cornerRadius = Layer.actionButtonCornerRadius.rawValue
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = Layer.actionButtonssHadowRadius.rawValue
-        return button
-    }()
+    private let addButton = FloatingAddButton()
     
     // MARK: - Properties
     var viewModel: KidsListViewModelProtocol
     weak var coordinator: AppCoordinator?
+    
+    // MARK: - Initialization
+    init(viewModel: KidsListViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Live Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -68,16 +65,6 @@ class KidsListViewController: UIViewController {
         self.navigationController?.toolbar.isHidden = false
     }
     
-    // MARK: - Initialization
-    init(viewModel: KidsListViewModelProtocol) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Private Methods
     private func setupUI() {
         view.backgroundColor = .athensGray
@@ -87,11 +74,11 @@ class KidsListViewController: UIViewController {
         setupTableView()
         setupConstraints()
         registerObserver()
+        addTargets()
     }
     
     private func setupTableHeader() {
         navigationItem.titleView = tableHeaderLabel
-        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
     private func setupTableView() {
@@ -108,6 +95,10 @@ class KidsListViewController: UIViewController {
                                                object: nil)
     }
     
+    private func addTargets() {
+        addButton.button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+    }
+    
     private func setupConstraints() {
         addButton.snp.makeConstraints {
             $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
@@ -120,7 +111,6 @@ class KidsListViewController: UIViewController {
         }
     }
     
-    
     @objc private func addButtonTapped() {
         coordinator?.showKidViewController(for: nil)
     }
@@ -130,16 +120,16 @@ class KidsListViewController: UIViewController {
         viewModel.getKids()
     }
 }
-
+ 
 // MARK: - UITableViewDataSource
 extension KidsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
-                            numberOfRowsInSection section: Int) -> Int {
+                   numberOfRowsInSection section: Int) -> Int {
         viewModel.kids.count
     }
     
     func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "KidTableViewCell",
                                                        for: indexPath) as? KidTableViewCell
         else { return UITableViewCell() }
@@ -156,15 +146,16 @@ extension KidsListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension KidsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
-                            didSelectRowAt indexPath: IndexPath) {
+                   didSelectRowAt indexPath: IndexPath) {
         let kid = viewModel.getKid(for: indexPath.row)
         let startDate = viewModel.getStartDate(for: kid)
         coordinator?.showSleepsListViewController(for: kid, startDate: startDate)
     }
     
-    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt
-                            indexPath: IndexPath,
-                            point: CGPoint) -> UIContextMenuConfiguration? {
+    func tableView(_ tableView: UITableView,
+                   contextMenuConfigurationForRowAt
+                   indexPath: IndexPath,
+                   point: CGPoint) -> UIContextMenuConfiguration? {
         let kid = viewModel.getKid(for: indexPath.row)
         let kidViewModel = KidViewModel(kid: kid)
         let provider: UIContextMenuActionProvider = { _ in

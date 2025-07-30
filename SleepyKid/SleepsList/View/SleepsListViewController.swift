@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SleepsListViewController: UITableViewController {
+class SleepsListViewController: UIViewController {
     // MARK: - GUI Variables
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -15,6 +15,19 @@ class SleepsListViewController: UITableViewController {
         label.textColor = .label
         return label
     }()
+    
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(SleepTableViewCell.self,
+                           forCellReuseIdentifier: "SleepTableViewCell")
+        tableView.register(SleepAwakeDurationCell.self,
+                           forCellReuseIdentifier: "SleepAwakeDurationCell")
+        tableView.backgroundColor = .athensGray
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
+    let addButton = FloatingAddButton()
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
@@ -46,43 +59,73 @@ class SleepsListViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setToolbar(hidden: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setToolbar(hidden: false)
+    }
+    
     // MARK: - Private Methods
-    func setupUI() {
+    private func setupUI() {
         view.backgroundColor = .athensGray
+        view.addSubviews([tableView,
+                          titleLabel,
+                          addButton])
         
         setupTableView()
         setupToolBar()
         registerObserver()
+        addTargets()
+        setupConstraints()
     }
     
     private func setupTableView() {
-        tableView.register(SleepTableViewCell.self,
-                           forCellReuseIdentifier: "SleepTableViewCell")
-        tableView.register(SleepAwakeDurationCell.self,
-                           forCellReuseIdentifier: "SleepAwakeDurationCell")
-        tableView.separatorStyle = .none
+        tableView.dataSource = self
+        tableView.delegate = self
         setupScreeHeader()
     }
     
     private func setupScreeHeader() {
         titleLabel.text = "\(viewModel.kidName) 😴 sleeps".uppercased()
         navigationItem.titleView = titleLabel
-        
     }
     
     private func setupToolBar() {
         let addButton = UIBarButtonItem(title: "+Add",
                                         style: .done,
                                         target: self,
-                                        action: #selector(addSleep))
+                                        action: #selector(addButtonTapped))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
         setToolbarItems([spacing, addButton], animated: true)
-        navigationController?.isToolbarHidden = false
+    }
+    
+    private func setToolbar(hidden: Bool) {
+        navigationController?.toolbar.isHidden = hidden
+    }
+    
+    private func addTargets() {
+        addButton.button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setupConstraints() {
+        addButton.snp.makeConstraints {
+            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     @objc
-    private func addSleep() {
+    private func addButtonTapped() {
         coordinator?.showSleepViewController(for: nil, sleepNumber: nil, kid: viewModel.kid)
     }
     
@@ -95,28 +138,27 @@ class SleepsListViewController: UITableViewController {
     
     @objc
     private func updateData() {
-        // TODO: - Update the method in the viewModel
         viewModel.getSleeps(for: viewModel.kid, on: .now)
     }
 }
 
 // MARK: - UITableViewDataSource
-extension SleepsListViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
+extension SleepsListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         viewModel.sectionCount
     }
     
-    override func tableView(_ tableView: UITableView,
+    func tableView(_ tableView: UITableView,
                             titleForHeaderInSection section: Int) -> String? {
         viewModel.getTitle(for: section)
     }
     
-    override func tableView(_ tableView: UITableView,
+    func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         viewModel.getNumberOfRows(for: section)
     }
     
-    override func tableView(_ tableView: UITableView,
+    func tableView(_ tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
         let header = SleepsListHeader(viewModel: viewModel)
         header.delegate = self
@@ -124,12 +166,12 @@ extension SleepsListViewController {
         return header
     }
     
-    override func tableView(_ tableView: UITableView,
+    func tableView(_ tableView: UITableView,
                             heightForHeaderInSection section: Int) -> CGFloat {
         50
     }
     
-    override func tableView(_ tableView: UITableView,
+    func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if viewModel.isAwakeDurationRow(at: indexPath) {
@@ -166,8 +208,8 @@ extension SleepsListViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension SleepsListViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension SleepsListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !viewModel.isAwakeDurationRow(at: indexPath) {
             let sleep = viewModel.getSleep(for: viewModel.kid, and: indexPath)
             let sectionItems = viewModel.section[indexPath.section].items
