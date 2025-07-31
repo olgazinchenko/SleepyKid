@@ -128,7 +128,7 @@ final class SleepViewController: UIViewController {
                                       message: message,
                                       preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: Constant.cansel.rawValue, style: .cancel))
+        alert.addAction(UIAlertAction(title: Constant.cancel.rawValue, style: .cancel))
         alert.addAction(UIAlertAction(title: Constant.delete.rawValue, style: .destructive) { _ in
             onConfirm()
         })

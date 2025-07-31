@@ -113,6 +113,19 @@ class KidsListViewController: UIViewController {
         addButton.button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
+    private func showDeleteConfirmation(title: String,
+                                        message: String,
+                                        onConfirm: @escaping () -> Void) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Constant.cancel.rawValue, style: .cancel))
+        alert.addAction(UIAlertAction(title: Constant.delete.rawValue, style: .destructive) { _ in
+            onConfirm()
+        })
+        present(alert, animated: true)
+    }
+    
     private func setupConstraints() {
         addButton.snp.makeConstraints {
             $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
@@ -180,11 +193,16 @@ extension KidsListViewController: UITableViewDelegate {
         let kidViewModel = KidViewModel(kid: kid)
         let provider: UIContextMenuActionProvider = { _ in
             UIMenu(title: "", children: [
-                UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
+                UIAction(title: Constant.edit.rawValue,
+                         image: UIImage(systemName: Constant.editIcon.rawValue)) { _ in
                     self.coordinator?.showKidViewController(for: kid)
                 },
-                UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
-                    kidViewModel.delete()
+                UIAction(title: Constant.delete.rawValue,
+                         image: UIImage(systemName: Constant.deleteIcon.rawValue) ) { _ in
+                    self.showDeleteConfirmation(title: Constant.deleteKidAlertTitle.rawValue,
+                                                message: Constant.deleteKidAlertText.rawValue) {
+                        kidViewModel.delete()
+                    }
                 }
             ])
         }
