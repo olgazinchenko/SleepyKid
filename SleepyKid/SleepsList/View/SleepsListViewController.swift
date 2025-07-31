@@ -29,7 +29,7 @@ class SleepsListViewController: UIViewController {
     
     private let emptyStateLabel: UILabel = {
         let label = UILabel()
-        label.text = "No sleeps recorded for this day. \nTap + to add one."
+        label.text = Constant.sleepsEmptyState.rawValue
         label.textColor = .systemOrange
         label.font = UIFont(name: "Poppins-Regular", size: Layer.screenTitleFontSize.rawValue)
         label.textAlignment = .center
