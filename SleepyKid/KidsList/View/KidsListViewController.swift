@@ -27,7 +27,7 @@ class KidsListViewController: UIViewController {
     }()
     
     private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
-                                                               backgroundColor: .orange)
+                                                               backgroundColor: .systemOrange)
     
     // MARK: - Properties
     var viewModel: KidsListViewModelProtocol

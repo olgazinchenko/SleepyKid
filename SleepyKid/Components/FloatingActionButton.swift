@@ -16,7 +16,7 @@ final class FloatingActionButton: UIView {
     init(
         icon: UIImage? = nil,
         title: String? = nil,
-        backgroundColor: UIColor = .orange,
+        backgroundColor: UIColor = .systemOrange,
         tintColor: UIColor = .white
     ) {
         super.init(frame: .zero)
