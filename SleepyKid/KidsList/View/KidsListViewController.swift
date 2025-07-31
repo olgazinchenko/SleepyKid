@@ -26,6 +26,8 @@ class KidsListViewController: UIViewController {
         return tableView
     }()
     
+    private let emptyStateLabel = EmptyStateLabel(message: Constant.kidsEmptyState.rawValue)
+    
     private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
                                                                backgroundColor: .systemOrange)
     
@@ -54,9 +56,10 @@ class KidsListViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        reloadDataAndUpdateUI()
         
-        viewModel.reloadTable = { [weak tableView] in
-            tableView?.reloadData()
+        viewModel.reloadTable = { [weak self] in
+            self?.reloadDataAndUpdateUI()
         }
     }
     
@@ -70,6 +73,7 @@ class KidsListViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .athensGray
         view.addSubviews([tableView,
+                          emptyStateLabel,
                           addButton])
         
         setupTableView()
@@ -87,6 +91,15 @@ class KidsListViewController: UIViewController {
         tableView.delegate = self
         
         setupTableHeader()
+    }
+    
+    private func updateEmptyStateVisibility() {
+        emptyStateLabel.isHidden = !viewModel.kids.isEmpty
+    }
+    
+    private func reloadDataAndUpdateUI() {
+        tableView.reloadData()
+        updateEmptyStateVisibility()
     }
     
     private func registerObserver() {
@@ -109,6 +122,12 @@ class KidsListViewController: UIViewController {
         
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        emptyStateLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-40)
+            $0.leading.trailing.equalToSuperview().inset(32)
         }
     }
     

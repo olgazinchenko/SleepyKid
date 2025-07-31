@@ -23,4 +23,5 @@ enum Constant: String {
     case name = "Name"
     case add = "Add"
     case sleepsEmptyState = "No sleeps recorded for this day. \nTap + to add one."
+    case kidsEmptyState = "Let’s start by adding your kid!\nTap + to begin."
 }
