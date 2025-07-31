@@ -22,6 +22,10 @@ enum Constant: String {
     case edit = "Edit"
     case name = "Name"
     case add = "Add"
+    case cansel = "Cancel"
+    case delete = "Delete"
     case sleepsEmptyState = "No sleeps recorded for this day. \nTap + to add one."
     case kidsEmptyState = "Let’s start by adding your kid!\nTap + to begin."
+    case deleteSleepAlertTitle = "Delete Sleep?"
+    case deleteSleepAlertText = "Are you sure you want to remove the sleep?"
 }

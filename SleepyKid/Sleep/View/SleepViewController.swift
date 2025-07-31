@@ -121,6 +121,21 @@ final class SleepViewController: UIViewController {
         }
     }
     
+    private func showDeleteConfirmation(title: String,
+                                        message: String,
+                                        onConfirm: @escaping () -> Void) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: Constant.cansel.rawValue, style: .cancel))
+        alert.addAction(UIAlertAction(title: Constant.delete.rawValue, style: .destructive) { _ in
+            onConfirm()
+        })
+        
+        present(alert, animated: true)
+    }
+    
     private func setupConstraints() {
         sleepCell.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -187,9 +202,12 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func deleteButtonTapped() {
-        viewModel.delete()
-        onDelete?()
-        navigationController?.popViewController(animated: true)
+        showDeleteConfirmation(title: Constant.deleteSleepAlertTitle.rawValue,
+                               message: Constant.deleteSleepAlertText.rawValue) { [weak self] in
+            self?.viewModel.delete()
+            self?.onDelete?()
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
     
     private func setupDatePicker() {
