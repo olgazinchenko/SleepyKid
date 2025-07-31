@@ -56,6 +56,7 @@ final class SleepViewController: UIViewController {
     private var sleepTextColor: UIColor
     private var sleepBackgroundColor: UIColor
     var onSave: ((Date) -> Void)?
+    var onDelete: (() -> Void)?
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -186,6 +187,7 @@ final class SleepViewController: UIViewController {
     @objc
     private func deleteButtonTapped() {
         viewModel.delete()
+        onDelete?()
         navigationController?.popViewController(animated: true)
     }
     

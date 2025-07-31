@@ -234,6 +234,11 @@ extension SleepsListViewController: UITableViewDelegate {
                                                  kid: viewModel.kid,
                                                  onSave: { [weak self] startDate in
                 self?.setDateFromSleep(startDate)
+            },
+                                                 onDelete: { [weak self] in
+                guard let self else { return }
+                self.viewModel.getSleeps(for: viewModel.kid, on: self.selectedDate)
+                self.tableView.reloadData()
             })
         }
     }
