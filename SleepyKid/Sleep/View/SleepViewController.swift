@@ -47,11 +47,15 @@ final class SleepViewController: UIViewController {
         return label
     }()
     
+    private let deleteButton = FloatingActionButton(icon: UIImage(systemName: "trash"),
+                                                    backgroundColor: .systemRed)
+    
     // MARK: - Properties
     private var viewModel: SleepViewModelProtocol
     private var sleepImage: UIImage
     private var sleepTextColor: UIColor
     private var sleepBackgroundColor: UIColor
+    var onSave: ((Date) -> Void)?
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -94,15 +98,18 @@ final class SleepViewController: UIViewController {
                           endDateLabel,
                           startSleepDatePicker,
                           endSleepDatePicker,
-                          sleepCell])
+                          sleepCell,
+                          deleteButton])
         setupConstraints()
         setupBars()
         setupDatePicker()
+        addTargets()
     }
     
     private func configure() {
         let isNew = viewModel.sleep == nil
         titleLabel.text = (isNew ? Constant.add : Constant.edit).rawValue.uppercased()
+        deleteButton.isHidden = isNew ? true : false
         
         if isNew {
             let now = Date()
@@ -138,15 +145,21 @@ final class SleepViewController: UIViewController {
             $0.leading.equalToSuperview().offset(20)
             $0.top.equalTo(endDateLabel.snp.bottom).offset(10)
         }
+        
+        deleteButton.snp.makeConstraints {
+            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.leading.equalToSuperview().inset(24)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
+        }
     }
     
     private func setupBars() {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
-                                         action: #selector(saveSleep))
+                                         action: #selector(saveButtonTapped))
         let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
                                           target: self,
-                                          action: #selector(deleteSleep))
+                                          action: #selector(deleteButtonTapped))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
         navigationItem.rightBarButtonItem = saveButton
@@ -155,15 +168,23 @@ final class SleepViewController: UIViewController {
         trashButton.isHidden = viewModel.isNewSleep
     }
     
+    private func addTargets() {
+        deleteButton.button.addTarget(self,
+                                      action: #selector(deleteButtonTapped),
+                                      for: .touchUpInside)
+    }
+    
     @objc
-    private func saveSleep() {
-        viewModel.save(with: startSleepDatePicker.date,
-                       and: endSleepDatePicker.date)
+    private func saveButtonTapped() {
+        let startDate = startSleepDatePicker.date
+        let endDate = endSleepDatePicker.date
+        viewModel.save(with: startDate, and: endDate)
+        onSave?(startDate)
         navigationController?.popViewController(animated: true)
     }
     
     @objc
-    private func deleteSleep() {
+    private func deleteButtonTapped() {
         viewModel.delete()
         navigationController?.popViewController(animated: true)
     }

@@ -57,6 +57,9 @@ final class KidViewController: UIViewController {
         return label
     }()
     
+    private let deleteButton = FloatingActionButton(icon: UIImage(systemName: "trash"),
+                                                    backgroundColor: .systemRed)
+    
     // MARK: - Properties
     var viewModel: KidViewModelProtocol?
     
@@ -75,6 +78,7 @@ final class KidViewController: UIViewController {
         
         setupUI()
         configure()
+        addTargets()
     }
     
     // MARK: - Private Methods
@@ -85,7 +89,8 @@ final class KidViewController: UIViewController {
                           kidNameLabel,
                           kidNameTextField,
                           dateOfBirthLabel,
-                          dateOfBirthDatePicker])
+                          dateOfBirthDatePicker,
+                          deleteButton])
         setupConstraints()
         setupBars()
         hideKeyboardWhenTappedOnScreen()
@@ -119,6 +124,12 @@ final class KidViewController: UIViewController {
             $0.top.equalTo(dateOfBirthLabel.snp.bottom)
             $0.height.equalTo(50)
         }
+        
+        deleteButton.snp.makeConstraints {
+            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.leading.equalToSuperview().inset(24)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
+        }
     }
     
     private func configure() {
@@ -128,6 +139,7 @@ final class KidViewController: UIViewController {
         titleLabel.text = (isNew ? Constant.add : Constant.edit).rawValue.uppercased()
         if isNew {
             viewModel.kid = Kid(id: UUID(), name: "", birthDate: .now)
+            deleteButton.isHidden = true
         }
         
         kidCell.setKid(name: viewModel.kidName, age: viewModel.kidAge)
@@ -145,16 +157,28 @@ final class KidViewController: UIViewController {
     private func setupBars() {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
-                                         action: #selector(saveSleep))
+                                         action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = true
     }
     
+    private func addTargets() {
+        deleteButton.button.addTarget(self,
+                                      action: #selector(deleteButtonTapped),
+                                      for: .touchUpInside)
+    }
+    
     @objc
-    private func saveSleep() {
+    private func saveButtonTapped() {
         guard let viewModel else { return }
         viewModel.save(with: kidNameTextField.text ?? "",
                        and: dateOfBirthDatePicker.date)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func deleteButtonTapped() {
+        viewModel?.delete()
         navigationController?.popViewController(animated: true)
     }
     

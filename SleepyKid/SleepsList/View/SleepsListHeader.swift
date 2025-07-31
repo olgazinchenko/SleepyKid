@@ -39,6 +39,7 @@ final class SleepsListHeader: UIView {
         super.init(frame: .zero)
         setupUI()
         
+        datePicker.maximumDate = DateHelper.shared.getStartOfDay(for: .now)
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     

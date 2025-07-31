@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class FloatingAddButton: UIView {
+final class FloatingActionButton: UIView {
     // MARK: - GUI Variables
     let button: UIButton = {
         let button = UIButton(type: .custom)
@@ -27,9 +27,17 @@ final class FloatingAddButton: UIView {
     }()
 
     // MARK: - Initialization
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupUI()
+    init(icon: UIImage? = nil,
+         title: String? = nil,
+         backgroundColor: UIColor = .orange,
+         tintColor: UIColor = .white) {
+        
+        super.init(frame: .zero)
+        prepareForReuse()
+        setupUI(icon: icon,
+                title: title,
+                backgroundColor: backgroundColor,
+                tintColor: tintColor)
     }
     
     required init?(coder: NSCoder) {
@@ -37,9 +45,29 @@ final class FloatingAddButton: UIView {
     }
     
     // MARK: - Setup
-    private func setupUI() {
+    private func setupUI(icon: UIImage?,
+                         title: String?,
+                         backgroundColor: UIColor,
+                         tintColor: UIColor) {
+        if let icon = icon {
+            button.setImage(icon, for: .normal)
+            button.imageView?.tintColor = .white
+        } else if let title = title {
+            button.setTitle(title, for: .normal)
+            button.setTitleColor(tintColor, for: .normal)
+        }
         addSubview(button)
         setupConstraints()
+    }
+    
+    private func prepareForReuse() {
+        button.setImage(nil, for: .normal)
+        button.setTitle(nil, for: .normal)
+        button.backgroundColor = .clear
+        button.tintColor = .clear
+        button.removeTarget(nil, action: nil, for: .allEvents)
+        button.accessibilityLabel = nil
+        button.layer.shadowOpacity = 0
     }
     
     private func setupConstraints() {

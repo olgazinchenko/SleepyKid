@@ -26,7 +26,8 @@ class KidsListViewController: UIViewController {
         return tableView
     }()
     
-    private let addButton = FloatingAddButton()
+    private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
+                                                               backgroundColor: .orange)
     
     // MARK: - Properties
     var viewModel: KidsListViewModelProtocol

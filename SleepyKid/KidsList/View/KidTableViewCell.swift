@@ -29,13 +29,17 @@ final class KidTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
         label.textColor = .mainTextColor
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
     }()
     
     private let ageLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeSmall.rawValue)
         label.tintColor = .mainTextColor
+        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeSmall.rawValue)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
     }()
     
@@ -83,6 +87,7 @@ final class KidTableViewCell: UITableViewCell {
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(avatarView.snp.trailing).offset(15)
             $0.verticalEdges.equalToSuperview().inset(5)
+            $0.trailing.equalTo(ageLabel.snp.leading).offset(-15)
         }
         
         ageLabel.snp.makeConstraints {
