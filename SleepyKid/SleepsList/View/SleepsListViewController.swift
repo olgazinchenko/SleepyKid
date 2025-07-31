@@ -9,14 +9,14 @@ import UIKit
 
 class SleepsListViewController: UIViewController {
     // MARK: - GUI Variables
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
         label.textColor = .label
         return label
     }()
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SleepTableViewCell.self,
                            forCellReuseIdentifier: "SleepTableViewCell")
@@ -27,8 +27,19 @@ class SleepsListViewController: UIViewController {
         return tableView
     }()
     
+    private let emptyStateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No sleeps recorded for this day. \nTap + to add one."
+        label.textColor = .systemOrange
+        label.font = UIFont(name: "Poppins-Regular", size: Layer.screenTitleFontSize.rawValue)
+        label.textAlignment = .center
+        label.numberOfLines = 3
+        label.isHidden = true
+        return label
+    }()
+    
     private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
-                                                 backgroundColor: .orange)
+                                                 backgroundColor: .systemOrange)
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
@@ -55,8 +66,12 @@ class SleepsListViewController: UIViewController {
         
         setupUI()
         
+        updateEmptyStateVisibility()
+        
         viewModel.reloadTable = { [weak self] in
-            self?.tableView.reloadData()
+            guard let self else { return }
+            self.tableView.reloadData()
+            self.updateEmptyStateVisibility()
         }
     }
     
@@ -74,6 +89,7 @@ class SleepsListViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .athensGray
         view.addSubviews([tableView,
+                          emptyStateLabel,
                           titleLabel,
                           addButton])
         
@@ -113,6 +129,15 @@ class SleepsListViewController: UIViewController {
         addButton.button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
+    private func updateEmptyStateVisibility() {
+        emptyStateLabel.isHidden = !viewModel.sleeps.isEmpty
+    }
+    
+    private func reloadDataAndUpdateUI() {
+        tableView.reloadData()
+        updateEmptyStateVisibility()
+    }
+    
     private func setupConstraints() {
         addButton.snp.makeConstraints {
             $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
@@ -123,12 +148,18 @@ class SleepsListViewController: UIViewController {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        emptyStateLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-40)
+            $0.leading.trailing.equalToSuperview().inset(32)
+        }
     }
     
     private func setDateFromSleep(_ date: Date) {
         selectedDate = date
         viewModel.getSleeps(for: viewModel.kid, on: date)
-        tableView.reloadData()
+        reloadDataAndUpdateUI()
     }
     
     @objc
