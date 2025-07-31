@@ -136,6 +136,7 @@ class SleepsListViewController: UIViewController {
         coordinator?.showSleepViewController(for: nil,
                                              sleepNumber: nil,
                                              kid: viewModel.kid,
+                                             selectedDate: selectedDate,
                                              onSave: { [weak self] startDate in
             self?.setDateFromSleep(startDate)
         })

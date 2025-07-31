@@ -55,6 +55,7 @@ final class SleepViewController: UIViewController {
     private var sleepImage: UIImage
     private var sleepTextColor: UIColor
     private var sleepBackgroundColor: UIColor
+    var selectedDate: Date?
     var onSave: ((Date) -> Void)?
     var onDelete: (() -> Void)?
     
@@ -113,8 +114,8 @@ final class SleepViewController: UIViewController {
         deleteButton.isHidden = isNew ? true : false
         
         if isNew {
-            let now = Date()
-            let defaultSleep = Sleep(id: UUID(), startDate: now, endDate: now)
+            let defaultSleep = Sleep(id: UUID(), startDate: selectedDate ?? .now,
+                                     endDate: selectedDate ?? .now)
             viewModel.sleep = defaultSleep
             setSleep(sleep: defaultSleep, number: viewModel.sleepNumber)
         }
