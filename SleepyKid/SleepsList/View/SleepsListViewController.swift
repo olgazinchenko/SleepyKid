@@ -27,16 +27,7 @@ class SleepsListViewController: UIViewController {
         return tableView
     }()
     
-    private let emptyStateLabel: UILabel = {
-        let label = UILabel()
-        label.text = Constant.sleepsEmptyState.rawValue
-        label.textColor = .systemOrange
-        label.font = UIFont(name: "Poppins-Regular", size: Layer.screenTitleFontSize.rawValue)
-        label.textAlignment = .center
-        label.numberOfLines = 3
-        label.isHidden = true
-        return label
-    }()
+    private let emptyStateLabel = EmptyStateLabel(message: Constant.sleepsEmptyState.rawValue)
     
     private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
                                                  backgroundColor: .systemOrange)
