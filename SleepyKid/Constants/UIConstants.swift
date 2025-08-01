@@ -32,6 +32,7 @@ enum UIConstants {
         //Arrow
         static let arrowSize: CGFloat = 32
         static let arrowTitleSize: CGFloat = 15
+        static let arrowPointSize: CGFloat = 20
         static let arrowCornerRadius: CGFloat = 16
         static let arrowShadowRadius: CGFloat = 4
     }

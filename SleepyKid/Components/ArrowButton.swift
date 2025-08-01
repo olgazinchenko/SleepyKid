@@ -26,13 +26,14 @@ final class ArrowButton: UIButton {
     init(direction: Direction,
          size: CGFloat = UIConstants.Button.arrowSize,
          cornerRadius: CGFloat = UIConstants.Button.arrowCornerRadius,
-         borderColor: UIColor = .systemOrange,
+         borderColor: UIColor = .clear,
          tintColor: UIColor = .systemOrange) {
         
         super.init(frame: .zero)
         
         // Icon
-        let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .medium)
+        let config = UIImage.SymbolConfiguration(pointSize: UIConstants.Button.arrowPointSize,
+                                                 weight: .medium)
         setImage(UIImage(systemName: direction.systemImageName, withConfiguration: config),
                  for: .normal)
         
