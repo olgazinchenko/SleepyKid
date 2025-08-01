@@ -59,6 +59,7 @@ final class KidViewController: UIViewController {
     
     private let deleteButton = FloatingActionButton(icon: UIImage(systemName: "trash"),
                                                     backgroundColor: .systemRed)
+    private let backButton = BackArrowButton()
     
     // MARK: - Properties
     var viewModel: KidViewModelProtocol?
@@ -165,12 +166,16 @@ final class KidViewController: UIViewController {
         ], for: .normal)
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = true
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     private func addTargets() {
         deleteButton.button.addTarget(self,
                                       action: #selector(deleteButtonTapped),
                                       for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
     }
     
     private func showDeleteConfirmation(title: String,
@@ -184,6 +189,10 @@ final class KidViewController: UIViewController {
             onConfirm()
         })
         present(alert, animated: true)
+    }
+    
+    @objc private func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

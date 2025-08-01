@@ -62,10 +62,8 @@ final class ArrowButton: UIButton {
         ])
         
         // Font (if needed for title, though arrows use image only)
-        titleLabel?.font = UIFont(
-            name: "Poppins-Regular",
-            size: UIConstants.Button.arrowTitleSize
-        )
+        titleLabel?.font = UIFont(name: "Poppins-Regular",
+                                  size: UIConstants.Button.arrowTitleSize)
     }
     
     required init?(coder: NSCoder) {
