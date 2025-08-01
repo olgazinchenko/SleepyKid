@@ -179,9 +179,13 @@ final class SleepViewController: UIViewController {
                                           action: #selector(deleteButtonTapped))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
+        saveButton.tintColor = UIConstants.Button.color
+        saveButton.setTitleTextAttributes([
+            .font: UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge) as Any
+        ], for: .normal)
+        saveButton.isEnabled = true
         navigationItem.rightBarButtonItem = saveButton
         setToolbarItems([trashButton, spacing], animated: true)
-        saveButton.isEnabled = true
         trashButton.isHidden = viewModel.isNewSleep
     }
     

@@ -5,13 +5,15 @@
 //  Created by ozinchenko.dev on 12/05/2024.
 //
 
-import Foundation
+import UIKit
 
 enum UIConstants {
     
     enum Layer {
         static let mainCornerRadius: CGFloat = 10
         static let mainBorderWidth: CGFloat = 1
+        static let mainLabelColor: UIColor = .mainTextColor
+        static let mainBackgroundColor: UIColor = .athensGray
     }
     
     enum FontSize {
@@ -21,6 +23,7 @@ enum UIConstants {
     }
     
     enum Button {
+        static let color: UIColor = .systemOrange
         // Action
         static let actionSize: CGFloat = 54
         static let actionTitleSize: CGFloat = 44

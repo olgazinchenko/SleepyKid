@@ -158,6 +158,10 @@ final class KidViewController: UIViewController {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
                                          action: #selector(saveButtonTapped))
+        saveButton.tintColor = UIConstants.Button.color
+        saveButton.setTitleTextAttributes([
+            .font: UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge) as Any
+        ], for: .normal)
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = true
     }
