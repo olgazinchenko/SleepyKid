@@ -87,7 +87,6 @@ class SleepsListViewController: UIViewController {
                           addButton])
         
         setupTableView()
-        setupToolBar()
         registerObserver()
         addTargets()
         setupConstraints()
@@ -102,16 +101,6 @@ class SleepsListViewController: UIViewController {
     private func setupScreeHeader() {
         titleLabel.text = "\(viewModel.kidName) 😴 sleeps".uppercased()
         navigationItem.titleView = titleLabel
-    }
-    
-    private func setupToolBar() {
-        let addButton = UIBarButtonItem(title: "+Add",
-                                        style: .done,
-                                        target: self,
-                                        action: #selector(addButtonTapped))
-        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
-        
-        setToolbarItems([spacing, addButton], animated: true)
     }
     
     private func setToolbar(hidden: Bool) {

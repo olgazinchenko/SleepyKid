@@ -77,6 +77,7 @@ class KidsListViewController: UIViewController {
                           addButton])
         
         setupTableView()
+        setupTableHeader()
         setupConstraints()
         registerObserver()
         addTargets()
@@ -88,10 +89,7 @@ class KidsListViewController: UIViewController {
     
     private func setupTableView() {
         tableView.dataSource = self
-        tableView.delegate = self
-        
-        setupTableHeader()
-    }
+        tableView.delegate = self    }
     
     private func updateEmptyStateVisibility() {
         emptyStateLabel.isHidden = !viewModel.kids.isEmpty
