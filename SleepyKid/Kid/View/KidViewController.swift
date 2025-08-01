@@ -168,6 +168,19 @@ final class KidViewController: UIViewController {
                                       for: .touchUpInside)
     }
     
+    private func showDeleteConfirmation(title: String,
+                                        message: String,
+                                        onConfirm: @escaping () -> Void) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Constant.cancel.rawValue, style: .cancel))
+        alert.addAction(UIAlertAction(title: Constant.delete.rawValue, style: .destructive) { _ in
+            onConfirm()
+        })
+        present(alert, animated: true)
+    }
+    
     @objc
     private func saveButtonTapped() {
         guard let viewModel else { return }
@@ -178,8 +191,11 @@ final class KidViewController: UIViewController {
     
     @objc
     private func deleteButtonTapped() {
-        viewModel?.delete()
-        navigationController?.popViewController(animated: true)
+        showDeleteConfirmation(title: Constant.deleteKidAlertTitle.rawValue,
+                               message: Constant.deleteKidAlertText.rawValue) { [weak self] in
+            self?.viewModel?.delete()
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc

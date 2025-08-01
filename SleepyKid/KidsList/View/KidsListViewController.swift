@@ -26,8 +26,10 @@ class KidsListViewController: UIViewController {
         return tableView
     }()
     
+    private let emptyStateLabel = EmptyStateLabel(message: Constant.kidsEmptyState.rawValue)
+    
     private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
-                                                               backgroundColor: .orange)
+                                                               backgroundColor: .systemOrange)
     
     // MARK: - Properties
     var viewModel: KidsListViewModelProtocol
@@ -54,9 +56,10 @@ class KidsListViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        reloadDataAndUpdateUI()
         
-        viewModel.reloadTable = { [weak tableView] in
-            tableView?.reloadData()
+        viewModel.reloadTable = { [weak self] in
+            self?.reloadDataAndUpdateUI()
         }
     }
     
@@ -70,6 +73,7 @@ class KidsListViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .athensGray
         view.addSubviews([tableView,
+                          emptyStateLabel,
                           addButton])
         
         setupTableView()
@@ -89,6 +93,15 @@ class KidsListViewController: UIViewController {
         setupTableHeader()
     }
     
+    private func updateEmptyStateVisibility() {
+        emptyStateLabel.isHidden = !viewModel.kids.isEmpty
+    }
+    
+    private func reloadDataAndUpdateUI() {
+        tableView.reloadData()
+        updateEmptyStateVisibility()
+    }
+    
     private func registerObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateData),
@@ -100,6 +113,19 @@ class KidsListViewController: UIViewController {
         addButton.button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
+    private func showDeleteConfirmation(title: String,
+                                        message: String,
+                                        onConfirm: @escaping () -> Void) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Constant.cancel.rawValue, style: .cancel))
+        alert.addAction(UIAlertAction(title: Constant.delete.rawValue, style: .destructive) { _ in
+            onConfirm()
+        })
+        present(alert, animated: true)
+    }
+    
     private func setupConstraints() {
         addButton.snp.makeConstraints {
             $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
@@ -109,6 +135,12 @@ class KidsListViewController: UIViewController {
         
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        emptyStateLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-40)
+            $0.leading.trailing.equalToSuperview().inset(32)
         }
     }
     
@@ -161,11 +193,16 @@ extension KidsListViewController: UITableViewDelegate {
         let kidViewModel = KidViewModel(kid: kid)
         let provider: UIContextMenuActionProvider = { _ in
             UIMenu(title: "", children: [
-                UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { _ in
+                UIAction(title: Constant.edit.rawValue,
+                         image: UIImage(systemName: Constant.editIcon.rawValue)) { _ in
                     self.coordinator?.showKidViewController(for: kid)
                 },
-                UIAction(title: "Delete", image: UIImage(systemName: "trash") ) { _ in
-                    kidViewModel.delete()
+                UIAction(title: Constant.delete.rawValue,
+                         image: UIImage(systemName: Constant.deleteIcon.rawValue) ) { _ in
+                    self.showDeleteConfirmation(title: Constant.deleteKidAlertTitle.rawValue,
+                                                message: Constant.deleteKidAlertText.rawValue) {
+                        kidViewModel.delete()
+                    }
                 }
             ])
         }

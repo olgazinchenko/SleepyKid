@@ -38,14 +38,18 @@ final class AppCoordinator: Coordinator {
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
-
+    
     func showSleepViewController(for sleep: Sleep?,
                                  sleepNumber: Int?,
                                  kid: Kid?,
-                                 onSave: ((Date) -> Void)? = nil) {
+                                 selectedDate: Date? = nil,
+                                 onSave: ((Date) -> Void)? = nil,
+                                 onDelete: (() -> Void)? = nil) {
         let viewModel = SleepViewModel(sleep: sleep, sleepNumber: sleepNumber, kid: kid)
         let vc = SleepViewController(viewModel: viewModel)
+        vc.selectedDate = selectedDate
         vc.onSave = onSave
+        vc.onDelete = onDelete
         navigationController.pushViewController(vc, animated: true)
     }
 } 

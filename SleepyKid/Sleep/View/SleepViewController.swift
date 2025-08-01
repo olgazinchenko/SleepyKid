@@ -55,7 +55,9 @@ final class SleepViewController: UIViewController {
     private var sleepImage: UIImage
     private var sleepTextColor: UIColor
     private var sleepBackgroundColor: UIColor
+    var selectedDate: Date?
     var onSave: ((Date) -> Void)?
+    var onDelete: (() -> Void)?
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -112,11 +114,26 @@ final class SleepViewController: UIViewController {
         deleteButton.isHidden = isNew ? true : false
         
         if isNew {
-            let now = Date()
-            let defaultSleep = Sleep(id: UUID(), startDate: now, endDate: now)
+            let defaultSleep = Sleep(id: UUID(), startDate: selectedDate ?? .now,
+                                     endDate: selectedDate ?? .now)
             viewModel.sleep = defaultSleep
             setSleep(sleep: defaultSleep, number: viewModel.sleepNumber)
         }
+    }
+    
+    private func showDeleteConfirmation(title: String,
+                                        message: String,
+                                        onConfirm: @escaping () -> Void) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: Constant.cancel.rawValue, style: .cancel))
+        alert.addAction(UIAlertAction(title: Constant.delete.rawValue, style: .destructive) { _ in
+            onConfirm()
+        })
+        
+        present(alert, animated: true)
     }
     
     private func setupConstraints() {
@@ -185,8 +202,12 @@ final class SleepViewController: UIViewController {
     
     @objc
     private func deleteButtonTapped() {
-        viewModel.delete()
-        navigationController?.popViewController(animated: true)
+        showDeleteConfirmation(title: Constant.deleteSleepAlertTitle.rawValue,
+                               message: Constant.deleteSleepAlertText.rawValue) { [weak self] in
+            self?.viewModel.delete()
+            self?.onDelete?()
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
     
     private func setupDatePicker() {
