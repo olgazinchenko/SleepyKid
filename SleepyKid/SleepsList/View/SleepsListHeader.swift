@@ -28,22 +28,9 @@ final class SleepsListHeader: UIView {
         return datePicker
     }()
     
-    private let rightArrowButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "arrow.forward"), for: .normal)
-        button.backgroundColor = .clear
-        button.tintColor = .systemOrange
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.systemOrange.cgColor
-        button.titleLabel?.font = UIFont(name: "Poppins-Regular",
-                                         size: UIConstants.Button.arrowTitleSize)
-        button.layer.cornerRadius = UIConstants.Button.arrowCornerRadius
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = UIConstants.Button.arrowShadowRadius
-        return button
-    }()
+    private let rightArrowButton = ArrowButton(direction: .right)
+    
+    private let leftArrowButton = ArrowButton(direction: .left)
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
@@ -68,7 +55,8 @@ final class SleepsListHeader: UIView {
     private func setupUI() {
         addSubview(containerView)
         containerView.addSubviews([datePicker,
-                                  rightArrowButton])
+                                   rightArrowButton,
+                                   leftArrowButton])
         setupConstraints()
     }
     
@@ -85,6 +73,12 @@ final class SleepsListHeader: UIView {
         
         rightArrowButton.snp.makeConstraints {
             $0.leading.equalTo(datePicker.snp.trailing).offset(15)
+            $0.width.height.equalTo(UIConstants.Button.arrowSize)
+            $0.centerY.equalTo(datePicker.snp.centerY)
+        }
+        
+        leftArrowButton.snp.makeConstraints {
+            $0.trailing.equalTo(datePicker.snp.leading).offset(-15)
             $0.width.height.equalTo(UIConstants.Button.arrowSize)
             $0.centerY.equalTo(datePicker.snp.centerY)
         }
