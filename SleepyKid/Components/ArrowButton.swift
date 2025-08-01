@@ -17,8 +17,8 @@ final class ArrowButton: UIButton {
         
         var systemImageName: String {
             switch self {
-            case .left: return "arrow.backward"
-            case .right: return "arrow.forward"
+            case .left: return "chevron.backward.chevron.backward.dotted"
+            case .right: return "chevron.forward.dotted.chevron.forward"
             }
         }
     }
@@ -32,7 +32,9 @@ final class ArrowButton: UIButton {
         super.init(frame: .zero)
         
         // Icon
-        setImage(UIImage(systemName: direction.systemImageName), for: .normal)
+        let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .medium)
+        setImage(UIImage(systemName: direction.systemImageName, withConfiguration: config),
+                 for: .normal)
         
         // Colors
         self.tintColor = tintColor
