@@ -12,14 +12,14 @@ final class KidTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
+        view.layer.cornerRadius = UIConstants.Layer.mainCornerRadius
         return view
     }()
     
     private let avatarView: UIImageView = {
         let view = UIImageView()
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
+        view.layer.cornerRadius = UIConstants.Layer.mainCornerRadius
         view.image = UIImage(named: Constant.appIcon.rawValue)
         view.contentMode = .scaleAspectFill
         return view
@@ -27,7 +27,7 @@ final class KidTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         label.textColor = .mainTextColor
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -37,7 +37,7 @@ final class KidTableViewCell: UITableViewCell {
     private let ageLabel: UILabel = {
         let label = UILabel()
         label.tintColor = .mainTextColor
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeSmall.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label

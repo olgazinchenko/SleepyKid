@@ -12,7 +12,7 @@ final class KidViewController: UIViewController {
     private let kidNameLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.kidName.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         label.textColor = .black
         return label
     }()
@@ -23,7 +23,7 @@ final class KidViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.placeholder = Constant.name.rawValue
         textField.layer.borderColor = UIColor.black.cgColor
-        textField.font = UIFont(name: "Poppins-Light", size: Layer.labelFontSizeLarge.rawValue)
+        textField.font = UIFont(name: "Poppins-Light", size: UIConstants.FontSize.labelLarge)
         return textField
     }()
     
@@ -31,7 +31,7 @@ final class KidViewController: UIViewController {
         let label = UILabel()
         label.textColor = .black
         label.text = Constant.dateOfBirth.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         return label
     }()
     
@@ -51,7 +51,7 @@ final class KidViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.font = UIFont(name: "Poppins-Bold", size: UIConstants.FontSize.screenTitle)
         label.textColor = .mainTextColor
         label.sizeToFit()
         return label
@@ -126,7 +126,7 @@ final class KidViewController: UIViewController {
         }
         
         deleteButton.snp.makeConstraints {
-            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.height.width.equalTo(UIConstants.Button.actionSize)
             $0.leading.equalToSuperview().inset(24)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
         }

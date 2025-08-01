@@ -11,7 +11,7 @@ class SleepsListViewController: UIViewController {
     // MARK: - GUI Variables
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.font = UIFont(name: "Poppins-Bold", size: UIConstants.FontSize.screenTitle)
         label.textColor = .label
         return label
     }()
@@ -131,7 +131,7 @@ class SleepsListViewController: UIViewController {
     
     private func setupConstraints() {
         addButton.snp.makeConstraints {
-            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.height.width.equalTo(UIConstants.Button.actionSize)
             $0.trailing.equalToSuperview().inset(24)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
         }

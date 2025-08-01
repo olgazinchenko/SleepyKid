@@ -13,14 +13,14 @@ final class SleepViewController: UIViewController {
     private let startDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.startDate.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         return label
     }()
     
     private let endDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.endDate.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         return label
     }()
     
@@ -41,7 +41,7 @@ final class SleepViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.edit.rawValue.uppercased()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.font = UIFont(name: "Poppins-Bold", size: UIConstants.FontSize.screenTitle)
         label.textColor = .mainTextColor
         label.sizeToFit()
         return label
@@ -164,7 +164,7 @@ final class SleepViewController: UIViewController {
         }
         
         deleteButton.snp.makeConstraints {
-            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.height.width.equalTo(UIConstants.Button.actionSize)
             $0.leading.equalToSuperview().inset(24)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
         }

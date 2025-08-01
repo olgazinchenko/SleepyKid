@@ -28,6 +28,23 @@ final class SleepsListHeader: UIView {
         return datePicker
     }()
     
+    private let rightArrowButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "arrow.forward"), for: .normal)
+        button.backgroundColor = .clear
+        button.tintColor = .systemOrange
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.systemOrange.cgColor
+        button.titleLabel?.font = UIFont(name: "Poppins-Regular",
+                                         size: UIConstants.Button.arrowTitleSize)
+        button.layer.cornerRadius = UIConstants.Button.arrowCornerRadius
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = UIConstants.Button.arrowShadowRadius
+        return button
+    }()
+    
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
     weak var delegate: SleepsListHeaderDelegate?
@@ -50,7 +67,8 @@ final class SleepsListHeader: UIView {
     // MARK: - Private Methods
     private func setupUI() {
         addSubview(containerView)
-        containerView.addSubviews([datePicker])
+        containerView.addSubviews([datePicker,
+                                  rightArrowButton])
         setupConstraints()
     }
     
@@ -63,6 +81,12 @@ final class SleepsListHeader: UIView {
         datePicker.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.verticalEdges.equalToSuperview()
+        }
+        
+        rightArrowButton.snp.makeConstraints {
+            $0.leading.equalTo(datePicker.snp.trailing).offset(15)
+            $0.width.height.equalTo(UIConstants.Button.arrowSize)
+            $0.centerY.equalTo(datePicker.snp.centerY)
         }
     }
     

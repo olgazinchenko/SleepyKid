@@ -43,12 +43,12 @@ final class FloatingActionButton: UIView {
         button.backgroundColor = backgroundColor
         button.tintColor = tintColor
         button.titleLabel?.font = UIFont(name: "Poppins-Regular",
-                                         size: Layer.actionButtonTitleSize.rawValue)
-        button.layer.cornerRadius = Layer.actionButtonCornerRadius.rawValue
+                                         size: UIConstants.Button.actionTitleSize)
+        button.layer.cornerRadius = UIConstants.Button.actionCornerRadius
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.2
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = Layer.actionButtonssHadowRadius.rawValue
+        button.layer.shadowRadius = UIConstants.Button.actionShadowRadius
         button.accessibilityLabel = nil
         
         if let icon = icon {
