@@ -31,6 +31,8 @@ class SleepsListViewController: UIViewController {
     
     private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
                                                  backgroundColor: .systemOrange)
+    private let backButton = BackArrowButton()
+    
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
@@ -114,10 +116,14 @@ class SleepsListViewController: UIViewController {
     
     private func setToolbar(hidden: Bool) {
         navigationController?.toolbar.isHidden = hidden
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+
     }
     
     private func addTargets() {
         addButton.button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
     }
     
     private func updateEmptyStateVisibility() {
@@ -151,6 +157,10 @@ class SleepsListViewController: UIViewController {
         selectedDate = date
         viewModel.getSleeps(for: viewModel.kid, on: date)
         reloadDataAndUpdateUI()
+    }
+    
+    @objc private func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

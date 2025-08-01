@@ -50,6 +50,8 @@ final class SleepViewController: UIViewController {
     private let deleteButton = FloatingActionButton(icon: UIImage(systemName: "trash"),
                                                     backgroundColor: .systemRed)
     
+    private let backButton = BackArrowButton()
+    
     // MARK: - Properties
     private var viewModel: SleepViewModelProtocol
     private var sleepImage: UIImage
@@ -63,19 +65,7 @@ final class SleepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
         setupUI()
-        
-        let backButton = BackArrowButton()
-         backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
-         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-         
-         // Keep iOS swipe-to-go-back gesture working
-         navigationController?.interactivePopGestureRecognizer?.delegate = nil
-    }
-    
-    @objc private func backTapped() {
-        navigationController?.popViewController(animated: true)
     }
     
     init(viewModel: SleepViewModelProtocol) {
@@ -113,6 +103,7 @@ final class SleepViewController: UIViewController {
                           endSleepDatePicker,
                           sleepCell,
                           deleteButton])
+        configure()
         setupConstraints()
         setupBars()
         setupDatePicker()
@@ -185,26 +176,25 @@ final class SleepViewController: UIViewController {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
                                          action: #selector(saveButtonTapped))
-        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
-                                          target: self,
-                                          action: #selector(deleteButtonTapped))
-        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
-        
         saveButton.tintColor = UIConstants.Button.color
         saveButton.setTitleTextAttributes([
             .font: UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge) as Any
         ], for: .normal)
         saveButton.isEnabled = true
         navigationItem.rightBarButtonItem = saveButton
-        setToolbarItems([trashButton, spacing], animated: true)
-        trashButton.isHidden = viewModel.isNewSleep
-        navigationItem.backButtonDisplayMode = .minimal
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     private func addTargets() {
         deleteButton.button.addTarget(self,
                                       action: #selector(deleteButtonTapped),
                                       for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+    }
+    
+    @objc private func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

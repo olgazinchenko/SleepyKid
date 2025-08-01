@@ -9,13 +9,11 @@ import UIKit
 
 final class BackArrowButton: UIButton {
     
-    init(
-        size: CGFloat = 36,
-        cornerRadius: CGFloat = 6,
-        backgroundColor: UIColor = .clear,
-        borderColor: UIColor = UIConstants.Button.color,
-        tintColor: UIColor = UIConstants.Layer.mainLabelColor
-    ) {
+    init(size: CGFloat = 36,
+         cornerRadius: CGFloat = 6,
+         backgroundColor: UIColor = .clear,
+         borderColor: UIColor = UIConstants.Button.color,
+         tintColor: UIColor = UIConstants.Layer.mainLabelColor) {
         super.init(frame: .zero)
         
         // Icon
