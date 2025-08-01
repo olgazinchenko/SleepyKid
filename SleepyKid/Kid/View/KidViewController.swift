@@ -79,6 +79,7 @@ final class KidViewController: UIViewController {
         setupUI()
         configure()
         addTargets()
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     // MARK: - Private Methods

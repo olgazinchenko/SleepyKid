@@ -65,6 +65,17 @@ final class SleepViewController: UIViewController {
         
         configure()
         setupUI()
+        
+        let backButton = BackArrowButton()
+         backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+         
+         // Keep iOS swipe-to-go-back gesture working
+         navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    @objc private func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     init(viewModel: SleepViewModelProtocol) {
@@ -187,6 +198,7 @@ final class SleepViewController: UIViewController {
         navigationItem.rightBarButtonItem = saveButton
         setToolbarItems([trashButton, spacing], animated: true)
         trashButton.isHidden = viewModel.isNewSleep
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     private func addTargets() {

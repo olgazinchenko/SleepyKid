@@ -37,6 +37,7 @@
 		9041A8082BF6A8A600F44BB7 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8072BF6A8A600F44BB7 /* SleepType.swift */; };
 		9041A80A2BF7C06600F44BB7 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041A8092BF7C06600F44BB7 /* TableViewSection.swift */; };
 		90562EE02E3CC02C006F3524 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90562EDF2E3CC02C006F3524 /* ArrowButton.swift */; };
+		90562EE22E3CFD8F006F3524 /* BackArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90562EE12E3CFD8F006F3524 /* BackArrowButton.swift */; };
 		9064B4002BF0D65900E795E7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B3FF2BF0D65900E795E7 /* Constant.swift */; };
 		9064B4042BF0DE6E00E795E7 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064B4032BF0DE6E00E795E7 /* UIConstants.swift */; };
 		907316B22BDB950E00BA92FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907316B12BDB950E00BA92FB /* AppDelegate.swift */; };
@@ -108,6 +109,7 @@
 		9041A8072BF6A8A600F44BB7 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
 		9041A8092BF7C06600F44BB7 /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		90562EDF2E3CC02C006F3524 /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
+		90562EE12E3CFD8F006F3524 /* BackArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackArrowButton.swift; sourceTree = "<group>"; };
 		9064B3FF2BF0D65900E795E7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9064B4032BF0DE6E00E795E7 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		907316AE2BDB950E00BA92FB /* SleepyKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepyKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,6 +369,7 @@
 				90BA95A12E3B759C00551558 /* EmptyStateLabel.swift */,
 				908C433E2E3A3C8B00FA4C06 /* FloatingActionButton.swift */,
 				90562EDF2E3CC02C006F3524 /* ArrowButton.swift */,
+				90562EE12E3CFD8F006F3524 /* BackArrowButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				90EC4A062BDC077700DEBAFF /* UIView+Ex.swift in Sources */,
 				90091DFD2BE0259300A92E00 /* SleepViewController.swift in Sources */,
 				9029A64D2BDBB15B002864AC /* Kid.swift in Sources */,
+				90562EE22E3CFD8F006F3524 /* BackArrowButton.swift in Sources */,
 				90562EE02E3CC02C006F3524 /* ArrowButton.swift in Sources */,
 				90B801862BEE305B002B08F6 /* DateHelper.swift in Sources */,
 				90091DFB2BDD1DEE00A92E00 /* SleepTableViewCell.swift in Sources */,
