@@ -18,13 +18,13 @@ final class SleepAwakeDurationCell: UITableViewCell {
     private let awakeIconView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: Constant.awakeImage.rawValue)
-        view.tintColor = .mainTextColor
+        view.tintColor = .systemMint
         return view
     }()
     
     private let awakeDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Regular", size: Layer.labelFontSizeSmall.rawValue)
+        label.font = UIFont(name: "Poppins-Regular", size: UIConstants.FontSize.labelSmall)
         label.textColor = .mainTextColor
         return label
     }()
@@ -71,7 +71,7 @@ final class SleepAwakeDurationCell: UITableViewCell {
         awakeIconView.snp.makeConstraints {
             $0.trailing.equalTo(awakeDurationLabel.snp.leading).offset(-5)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(20)
+            $0.height.width.equalTo(10)
         }
     }
 } 

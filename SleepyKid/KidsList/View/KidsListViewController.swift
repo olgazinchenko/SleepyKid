@@ -12,7 +12,7 @@ class KidsListViewController: UIViewController {
     private let tableHeaderLabel: UILabel = {
         let label = UILabel()
         label.text = "Kids".uppercased()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.font = UIFont(name: "Poppins-Bold", size: UIConstants.FontSize.screenTitle)
         label.textColor = .label
         return label
     }()
@@ -77,6 +77,7 @@ class KidsListViewController: UIViewController {
                           addButton])
         
         setupTableView()
+        setupTableHeader()
         setupConstraints()
         registerObserver()
         addTargets()
@@ -88,10 +89,7 @@ class KidsListViewController: UIViewController {
     
     private func setupTableView() {
         tableView.dataSource = self
-        tableView.delegate = self
-        
-        setupTableHeader()
-    }
+        tableView.delegate = self    }
     
     private func updateEmptyStateVisibility() {
         emptyStateLabel.isHidden = !viewModel.kids.isEmpty
@@ -128,7 +126,7 @@ class KidsListViewController: UIViewController {
     
     private func setupConstraints() {
         addButton.snp.makeConstraints {
-            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.height.width.equalTo(UIConstants.Button.actionSize)
             $0.trailing.equalToSuperview().inset(24)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
         }

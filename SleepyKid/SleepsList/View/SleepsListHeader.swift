@@ -28,6 +28,10 @@ final class SleepsListHeader: UIView {
         return datePicker
     }()
     
+    private let rightArrowButton = ArrowButton(direction: .right)
+    
+    private let leftArrowButton = ArrowButton(direction: .left)
+    
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
     weak var delegate: SleepsListHeaderDelegate?
@@ -50,7 +54,9 @@ final class SleepsListHeader: UIView {
     // MARK: - Private Methods
     private func setupUI() {
         addSubview(containerView)
-        containerView.addSubviews([datePicker])
+        containerView.addSubviews([datePicker,
+                                   rightArrowButton,
+                                   leftArrowButton])
         setupConstraints()
     }
     
@@ -63,6 +69,18 @@ final class SleepsListHeader: UIView {
         datePicker.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.verticalEdges.equalToSuperview()
+        }
+        
+        rightArrowButton.snp.makeConstraints {
+            $0.leading.equalTo(datePicker.snp.trailing).offset(15)
+            $0.width.height.equalTo(UIConstants.Button.arrowSize)
+            $0.centerY.equalTo(datePicker.snp.centerY)
+        }
+        
+        leftArrowButton.snp.makeConstraints {
+            $0.trailing.equalTo(datePicker.snp.leading).offset(-15)
+            $0.width.height.equalTo(UIConstants.Button.arrowSize)
+            $0.centerY.equalTo(datePicker.snp.centerY)
         }
     }
     

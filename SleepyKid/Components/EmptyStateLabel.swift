@@ -23,7 +23,7 @@ final class EmptyStateLabel: UILabel {
     private func setupUI(message: String) {
         text = message
         textColor = .systemOrange
-        font = UIFont(name: "Poppins-Regular", size: Layer.screenTitleFontSize.rawValue)
+        font = UIFont(name: "Poppins-Regular", size: UIConstants.FontSize.labelLarge)
         textAlignment = .center
         numberOfLines = 3
         isHidden = true

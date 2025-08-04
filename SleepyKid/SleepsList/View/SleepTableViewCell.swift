@@ -12,7 +12,7 @@ final class SleepTableViewCell: UITableViewCell {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
+        view.layer.cornerRadius = UIConstants.Layer.mainCornerRadius
         view.backgroundColor = .white
         return view
     }()
@@ -20,7 +20,7 @@ final class SleepTableViewCell: UITableViewCell {
     private let iconView: UIImageView = {
         let view = UIImageView()
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = Layer.mainCornerRadius.rawValue
+        view.layer.cornerRadius = UIConstants.Layer.mainCornerRadius
         return view
     }()
     
@@ -32,14 +32,14 @@ final class SleepTableViewCell: UITableViewCell {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Regular", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Regular", size: UIConstants.FontSize.labelLarge)
         label.tintColor = .mainTextColor
         return label
     }()
     
     private let sleepDurationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeSmall.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelSmall)
         label.tintColor = .mainTextColor
         return label
     }()

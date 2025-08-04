@@ -11,7 +11,7 @@ class SleepsListViewController: UIViewController {
     // MARK: - GUI Variables
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.font = UIFont(name: "Poppins-Bold", size: UIConstants.FontSize.screenTitle)
         label.textColor = .label
         return label
     }()
@@ -31,6 +31,8 @@ class SleepsListViewController: UIViewController {
     
     private let addButton = FloatingActionButton(icon: UIImage(systemName: "plus"),
                                                  backgroundColor: .systemOrange)
+    private let backButton = BackArrowButton()
+    
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
@@ -85,7 +87,6 @@ class SleepsListViewController: UIViewController {
                           addButton])
         
         setupTableView()
-        setupToolBar()
         registerObserver()
         addTargets()
         setupConstraints()
@@ -102,22 +103,16 @@ class SleepsListViewController: UIViewController {
         navigationItem.titleView = titleLabel
     }
     
-    private func setupToolBar() {
-        let addButton = UIBarButtonItem(title: "+Add",
-                                        style: .done,
-                                        target: self,
-                                        action: #selector(addButtonTapped))
-        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
-        
-        setToolbarItems([spacing, addButton], animated: true)
-    }
-    
     private func setToolbar(hidden: Bool) {
         navigationController?.toolbar.isHidden = hidden
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+
     }
     
     private func addTargets() {
         addButton.button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
     }
     
     private func updateEmptyStateVisibility() {
@@ -131,7 +126,7 @@ class SleepsListViewController: UIViewController {
     
     private func setupConstraints() {
         addButton.snp.makeConstraints {
-            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.height.width.equalTo(UIConstants.Button.actionSize)
             $0.trailing.equalToSuperview().inset(24)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
         }
@@ -151,6 +146,10 @@ class SleepsListViewController: UIViewController {
         selectedDate = date
         viewModel.getSleeps(for: viewModel.kid, on: date)
         reloadDataAndUpdateUI()
+    }
+    
+    @objc private func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

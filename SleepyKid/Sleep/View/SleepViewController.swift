@@ -13,14 +13,14 @@ final class SleepViewController: UIViewController {
     private let startDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.startDate.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         return label
     }()
     
     private let endDateLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.endDate.rawValue
-        label.font = UIFont(name: "Poppins-Medium", size: Layer.labelFontSizeLarge.rawValue)
+        label.font = UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge)
         return label
     }()
     
@@ -41,7 +41,7 @@ final class SleepViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = Constant.edit.rawValue.uppercased()
-        label.font = UIFont(name: "Poppins-Bold", size: Layer.screenTitleFontSize.rawValue)
+        label.font = UIFont(name: "Poppins-Bold", size: UIConstants.FontSize.screenTitle)
         label.textColor = .mainTextColor
         label.sizeToFit()
         return label
@@ -49,6 +49,8 @@ final class SleepViewController: UIViewController {
     
     private let deleteButton = FloatingActionButton(icon: UIImage(systemName: "trash"),
                                                     backgroundColor: .systemRed)
+    
+    private let backButton = BackArrowButton()
     
     // MARK: - Properties
     private var viewModel: SleepViewModelProtocol
@@ -63,7 +65,6 @@ final class SleepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
         setupUI()
     }
     
@@ -102,6 +103,7 @@ final class SleepViewController: UIViewController {
                           endSleepDatePicker,
                           sleepCell,
                           deleteButton])
+        configure()
         setupConstraints()
         setupBars()
         setupDatePicker()
@@ -164,7 +166,7 @@ final class SleepViewController: UIViewController {
         }
         
         deleteButton.snp.makeConstraints {
-            $0.height.width.equalTo(Layer.actionButtonSize.rawValue)
+            $0.height.width.equalTo(UIConstants.Button.actionSize)
             $0.leading.equalToSuperview().inset(24)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
         }
@@ -174,21 +176,25 @@ final class SleepViewController: UIViewController {
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
                                          target: self,
                                          action: #selector(saveButtonTapped))
-        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
-                                          target: self,
-                                          action: #selector(deleteButtonTapped))
-        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
-        
-        navigationItem.rightBarButtonItem = saveButton
-        setToolbarItems([trashButton, spacing], animated: true)
+        saveButton.tintColor = UIConstants.Button.color
+        saveButton.setTitleTextAttributes([
+            .font: UIFont(name: "Poppins-Medium", size: UIConstants.FontSize.labelLarge) as Any
+        ], for: .normal)
         saveButton.isEnabled = true
-        trashButton.isHidden = viewModel.isNewSleep
+        navigationItem.rightBarButtonItem = saveButton
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     private func addTargets() {
         deleteButton.button.addTarget(self,
                                       action: #selector(deleteButtonTapped),
                                       for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+    }
+    
+    @objc private func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc
