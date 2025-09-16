@@ -45,6 +45,8 @@ final class SleepsListHeader: UIView {
         
         datePicker.maximumDate = DateHelper.shared.getStartOfDay(for: .now)
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+        rightArrowButton.addTarget(self, action: #selector(setNextDate), for: .touchUpInside)
+        leftArrowButton.addTarget(self, action: #selector(setPreviousDate), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -84,11 +86,38 @@ final class SleepsListHeader: UIView {
         }
     }
     
-    func setDate(_ date: Date) {
-      datePicker.date = date
+    @objc private func dateChanged(_ picker: UIDatePicker) {
+        delegate?.sleepsListHeader(self, didPick: picker.date)
     }
     
-    @objc private func dateChanged(_ picker: UIDatePicker) {
-      delegate?.sleepsListHeader(self, didPick: picker.date)
+    @objc private func setNextDate() { stepDay(+1) }
+    
+    @objc private func setPreviousDate() { stepDay(-1) }
+    
+    private func stepDay(_ delta: Int) {
+        let calendar = Calendar.current
+        guard var newDate = calendar.date(byAdding: .day,
+                                          value: delta,
+                                          to: datePicker.date) else { return }
+        
+        if let min = datePicker.minimumDate, newDate < min { newDate = min }
+        if let max = datePicker.maximumDate, newDate > max { newDate = max }
+        
+        datePicker.setDate(newDate, animated: true)
+        delegate?.sleepsListHeader(self, didPick: newDate)
+        updateArrowButtonsEnabled()
+    }
+    
+    private func updateArrowButtonsEnabled() {
+        let date = datePicker.date
+        
+        leftArrowButton.isEnabled = !(datePicker.minimumDate.map { date <= $0 } ?? false)
+        rightArrowButton.isEnabled = !(datePicker.maximumDate.map { date >= $0 } ?? false)
+    }
+    
+    // MARK: - Methods
+    func setDate(_ date: Date) {
+        datePicker.date = date
+        updateArrowButtonsEnabled()
     }
 }
