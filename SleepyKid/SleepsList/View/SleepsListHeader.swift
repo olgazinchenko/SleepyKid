@@ -110,9 +110,14 @@ final class SleepsListHeader: UIView {
     
     private func updateArrowButtonsEnabled() {
         let date = datePicker.date
-        
-        leftArrowButton.isEnabled = !(datePicker.minimumDate.map { date <= $0 } ?? false)
-        rightArrowButton.isEnabled = !(datePicker.maximumDate.map { date >= $0 } ?? false)
+        let atMin = datePicker.minimumDate.map { date <= $0 } ?? false
+        let atMax = datePicker.maximumDate.map { date >= $0 } ?? false
+
+        leftArrowButton.isEnabled = !atMin
+        rightArrowButton.isEnabled = !atMax
+
+        leftArrowButton.tintColor  = atMin ? .systemGray : .systemOrange
+        rightArrowButton.tintColor = atMax ? .systemGray : .systemOrange
     }
     
     // MARK: - Methods
