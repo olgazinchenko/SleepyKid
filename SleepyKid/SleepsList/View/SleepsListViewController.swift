@@ -33,6 +33,8 @@ class SleepsListViewController: UIViewController {
                                                  backgroundColor: .systemOrange)
     private let backButton = BackArrowButton()
     
+    private let refreshControl = UIRefreshControl()
+    
     
     // MARK: - Properties
     var viewModel: SleepsListViewModelProtocol
@@ -42,6 +44,7 @@ class SleepsListViewController: UIViewController {
     // MARK: - Initialization
     init(viewModel: SleepsListViewModelProtocol, startDate: Date) {
         self.viewModel = viewModel
+        self.selectedDate = startDate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,13 +61,14 @@ class SleepsListViewController: UIViewController {
         }
         
         setupUI()
-        
         updateEmptyStateVisibility()
+        viewModel.getSleeps(for: viewModel.kid, on: selectedDate)
         
         viewModel.reloadTable = { [weak self] in
             guard let self else { return }
             self.tableView.reloadData()
             self.updateEmptyStateVisibility()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
     
@@ -96,6 +100,9 @@ class SleepsListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         setupScreeHeader()
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
     }
     
     private func setupScreeHeader() {
@@ -168,11 +175,26 @@ class SleepsListViewController: UIViewController {
                                                selector: #selector(updateData),
                                                name: NSNotification.Name("Update"),
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateData),
+                                               name: UIScene.willEnterForegroundNotification,
+                                               object: nil)
     }
     
     @objc
     private func updateData() {
-        viewModel.getSleeps(for: viewModel.kid, on: .now)
+        if tableView.refreshControl?.isRefreshing == true {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
+        if Calendar.current.isDateInToday(selectedDate) {
+            selectedDate = Date()
+        }
+        viewModel.getSleeps(for: viewModel.kid, on: selectedDate)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -260,7 +282,7 @@ extension SleepsListViewController: UITableViewDelegate {
                                                  onDelete: { [weak self] in
                 guard let self else { return }
                 self.viewModel.getSleeps(for: viewModel.kid, on: self.selectedDate)
-                self.tableView.reloadData()
+                self.reloadDataAndUpdateUI()
             })
         }
     }
