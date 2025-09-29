@@ -179,8 +179,7 @@ extension KidsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         let kid = viewModel.getKid(for: indexPath.row)
-        let startDate = viewModel.getStartDate(for: kid)
-        coordinator?.showSleepsListViewController(for: kid, startDate: startDate)
+        coordinator?.showSleepsListViewController(for: kid, startDate: .now)
     }
     
     func tableView(_ tableView: UITableView,
